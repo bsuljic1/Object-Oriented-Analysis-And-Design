@@ -2,13 +2,12 @@
 
 ## Tema: Banka
 
+![image](https://user-images.githubusercontent.com/56475206/77470596-3ae7f180-6e11-11ea-9851-e657257ef678.png)
+
 ## Tim
   - Enver Suljić
   - Berina Suljić
   - Amina Šiljak
-  
-![image](https://user-images.githubusercontent.com/56475206/77470596-3ae7f180-6e11-11ea-9851-e657257ef678.png)
-
   
 ## Opis teme
 
