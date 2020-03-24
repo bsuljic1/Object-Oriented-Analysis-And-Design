@@ -21,10 +21,35 @@ U modernom svijetu u kojem je novac pojam bez kojeg se ne može egzistirati, ima
 - Obavljanje transakcija između računa unutar iste banke
 - Obavljanje transakcija između računa različitih banaka
 - Pregled, odobravanje i historiju kredita
-- Racunanje kreditne sposobnosti
+- Računanje kreditne sposobnosti
 - Pregled svih filijala i bankomata na mapi
 - Pregled kontakt brojeva vezanih za banku
 - Informisanje o novostima o banci
+
+## Procesi
+
+- Bankar
+    - Dodavanje novih klijenata u sistem
+    - Uređivanje podataka klijenata
+    - Otvaranje računa, pregledanje stanja, i zatvaranje istih
+    - Pregled prometa po računima, klijentima, i ostalih statističkih podataka
+    - Pregled transakcija
+    - Pregled, odobravanje i historiju kredita (uz algoritam za računanje kreditne sposobnosti)
+- Administrator
+    - Dodavanje i uklanjanje uposlenika (bankara)
+    - Dodavanje, uklanjanje i uređivanje filijala i bankomata
+    - Pregled svih klijenata, njihovih računa, i transakcija između računa
+    - Pregled podataka o kreditima
+    - Uređivanje kontakt brojeva vezanih za banku
+    - Dodavanje novosti
+- Klijent
+    - Konverzija deviza
+    - Vršenje uplata
+    - Slanje zahtjeva za kredit
+    - Pregled svih filijala i bankomata na mapi
+    - Pregled kontakt brojeva vezanih za banku
+    - Informisanje o novostima o banci
+
 
 ## Akteri
 
