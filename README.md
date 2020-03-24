@@ -5,9 +5,9 @@
 ![image](https://user-images.githubusercontent.com/56475206/77470596-3ae7f180-6e11-11ea-9851-e657257ef678.png)
 
 ## Tim
-  - Enver Suljić
-  - Berina Suljić
-  - Amina Šiljak
+  - [Enver Suljić](https://github.com/esuljic2)
+  - [Berina Suljić](https://github.com/bsuljic1)
+  - [Amina Šiljak](https://github.com/asiljak1)
   
 ## Opis teme
 
