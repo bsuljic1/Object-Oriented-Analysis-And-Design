@@ -2,7 +2,7 @@
 
 ## Tema: Banka
 
-![image](https://user-images.githubusercontent.com/56475206/77470596-3ae7f180-6e11-11ea-9851-e657257ef678.png)
+![image](https://raw.githubusercontent.com/ooad-2019-2020/Grupa6-Bankari/master/logo%20ebank.png)
 
 ## Tim
   - [Enver Suljić](https://github.com/esuljic2)
