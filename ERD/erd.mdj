@@ -1113,7 +1113,7 @@
 											"font": "Arial;13;1",
 											"left": 688,
 											"top": 205,
-											"width": 197.5654296875,
+											"width": 203.81787109375,
 											"height": 13,
 											"text": "Bankomat"
 										},
@@ -1139,7 +1139,7 @@
 													"font": "Arial;13;0",
 													"left": 693,
 													"top": 228,
-													"width": 187.5654296875,
+													"width": 193.81787109375,
 													"height": 13
 												},
 												{
@@ -1154,7 +1154,7 @@
 													"font": "Arial;13;0",
 													"left": 693,
 													"top": 243,
-													"width": 187.5654296875,
+													"width": 193.81787109375,
 													"height": 13
 												},
 												{
@@ -1169,22 +1169,37 @@
 													"font": "Arial;13;0",
 													"left": 693,
 													"top": 258,
-													"width": 187.5654296875,
+													"width": 193.81787109375,
+													"height": 13
+												},
+												{
+													"_type": "ERDColumnView",
+													"_id": "AAAAAAFyCUh7kx4nJWQ=",
+													"_parent": {
+														"$ref": "AAAAAAFyBC1h5NHaajU="
+													},
+													"model": {
+														"$ref": "AAAAAAFyCUh7Qh4k8jk="
+													},
+													"font": "Arial;13;0",
+													"left": 693,
+													"top": 273,
+													"width": 193.81787109375,
 													"height": 13
 												}
 											],
 											"font": "Arial;13;0",
 											"left": 688,
 											"top": 223,
-											"width": 197.5654296875,
-											"height": 53
+											"width": 203.81787109375,
+											"height": 68
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 688,
 									"top": 200,
-									"width": 197.5654296875,
-									"height": 76,
+									"width": 203.81787109375,
+									"height": 91,
 									"nameLabel": {
 										"$ref": "AAAAAAFyBC1h5NHZFGE="
 									},
@@ -3212,7 +3227,8 @@
 										"$ref": "AAAAAAFyBCp/c9G1Wqg="
 									},
 									"name": "vrstaRacuna",
-									"type": "VrstaRacuna"
+									"type": "VARCHAR",
+									"length": 0
 								},
 								{
 									"_type": "ERDColumn",
@@ -3263,6 +3279,15 @@
 									},
 									"name": "trenutnoStanje",
 									"type": "FLOAT"
+								},
+								{
+									"_type": "ERDColumn",
+									"_id": "AAAAAAFyCUh7Qh4k8jk=",
+									"_parent": {
+										"$ref": "AAAAAAFyBC1h5NHW5es="
+									},
+									"name": "ime",
+									"type": "VARCHAR"
 								}
 							]
 						},
