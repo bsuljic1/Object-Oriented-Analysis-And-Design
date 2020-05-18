@@ -61,9 +61,9 @@
 														"$ref": "AAAAAAFyA7lFTjdcrmU="
 													},
 													"font": "Arial;13;0",
-													"left": 78.97900390625,
+													"left": 74.58642578125,
 													"top": 13,
-													"width": 96.37353515625,
+													"width": 89.0673828125,
 													"height": 13,
 													"text": "Zahtjev za kredit"
 												},
@@ -76,7 +76,7 @@
 													"font": "Arial;13;1",
 													"left": 13,
 													"top": 13,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -467,9 +467,9 @@
 														"$ref": "AAAAAAFyA8Dj1DhPPYc="
 													},
 													"font": "Arial;13;0",
-													"left": 277.7890625,
+													"left": 275.59912109375,
 													"top": 173,
-													"width": 49.4072265625,
+													"width": 45.0400390625,
 													"height": 13,
 													"text": "Provjere"
 												},
@@ -482,7 +482,7 @@
 													"font": "Arial;13;1",
 													"left": 253,
 													"top": 173,
-													"width": 19.7890625,
+													"width": 17.59912109375,
 													"height": 13,
 													"text": "par"
 												},
@@ -679,9 +679,9 @@
 														"$ref": "AAAAAAFyA9AV7jjPszY="
 													},
 													"font": "Arial;13;0",
-													"left": 288.72998046875,
+													"left": 287.99365234375,
 													"top": 333,
-													"width": 182.390625,
+													"width": 166.33740234375,
 													"height": 13,
 													"text": "Prijedlog za odgovor na zahtejv"
 												},
@@ -694,7 +694,7 @@
 													"font": "Arial;13;1",
 													"left": 269,
 													"top": 333,
-													"width": 14.72998046875,
+													"width": 13.99365234375,
 													"height": 13,
 													"text": "alt"
 												},
@@ -727,7 +727,7 @@
 																	"font": "Arial;13;0",
 																	"left": 284,
 																	"top": 366,
-																	"width": 219.6923828125,
+																	"width": 199.99560546875,
 																	"height": 13,
 																	"text": "[kreditna sposobnost zadovoljavajuca]"
 																}
@@ -760,7 +760,7 @@
 																	"font": "Arial;13;0",
 																	"left": 284,
 																	"top": 472,
-																	"width": 234.15234375,
+																	"width": 212.265625,
 																	"height": 13,
 																	"text": "[kreditna sposobnost nezadovoljavajuca]"
 																}
@@ -1371,9 +1371,9 @@
 														"$ref": "AAAAAAFyBYMPEfqexkY="
 													},
 													"font": "Arial;13;0",
-													"left": 48.72998046875,
+													"left": 47.99365234375,
 													"top": 661,
-													"width": 139.0361328125,
+													"width": 128.81005859375,
 													"height": 13,
 													"text": "Slanje odgovora klijentu"
 												},
@@ -1386,7 +1386,7 @@
 													"font": "Arial;13;1",
 													"left": 29,
 													"top": 661,
-													"width": 14.72998046875,
+													"width": 13.99365234375,
 													"height": 13,
 													"text": "alt"
 												},
@@ -1419,7 +1419,7 @@
 																	"font": "Arial;13;0",
 																	"left": 44,
 																	"top": 694,
-																	"width": 164.05517578125,
+																	"width": 151.61376953125,
 																	"height": 13,
 																	"text": "[odluka da je kredit odobren]"
 																}
@@ -1452,7 +1452,7 @@
 																	"font": "Arial;13;0",
 																	"left": 44,
 																	"top": 1032,
-																	"width": 158.2724609375,
+																	"width": 148.00830078125,
 																	"height": 13,
 																	"text": "[odluka da je kredit odbijen]"
 																}
@@ -2064,9 +2064,9 @@
 														"$ref": "AAAAAAFyBaz1KPxC64Y="
 													},
 													"font": "Arial;13;0",
-													"left": 77.7890625,
+													"left": 75.59912109375,
 													"top": 749,
-													"width": 118.06982421875,
+													"width": 107.48193359375,
 													"height": 13,
 													"text": "Odobravanje kredita"
 												},
@@ -2079,7 +2079,7 @@
 													"font": "Arial;13;1",
 													"left": 53,
 													"top": 749,
-													"width": 19.7890625,
+													"width": 17.59912109375,
 													"height": 13,
 													"text": "par"
 												},
@@ -2165,9 +2165,9 @@
 														"$ref": "AAAAAAFyBa4zO/xhqLg="
 													},
 													"font": "Arial;13;0",
-													"left": 85.7890625,
+													"left": 83.59912109375,
 													"top": 1093,
-													"width": 98.55712890625,
+													"width": 91.6064453125,
 													"height": 13,
 													"text": "Odbijanje kredita"
 												},
@@ -2180,7 +2180,7 @@
 													"font": "Arial;13;1",
 													"left": 61,
 													"top": 1093,
-													"width": 19.7890625,
+													"width": 17.59912109375,
 													"height": 13,
 													"text": "par"
 												},
@@ -2896,9 +2896,9 @@
 														"$ref": "AAAAAAFyBbYANfzKw4M="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 83.62744140625,
+													"width": 75.6611328125,
 													"height": 13,
 													"text": "Vrsenje uplate"
 												},
@@ -2911,7 +2911,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -3507,9 +3507,9 @@
 														"$ref": "AAAAAAFyBb3/SP3yg80="
 													},
 													"font": "Arial;13;0",
-													"left": 144.72998046875,
+													"left": 143.99365234375,
 													"top": 269,
-													"width": 94.71044921875,
+													"width": 87.98828125,
 													"height": 13,
 													"text": "Validacija uplate"
 												},
@@ -3522,7 +3522,7 @@
 													"font": "Arial;13;1",
 													"left": 125,
 													"top": 269,
-													"width": 14.72998046875,
+													"width": 13.99365234375,
 													"height": 13,
 													"text": "alt"
 												},
@@ -3555,7 +3555,7 @@
 																	"font": "Arial;13;0",
 																	"left": 140,
 																	"top": 302,
-																	"width": 143.7998046875,
+																	"width": 131.39013671875,
 																	"height": 13,
 																	"text": "[podaci obrasca ispravni]"
 																}
@@ -3588,7 +3588,7 @@
 																	"font": "Arial;13;0",
 																	"left": 140,
 																	"top": 488,
-																	"width": 158.259765625,
+																	"width": 143.66015625,
 																	"height": 13,
 																	"text": "[podaci obrasca neispravni]"
 																}
@@ -4117,7 +4117,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFyBbYAMvzHnQ4="
 							},
-							"name": "Role1"
+							"name": "Role1",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -4134,7 +4135,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFyBbYAMvzHnQ4="
 							},
-							"name": "Role3"
+							"name": "Role3",
+							"type": ""
 						}
 					]
 				},
@@ -4179,9 +4181,9 @@
 														"$ref": "AAAAAAFyBcaUPP6S7Zs="
 													},
 													"font": "Arial;13;0",
-													"left": 75.97900390625,
+													"left": 71.58642578125,
 													"top": 10,
-													"width": 99.998046875,
+													"width": 93.7646484375,
 													"height": 13,
 													"text": "Konverzija valuta"
 												},
@@ -4194,7 +4196,7 @@
 													"font": "Arial;13;1",
 													"left": 10,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -5486,7 +5488,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFyBcaUOv6PFpM="
 							},
-							"name": "Role1"
+							"name": "Role1",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5494,7 +5497,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFyBcaUOv6PFpM="
 							},
-							"name": "Role2"
+							"name": "Role2",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -5511,7 +5515,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFyBcaUOv6PFpM="
 							},
-							"name": "Role4"
+							"name": "Role4",
+							"type": ""
 						}
 					]
 				},
@@ -7778,7 +7783,7 @@
 														"$ref": "AAAAAAFyBecwLwQtxas="
 													},
 													"font": "Arial;13;0",
-													"left": 374,
+													"left": 378,
 													"top": 1008,
 													"width": 101.89892578125,
 													"height": 13,
@@ -7801,7 +7806,7 @@
 													},
 													"visible": false,
 													"font": "Arial;13;0",
-													"left": 424,
+													"left": 428,
 													"top": 993,
 													"height": 13,
 													"alpha": 1.5707963267948966,
@@ -7822,7 +7827,7 @@
 													},
 													"visible": false,
 													"font": "Arial;13;0",
-													"left": 424,
+													"left": 428,
 													"top": 1028,
 													"height": 13,
 													"alpha": -1.5707963267948966,
@@ -7841,8 +7846,9 @@
 													"model": {
 														"$ref": "AAAAAAFyBecwLwQtxas="
 													},
+													"visible": false,
 													"font": "Arial;13;0",
-													"left": 533,
+													"left": 540,
 													"top": 1024,
 													"width": 14,
 													"height": 29
@@ -7855,7 +7861,7 @@
 											"tail": {
 												"$ref": "AAAAAAFyBdAivwCH1uU="
 											},
-											"points": "316:1024;533:1024",
+											"points": "316:1024;540:1024",
 											"nameLabel": {
 												"$ref": "AAAAAAFyBecwMAQvxIw="
 											},
@@ -8748,6 +8754,7 @@
 									"target": {
 										"$ref": "AAAAAAFyBdA81wCgpXM="
 									},
+									"messageSort": "asynchCall",
 									"arguments": "podaci"
 								},
 								{
@@ -8792,6 +8799,7 @@
 									"target": {
 										"$ref": "AAAAAAFyBdA81wCgpXM="
 									},
+									"messageSort": "asynchCall",
 									"arguments": "podaci"
 								},
 								{
@@ -8806,7 +8814,8 @@
 									},
 									"target": {
 										"$ref": "AAAAAAFyBdA81wCgpXM="
-									}
+									},
+									"messageSort": "asynchSignal"
 								},
 								{
 									"_type": "UMLMessage",
@@ -9087,7 +9096,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFyBc62SQBP3VM="
 							},
-							"name": "Role1"
+							"name": "Role1",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -9095,7 +9105,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFyBc62SQBP3VM="
 							},
-							"name": "Role2"
+							"name": "Role2",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -9103,7 +9114,8 @@
 							"_parent": {
 								"$ref": "AAAAAAFyBc62SQBP3VM="
 							},
-							"name": "Role3"
+							"name": "Role3",
+							"type": ""
 						}
 					]
 				}
