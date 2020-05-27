@@ -5,7 +5,11 @@ using System.Threading.Tasks;
 
 namespace EBANK.Models
 {
-    public class VrstaRacuna
+    public enum VrstaRacuna
     {
+        Tekuci,
+        Ziro,
+        Devizni, 
+        Stedni
     }
 }

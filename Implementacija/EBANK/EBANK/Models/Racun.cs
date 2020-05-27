@@ -7,5 +7,10 @@ namespace EBANK.Models
 {
     public class Racun
     {
+        private int Id{ get; set; }
+        private float StanjeRacuna{ get; set; }
+
+        private VrstaRacuna vrstaRacuna { get; set; }
+        private Klijent klijent { get; set; }
     }
 }
