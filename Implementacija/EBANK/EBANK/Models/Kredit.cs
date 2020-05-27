@@ -5,7 +5,11 @@ using System.Threading.Tasks;
 
 namespace EBANK.Models
 {
-    public class Class
+    public class Kredit:KreditBaza
     {
-    }
+        private float IsplaceniIznos {get; set;}
+        private DateTime PocetakOtpate { get; set; }
+
+        private StatusKredita StatusKredita { get; set; }
+}
 }
