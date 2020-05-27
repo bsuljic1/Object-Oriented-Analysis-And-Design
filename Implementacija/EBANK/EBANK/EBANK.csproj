@@ -5,6 +5,19 @@
     <UserSecretsId>aspnet-EBANK-938775FE-431C-43BF-9C8B-9CAE99D9C44C</UserSecretsId>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20200527125629_initial.cs" />
+    <Compile Remove="Migrations\20200527125629_initial.Designer.cs" />
+    <Compile Remove="Migrations\20200527130023_initial2.cs" />
+    <Compile Remove="Migrations\20200527130023_initial2.Designer.cs" />
+    <Compile Remove="Migrations\20200527130150_initial.cs" />
+    <Compile Remove="Migrations\20200527130150_initial.Designer.cs" />
+    <Compile Remove="Migrations\20200527130333_initial.cs" />
+    <Compile Remove="Migrations\20200527130333_initial.Designer.cs" />
+    <Compile Remove="Migrations\20200527130441_initial.cs" />
+    <Compile Remove="Migrations\20200527130441_initial.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="3.1.2" />
@@ -12,6 +25,11 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 
 </Project>

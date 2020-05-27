@@ -9,15 +9,15 @@ namespace EBANK.Models
     public class Racun
     {
         [ScaffoldColumn(false)]
-        private int Id{ get; set; }
+        public int Id{ get; set; }
 
         [Required]
-        private float StanjeRacuna{ get; set; }
+        public float StanjeRacuna{ get; set; }
 
         [Required]
-        private VrstaRacuna vrstaRacuna { get; set; }
+        public VrstaRacuna vrstaRacuna { get; set; }
 
         [Required]
-        private Klijent klijent { get; set; }
+        public Klijent klijent { get; set; }
     }
 }

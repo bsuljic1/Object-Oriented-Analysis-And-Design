@@ -9,25 +9,25 @@ namespace EBANK.Models
     public class Transakcija
     {
        [ScaffoldColumn(false)]
-        private int Id { get; set; }
+        public int Id { get; set; }
 
         [Required]
-        private DateTime vrijeme { get; set; }
+        public DateTime vrijeme { get; set; }
 
         [Required]
-        private Racun saRacuna { get; set; }
+        public Racun saRacuna { get; set; }
 
         [Required]
-        private Racun naRacun { get; set; }
+        public Racun naRacun { get; set; }
 
         [Required]
-        private float Iznos { get; set; }
+        public float Iznos { get; set; }
 
         [Required]
-        private VrstaTransakcije VrstaTransakcije { get; set; }
+        public VrstaTransakcije VrstaTransakcije { get; set; }
 
         [Required]
-        private NacinTransakcije NacinTransakcije { get; set; }
+        public NacinTransakcije NacinTransakcije { get; set; }
 
     }
 }

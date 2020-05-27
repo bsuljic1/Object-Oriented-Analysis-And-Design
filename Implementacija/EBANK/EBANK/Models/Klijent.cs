@@ -9,16 +9,16 @@ namespace EBANK.Models
     public class Klijent : Korisnik
     {
         [Required]
-        private DateTime DatumRodjenja { get; set; }
+        public DateTime DatumRodjenja { get; set; }
         [Required]
-        private string JMBG { get; set; }
+        public string JMBG { get; set; }
         [Required]
-        private string BrojTelefona { get; set; }
+        public string BrojTelefona { get; set; }
         [Required]
-        private string BrojLicneKarte { get; set; }
+        public string BrojLicneKarte { get; set; }
         [Required]
-        private Adresa adresa { get; set; }
+        public Adresa Adresa { get; set; }
         [Required]
-        private string zanimanje { get; set; }
+        public string Zanimanje { get; set; }
     }
 }

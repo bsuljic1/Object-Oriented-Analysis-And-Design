@@ -9,12 +9,12 @@ namespace EBANK.Models
     public class Adresa
     {
         [ScaffoldColumn(false)]
-        private int Id { get; set; }
+        public int Id { get; set; }
         [Required]
-        private float Latitude { get; set; }
+        public float Latitude { get; set; }
         [Required]
-        private float Longitude { get; set; }
+        public float Longitude { get; set; }
         [Required]
-        private string Naziv { get; set; }
+        public string Naziv { get; set; }
     }
 }

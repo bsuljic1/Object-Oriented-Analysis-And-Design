@@ -8,18 +8,18 @@ namespace EBANK.Models
 {
     public class Novost
     {
-        private int Id { get; set; }
+        public int Id { get; set; }
 
-        private DateTime vrijemeDodavanja { get; set; }
-
-        [Required]
-        private string Naslov { get; set; }
+        public DateTime vrijemeDodavanja { get; set; }
 
         [Required]
-        private string Sadrzaj { get; set; }
+        public string Naslov { get; set; }
+
+        [Required]
+        public string Sadrzaj { get; set; }
         
         [Required]
-        private bool prikazana { get; set; }
+        public bool prikazana { get; set; }
 
     }
 }

@@ -9,30 +9,30 @@ namespace EBANK.Models
     public class ZahtjevZaKredit : KreditBaza
     {
         [Required]
-        private String NamjenaKredita { get; set; }
+        public String NamjenaKredita { get; set; }
 
         [Required]
-        private float MjesecniPrihodi { get; set; }
+        public float MjesecniPrihodi { get; set; }
 
         [Required]
-        private float ProsjecniTroskoviDomacinstva { get; set; }
+        public float ProsjecniTroskoviDomacinstva { get; set; }
 
         [Required]
-        private String NazivRadnogMjesta { get; set; }
+        public String NazivRadnogMjesta { get; set; }
 
         [Required]
-        private String NazivPoslodavca { get; set; }
+        public String NazivPoslodavca { get; set; }
 
         [Required]
-        private int RadniStaz { get; set; }
+        public int RadniStaz { get; set; }
 
         [Required]
-        private int BrojNekretnina { get; set; }
+        public int BrojNekretnina { get; set; }
 
         [Required]
-        private float BrojNeplacenihDugova { get; set; }
+        public float BrojNeplacenihDugova { get; set; }
 
         [Required]
-        private StatusZahtjevaZaKredit StatusKredita { get; set; }
+        public StatusZahtjevaZaKredit StatusKredita { get; set; }
     }
 }

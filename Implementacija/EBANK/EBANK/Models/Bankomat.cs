@@ -9,11 +9,10 @@ namespace EBANK.Models
     public class Bankomat
     {
         [ScaffoldColumn(false)]
-        private int id { get; set; }
+        public int id { get; set; }
         [Required]
-        private string Ime { get; set; }
+        public string Ime { get; set; }
         [Required]
-        private Adresa Adresa { get; set; }
-
+        public Adresa Adresa { get; set; }
     }
 }

@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace EBANK.Models
 {
-    public class Korisnik
+    public abstract class Korisnik
     {
         [ScaffoldColumn(false)]
-        private int Id { get; set; }
+        public int Id { get; set; }
         [Required]
-        private string Ime { get; set; }
+        public string Ime { get; set; }
         [Required]
-        private string Prezime { get; set; }
+        public string Prezime { get; set; }
         [Required]
-        private string KorisnickoIme { get; set; }
+        public string KorisnickoIme { get; set; }
         [Required]
-        private string Lozinka { get; set; }
+        public string Lozinka { get; set; }
     }
 }

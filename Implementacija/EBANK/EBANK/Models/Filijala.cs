@@ -9,12 +9,12 @@ namespace EBANK.Models
     public class Filijala
     {
         [ScaffoldColumn(false)]
-        private int Id { get; set; }
+        public int Id { get; set; }
         [Required]
-        private string Ime { get; set; }
+        public string Ime { get; set; }
         [Required]
-        private Adresa Adresa { get; set; }
+        public Adresa Adresa { get; set; }
         [Required]
-        private string BrojTelefona { get; set; }
+        public string BrojTelefona { get; set; }
     }
 }
