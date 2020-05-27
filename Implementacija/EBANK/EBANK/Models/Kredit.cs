@@ -7,9 +7,9 @@ namespace EBANK.Models
 {
     public class Kredit:KreditBaza
     {
-        private float IsplaceniIznos {get; set;}
-        private DateTime PocetakOtpate { get; set; }
+        public float IsplaceniIznos {get; set;}
+        public DateTime PocetakOtpate { get; set; }
 
-        private StatusKredita StatusKredita { get; set; }
+        public StatusKredita StatusKredita { get; set; }
 }
 }

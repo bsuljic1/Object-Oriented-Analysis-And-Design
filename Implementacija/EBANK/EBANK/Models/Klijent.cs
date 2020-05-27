@@ -7,11 +7,11 @@ namespace EBANK.Models
 {
     public class Klijent : Korisnik
     {
-        private DateTime DatumRodjenja { get; set; }
-        private string JMBG { get; set; }
-        private string BrojTelefona { get; set; }
-        private string BrojLicneKarte { get; set; }
-        private Adresa adresa { get; set; }
-        private string zanimanje { get; set; }
+        public DateTime DatumRodjenja { get; set; }
+        public string JMBG { get; set; }
+        public string BrojTelefona { get; set; }
+        public string BrojLicneKarte { get; set; }
+        public Adresa Adresa { get; set; }
+        public string Zanimanje { get; set; }
     }
 }

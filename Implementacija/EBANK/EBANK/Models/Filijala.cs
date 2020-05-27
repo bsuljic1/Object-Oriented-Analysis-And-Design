@@ -7,9 +7,9 @@ namespace EBANK.Models
 {
     public class Filijala
     {
-        private int Id { get; set; }
-        private string Ime { get; set; }
-        private Adresa Adresa { get; set; }
-        private string BrojTelefona { get; set; }
+        public int Id { get; set; }
+        public string Ime { get; set; }
+        public Adresa Adresa { get; set; }
+        public string BrojTelefona { get; set; }
     }
 }

@@ -9,9 +9,9 @@ namespace EBANK.Models
     public class Adresa
     {
         [ScaffoldColumn(false)]
-        private int Id { get; set; }
-        private float Latitude { get; set; }
-        private float Longitude { get; set; }
-        private string Naziv { get; set; }
+        public int Id { get; set; }
+        public float Latitude { get; set; }
+        public float Longitude { get; set; }
+        public string Naziv { get; set; }
     }
 }

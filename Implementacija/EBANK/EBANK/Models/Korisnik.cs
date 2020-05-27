@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace EBANK.Models
 {
-    public class Korisnik
+    public abstract class Korisnik
     {
-        private int Id { get; set; }
-        private string Ime { get; set; }
-        private string Prezime { get; set; }
-        private string KorisnickoIme { get; set; }
-        private string Lozinka { get; set; }
+        public int Id { get; set; }
+        public string Ime { get; set; }
+        public string Prezime { get; set; }
+        public string KorisnickoIme { get; set; }
+        public string Lozinka { get; set; }
     }
 }

@@ -7,6 +7,6 @@ namespace EBANK.Models
 {
     public class Bankar : Korisnik
     {
-        private Filijala MjestoZaposlenja { get; set; }
+        public Adresa MjestoZaposlenja { get; set; }
     }
 }

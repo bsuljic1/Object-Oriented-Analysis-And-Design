@@ -7,5 +7,6 @@ namespace EBANK.Models
 {
     public class Administrator : Korisnik
     {
+        public int Bla { get; set; }
     }
 }

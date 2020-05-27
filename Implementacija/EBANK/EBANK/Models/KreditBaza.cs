@@ -9,12 +9,12 @@ namespace EBANK.Models
     public class KreditBaza
     {
         [ScaffoldColumn(false)]
-        private int Id { get; set; }
+        public int Id { get; set; }
 
-        private DateTime PocetakOtpate { get; set; }
+        public DateTime PocetakOtpate { get; set; }
 
 
-        private StatusKredita StatusKredita { get; set; }
+        public StatusKredita StatusKredita { get; set; }
 
     }
 }
