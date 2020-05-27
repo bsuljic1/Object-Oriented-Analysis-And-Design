@@ -10,8 +10,11 @@ namespace EBANK.Models
     {
         [ScaffoldColumn(false)]
         private int Id { get; set; }
+        [Required]
         private float Latitude { get; set; }
+        [Required]
         private float Longitude { get; set; }
+        [Required]
         private string Naziv { get; set; }
     }
 }

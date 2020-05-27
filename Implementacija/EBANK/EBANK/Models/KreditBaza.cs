@@ -10,10 +10,7 @@ namespace EBANK.Models
     {
         [ScaffoldColumn(false)]
         private int Id { get; set; }
-
         private DateTime PocetakOtpate { get; set; }
-
-
         private StatusKredita StatusKredita { get; set; }
 
     }

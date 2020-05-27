@@ -10,7 +10,9 @@ namespace EBANK.Models
     {
         [ScaffoldColumn(false)]
         private int id { get; set; }
+        [Required]
         private string Ime { get; set; }
+        [Required]
         private Adresa Adresa { get; set; }
 
     }
