@@ -5,7 +5,10 @@ using System.Threading.Tasks;
 
 namespace EBANK.Models
 {
-    public class StatusZahtjevaZaKredit
+    public enum StatusZahtjevaZaKredit
     {
+        Neobradjen,
+        Odobren,
+        Odbijen
     }
 }
