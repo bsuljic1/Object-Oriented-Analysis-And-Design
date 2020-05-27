@@ -17,7 +17,7 @@ namespace EBANK.Models
         [Required]
         public VrstaRacuna vrstaRacuna { get; set; }
 
-        [Required]
-        public Klijent klijent { get; set; }
+        //[Required]
+        //public Klijent klijent { get; set; }
     }
 }

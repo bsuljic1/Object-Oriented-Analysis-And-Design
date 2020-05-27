@@ -8,6 +8,22 @@ namespace EBANK.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Administrator",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Ime = table.Column<string>(nullable: false),
+                    Prezime = table.Column<string>(nullable: false),
+                    KorisnickoIme = table.Column<string>(nullable: false),
+                    Lozinka = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Administrator", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Adresa",
                 columns: table => new
                 {
@@ -15,7 +31,7 @@ namespace EBANK.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Latitude = table.Column<float>(nullable: false),
                     Longitude = table.Column<float>(nullable: false),
-                    Naziv = table.Column<string>(nullable: true)
+                    Naziv = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,6 +70,20 @@ namespace EBANK.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Racun",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StanjeRacuna = table.Column<float>(nullable: false),
+                    vrstaRacuna = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Racun", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ZahtjevZaKredit",
                 columns: table => new
                 {
@@ -76,23 +106,46 @@ namespace EBANK.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Bankomat",
+                name: "Bankar",
                 columns: table => new
                 {
-                    id = table.Column<int>(nullable: false)
+                    Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Ime = table.Column<string>(nullable: true),
-                    AdresaId = table.Column<int>(nullable: true)
+                    Ime = table.Column<string>(nullable: false),
+                    Prezime = table.Column<string>(nullable: false),
+                    KorisnickoIme = table.Column<string>(nullable: false),
+                    Lozinka = table.Column<string>(nullable: false),
+                    MjestoZaposlenjaId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Bankomat", x => x.id);
+                    table.PrimaryKey("PK_Bankar", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Bankar_Adresa_MjestoZaposlenjaId",
+                        column: x => x.MjestoZaposlenjaId,
+                        principalTable: "Adresa",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Bankomat",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Ime = table.Column<string>(nullable: false),
+                    AdresaId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Bankomat", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Bankomat_Adresa_AdresaId",
                         column: x => x.AdresaId,
                         principalTable: "Adresa",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -101,9 +154,9 @@ namespace EBANK.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Ime = table.Column<string>(nullable: true),
-                    AdresaId = table.Column<int>(nullable: true),
-                    BrojTelefona = table.Column<string>(nullable: true)
+                    Ime = table.Column<string>(nullable: false),
+                    AdresaId = table.Column<int>(nullable: false),
+                    BrojTelefona = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -113,55 +166,33 @@ namespace EBANK.Migrations
                         column: x => x.AdresaId,
                         principalTable: "Adresa",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Korisnik",
+                name: "Klijent",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Ime = table.Column<string>(nullable: true),
-                    Prezime = table.Column<string>(nullable: true),
-                    KorisnickoIme = table.Column<string>(nullable: true),
-                    Lozinka = table.Column<string>(nullable: true),
-                    Discriminator = table.Column<string>(nullable: false),
-                    DatumRodjenja = table.Column<DateTime>(nullable: true),
-                    JMBG = table.Column<string>(nullable: true),
-                    BrojTelefona = table.Column<string>(nullable: true),
-                    BrojLicneKarte = table.Column<string>(nullable: true),
-                    AdresaId = table.Column<int>(nullable: true),
-                    Zanimanje = table.Column<string>(nullable: true)
+                    Ime = table.Column<string>(nullable: false),
+                    Prezime = table.Column<string>(nullable: false),
+                    KorisnickoIme = table.Column<string>(nullable: false),
+                    Lozinka = table.Column<string>(nullable: false),
+                    DatumRodjenja = table.Column<DateTime>(nullable: false),
+                    JMBG = table.Column<string>(nullable: false),
+                    BrojTelefona = table.Column<string>(nullable: false),
+                    BrojLicneKarte = table.Column<string>(nullable: false),
+                    AdresaId = table.Column<int>(nullable: false),
+                    Zanimanje = table.Column<string>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Korisnik", x => x.Id);
+                    table.PrimaryKey("PK_Klijent", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Korisnik_Adresa_AdresaId",
+                        name: "FK_Klijent_Adresa_AdresaId",
                         column: x => x.AdresaId,
                         principalTable: "Adresa",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Racun",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    StanjeRacuna = table.Column<float>(nullable: false),
-                    vrstaRacuna = table.Column<int>(nullable: false),
-                    klijentId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Racun", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Racun_Korisnik_klijentId",
-                        column: x => x.klijentId,
-                        principalTable: "Korisnik",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -187,14 +218,19 @@ namespace EBANK.Migrations
                         column: x => x.naRacunId,
                         principalTable: "Racun",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Transakcija_Racun_saRacunaId",
                         column: x => x.saRacunaId,
                         principalTable: "Racun",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Bankar_MjestoZaposlenjaId",
+                table: "Bankar",
+                column: "MjestoZaposlenjaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Bankomat_AdresaId",
@@ -207,14 +243,9 @@ namespace EBANK.Migrations
                 column: "AdresaId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Korisnik_AdresaId",
-                table: "Korisnik",
+                name: "IX_Klijent_AdresaId",
+                table: "Klijent",
                 column: "AdresaId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Racun_klijentId",
-                table: "Racun",
-                column: "klijentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Transakcija_naRacunId",
@@ -230,10 +261,19 @@ namespace EBANK.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Administrator");
+
+            migrationBuilder.DropTable(
+                name: "Bankar");
+
+            migrationBuilder.DropTable(
                 name: "Bankomat");
 
             migrationBuilder.DropTable(
                 name: "Filijala");
+
+            migrationBuilder.DropTable(
+                name: "Klijent");
 
             migrationBuilder.DropTable(
                 name: "Kredit");
@@ -248,13 +288,10 @@ namespace EBANK.Migrations
                 name: "ZahtjevZaKredit");
 
             migrationBuilder.DropTable(
-                name: "Racun");
-
-            migrationBuilder.DropTable(
-                name: "Korisnik");
-
-            migrationBuilder.DropTable(
                 name: "Adresa");
+
+            migrationBuilder.DropTable(
+                name: "Racun");
         }
     }
 }

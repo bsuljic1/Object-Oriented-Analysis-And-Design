@@ -12,7 +12,9 @@ namespace EBANK.Data
         public OOADContext(DbContextOptions<OOADContext> options) : base(options)
         {
         }
-        public DbSet<Korisnik> Korisnik { get; set; }
+        public DbSet<Klijent> Klijent { get; set; }
+        public DbSet<Bankar> Bankar { get; set; }
+        public DbSet<Administrator> Administrator { get; set; }
         public DbSet<Adresa> Adresa { get; set; }
         public DbSet<Bankomat> Bankomat { get; set; }
         public DbSet<Filijala> Filijala { get; set; }
@@ -24,7 +26,7 @@ namespace EBANK.Data
         //Ova funkcija se koriste da bi se ukinulo automatsko dodavanje množine u nazive
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Korisnik>().ToTable("Korisnik");
+            //modelBuilder.Entity<Korisnik>().ToTable("Korisnik");
             modelBuilder.Entity<Adresa>().ToTable("Adresa");
             modelBuilder.Entity<Bankomat>().ToTable("Bankomat");
             modelBuilder.Entity<Filijala>().ToTable("Filijala");

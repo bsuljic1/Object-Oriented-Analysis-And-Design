@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EBANK.Migrations
 {
     [DbContext(typeof(OOADContext))]
-    [Migration("20200527131050_initial")]
+    [Migration("20200527155716_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,37 @@ namespace EBANK.Migrations
                 .HasAnnotation("ProductVersion", "3.1.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("EBANK.Models.Administrator", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("Bla")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KorisnickoIme")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lozinka")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Prezime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Administrator");
+                });
 
             modelBuilder.Entity("EBANK.Models.Adresa", b =>
                 {
@@ -35,6 +66,7 @@ namespace EBANK.Migrations
                         .HasColumnType("real");
 
                     b.Property<string>("Naziv")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -42,20 +74,54 @@ namespace EBANK.Migrations
                     b.ToTable("Adresa");
                 });
 
-            modelBuilder.Entity("EBANK.Models.Bankomat", b =>
+            modelBuilder.Entity("EBANK.Models.Bankar", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AdresaId")
+                    b.Property<string>("Ime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("KorisnickoIme")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Lozinka")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MjestoZaposlenjaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Prezime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("MjestoZaposlenjaId");
+
+                    b.ToTable("Bankar");
+                });
+
+            modelBuilder.Entity("EBANK.Models.Bankomat", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AdresaId")
                         .HasColumnType("int");
 
                     b.Property<string>("Ime")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
                     b.HasIndex("AdresaId");
 
@@ -69,13 +135,15 @@ namespace EBANK.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AdresaId")
+                    b.Property<int>("AdresaId")
                         .HasColumnType("int");
 
                     b.Property<string>("BrojTelefona")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ime")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
@@ -85,34 +153,56 @@ namespace EBANK.Migrations
                     b.ToTable("Filijala");
                 });
 
-            modelBuilder.Entity("EBANK.Models.Korisnik", b =>
+            modelBuilder.Entity("EBANK.Models.Klijent", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Discriminator")
+                    b.Property<int>("AdresaId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("BrojLicneKarte")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("BrojTelefona")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DatumRodjenja")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Ime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("JMBG")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("KorisnickoIme")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Lozinka")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Prezime")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Zanimanje")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Korisnik");
+                    b.HasIndex("AdresaId");
 
-                    b.HasDiscriminator<string>("Discriminator").HasValue("Korisnik");
+                    b.ToTable("Klijent");
                 });
 
             modelBuilder.Entity("EBANK.Models.Kredit", b =>
@@ -172,15 +262,10 @@ namespace EBANK.Migrations
                     b.Property<float>("StanjeRacuna")
                         .HasColumnType("real");
 
-                    b.Property<int>("klijentId")
-                        .HasColumnType("int");
-
                     b.Property<int>("vrstaRacuna")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("klijentId");
 
                     b.ToTable("Racun");
                 });
@@ -264,52 +349,38 @@ namespace EBANK.Migrations
                     b.ToTable("ZahtjevZaKredit");
                 });
 
-            modelBuilder.Entity("EBANK.Models.Klijent", b =>
+            modelBuilder.Entity("EBANK.Models.Bankar", b =>
                 {
-                    b.HasBaseType("EBANK.Models.Korisnik");
-
-                    b.Property<int?>("AdresaId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("BrojLicneKarte")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("BrojTelefona")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("DatumRodjenja")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("JMBG")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Zanimanje")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasIndex("AdresaId");
-
-                    b.HasDiscriminator().HasValue("Klijent");
+                    b.HasOne("EBANK.Models.Adresa", "MjestoZaposlenja")
+                        .WithMany()
+                        .HasForeignKey("MjestoZaposlenjaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EBANK.Models.Bankomat", b =>
                 {
                     b.HasOne("EBANK.Models.Adresa", "Adresa")
                         .WithMany()
-                        .HasForeignKey("AdresaId");
+                        .HasForeignKey("AdresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("EBANK.Models.Filijala", b =>
                 {
                     b.HasOne("EBANK.Models.Adresa", "Adresa")
                         .WithMany()
-                        .HasForeignKey("AdresaId");
+                        .HasForeignKey("AdresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("EBANK.Models.Racun", b =>
+            modelBuilder.Entity("EBANK.Models.Klijent", b =>
                 {
-                    b.HasOne("EBANK.Models.Klijent", "klijent")
+                    b.HasOne("EBANK.Models.Adresa", "Adresa")
                         .WithMany()
-                        .HasForeignKey("klijentId")
+                        .HasForeignKey("AdresaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -327,13 +398,6 @@ namespace EBANK.Migrations
                         .HasForeignKey("saRacunaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("EBANK.Models.Klijent", b =>
-                {
-                    b.HasOne("EBANK.Models.Adresa", "Adresa")
-                        .WithMany()
-                        .HasForeignKey("AdresaId");
                 });
 #pragma warning restore 612, 618
         }
