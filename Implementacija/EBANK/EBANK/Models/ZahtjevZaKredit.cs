@@ -25,20 +25,40 @@ namespace EBANK.Models
         public String NazivRadnogMjesta { get; set; }
 
         [Required]
-        [Display(Name = "Naziv poslodavca")]
+        [Display(Name = "Naziv Vašeg poslodavca")]
         public String NazivPoslodavca { get; set; }
 
         [Required]
-        [Display(Name = "Radni staž")]
+        [Display(Name = "Ukupno radnog staža")]
         public int RadniStaz { get; set; }
 
         [Required]
-        [Display(Name = "Broj nekretnina")]
+        [Display(Name = "Broj nekretnina u vlasništvu")]
         public int BrojNekretnina { get; set; }
+
+        
+        [Required]
+        [Display(Name = "Bračno stanje")]
+        public BracnoStanje BracnoStanje { get; set; }
+
+        
+        [Display(Name = "Ime supružnika")]
+        public string SupruznikIme { get; set; }
+
+        [Display(Name = "Prezime supružnika")]
+        public string SupruznikPrezime { get; set; }
+
+        [Display(Name = "Zanimanje supružnika")]
+        public string SupruznikZanimanje { get; set; }
+
+        [Required]
+        [Display(Name = "Imate li neplaćenih dugova?")]
+        public bool ImaNeplacenihDugova { get; set; }
 
         [Required]
         [Display(Name = "Broj neplaćenih dugova")]
         public float BrojNeplacenihDugova { get; set; }
+
 
         [Required]
         [Display(Name = "Status zahtjeva")]

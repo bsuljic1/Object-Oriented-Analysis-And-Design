@@ -14,7 +14,7 @@ namespace EBANK.Models
         [Display(Name = "Broj računa")]
         public Racun Racun { get; set; }
 
-        [Display(Name = "Iznos")]
+        [Display(Name = "Iznos kredita")]
         public float Iznos { get; set; }
 
         [Display(Name = "Kamatna stopa")]
