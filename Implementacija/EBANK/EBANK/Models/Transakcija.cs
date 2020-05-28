@@ -31,7 +31,7 @@ namespace EBANK.Models
 
         [Required]
         [Display(Name = "Način transakcije")]
-        public NacinTransakcije NacinTransakcije { get; set; }
+        public NacinTransakcije NacinTransakcije { get; set; } = NacinTransakcije.Interna;
 
     }
 }

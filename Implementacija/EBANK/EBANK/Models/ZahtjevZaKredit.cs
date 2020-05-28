@@ -62,6 +62,6 @@ namespace EBANK.Models
 
         [Required]
         [Display(Name = "Status zahtjeva")]
-        public StatusZahtjevaZaKredit StatusZahtjeva { get; set; }
+        public StatusZahtjevaZaKredit StatusZahtjeva { get; set; } = StatusZahtjevaZaKredit.Neobradjen;
     }
 }
