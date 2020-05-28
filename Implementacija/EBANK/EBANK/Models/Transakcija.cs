@@ -8,7 +8,7 @@ namespace EBANK.Models
 {
     public class Transakcija
     {
-       [ScaffoldColumn(false)]
+        [ScaffoldColumn(false)]
         public int Id { get; set; }
 
         [Required]

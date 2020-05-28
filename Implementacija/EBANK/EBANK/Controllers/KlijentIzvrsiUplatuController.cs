@@ -31,7 +31,7 @@ namespace EBANK.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Vrijeme,Iznos,VrstaTransakcije,NacinTransakcije")] Transakcija transakcija)
+        public async Task<IActionResult> Create([Bind("Vrijeme,NaRacun,Iznos,VrstaTransakcije,NacinTransakcije")] Transakcija transakcija)
         {
             if (ModelState.IsValid)
             {
@@ -42,10 +42,22 @@ namespace EBANK.Controllers
             return View(transakcija);
         }
 
-      
-        private bool TransakcijaExists(int id)
+        [Produces("application/json")]
+        [HttpGet("racuniSearch")]
+        public IActionResult RacuniSearch()
         {
-            return _context.Transakcija.Any(e => e.Id == id);
+            try
+            {
+                string term = HttpContext.Request.Query["term"].ToString();
+                var racuni = _context.Racun.Where(r => (r.Klijent.Ime + " " + r.Klijent.Prezime + " " + r.Id).Contains(term))
+                    .Select(r => r.Id + " - " + r.Klijent.Ime + " " + r.Klijent.Prezime).ToList();
+
+                return Ok(racuni);
+            }
+            catch
+            {
+                return BadRequest();
+            }
         }
     }
 }
