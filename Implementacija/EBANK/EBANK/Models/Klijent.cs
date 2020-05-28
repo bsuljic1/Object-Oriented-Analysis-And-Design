@@ -11,6 +11,10 @@ namespace EBANK.Models
         [Required]
         [Display (Name = "Datum rođenja")]
         public DateTime DatumRodjenja { get; set; }
+
+        [Required]
+        public Spol Spol { get; set; }
+
         [Required]
         public string JMBG { get; set; }
         [Required]
