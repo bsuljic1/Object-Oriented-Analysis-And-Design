@@ -15,6 +15,7 @@ namespace EBANK.Models
         [Required]
         public Adresa Adresa { get; set; }
         [Required]
+        [Display(Name = "Broj telefona")]
         public string BrojTelefona { get; set; }
     }
 }

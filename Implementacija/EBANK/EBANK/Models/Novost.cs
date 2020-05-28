@@ -9,17 +9,18 @@ namespace EBANK.Models
     public class Novost
     {
         public int Id { get; set; }
-
+        [Display(Name = "Vrijeme dodavanja")]
         public DateTime vrijemeDodavanja { get; set; }
 
         [Required]
         public string Naslov { get; set; }
 
         [Required]
+        [Display(Name = "Sadržaj")]
         public string Sadrzaj { get; set; }
         
         [Required]
-        public bool prikazana { get; set; }
+        public bool Prikazana { get; set; }
 
     }
 }

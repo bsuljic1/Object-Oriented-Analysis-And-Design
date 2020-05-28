@@ -9,6 +9,7 @@ namespace EBANK.Models
     public class Bankar : Korisnik
     {
         [Required]
+        [Display(Name = "Mjesto zaposlenja")]
         public Adresa MjestoZaposlenja { get; set; }
     }
 }

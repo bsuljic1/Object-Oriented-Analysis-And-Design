@@ -15,6 +15,7 @@ namespace EBANK.Models
         [Required]
         public string Prezime { get; set; }
         [Required]
+        [Display(Name = "Korisničko ime")]
         public string KorisnickoIme { get; set; }
         [Required]
         public string Lozinka { get; set; }

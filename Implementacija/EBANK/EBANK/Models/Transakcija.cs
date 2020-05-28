@@ -12,21 +12,25 @@ namespace EBANK.Models
         public int Id { get; set; }
 
         [Required]
-        public DateTime vrijeme { get; set; }
+        public DateTime Vrijeme { get; set; }
 
         [Required]
-        public Racun saRacuna { get; set; }
+        [Display(Name = "Sa računa")]
+        public Racun SaRacuna { get; set; }
 
         [Required]
-        public Racun naRacun { get; set; }
+        [Display(Name = "Na račun")]
+        public Racun NaRacun { get; set; }
 
         [Required]
         public float Iznos { get; set; }
 
         [Required]
+        [Display(Name = "Vrsta transakcije")]
         public VrstaTransakcije VrstaTransakcije { get; set; }
 
         [Required]
+        [Display(Name = "Način transakcije")]
         public NacinTransakcije NacinTransakcije { get; set; }
 
     }

@@ -12,12 +12,14 @@ namespace EBANK.Models
         public int Id{ get; set; }
 
         [Required]
+        [Display(Name = "Stanje računa")]
         public float StanjeRacuna{ get; set; }
 
         [Required]
+        [Display(Name = "Vrsta računa")]
         public VrstaRacuna vrstaRacuna { get; set; }
 
-        //[Required]
-        //public Klijent klijent { get; set; }
+        [Required]
+        public Klijent Klijent { get; set; }
     }
 }

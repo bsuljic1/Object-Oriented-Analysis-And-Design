@@ -10,8 +10,7 @@ namespace EBANK.Models
     {
         [ScaffoldColumn(false)]
         public int Id { get; set; }
+        [Display(Name = "Početak otplate")]
         public DateTime PocetakOtpate { get; set; }
-        public StatusKredita StatusKredita { get; set; }
-
     }
 }
