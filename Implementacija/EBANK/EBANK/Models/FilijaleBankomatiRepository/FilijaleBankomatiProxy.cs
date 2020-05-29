@@ -52,27 +52,89 @@ namespace EBANK.Models.FilijaleBankomatiRepository
             return filijaleBankomati.UrediFilijalu(filijala);
         }
 
-        Task IFilijaleBankomati.UkloniMapObjekat(IMapObjekat mapObjekat)
+        
+
+        async Task<List<IMapObjekat>> IFilijaleBankomati.DajSveMapObjekte()
         {
-            throw new NotImplementedException();
+           if(nivoPristupa != 1) 
+                throw new AuthenticationException();
+
+            return await filijaleBankomati.DajSveMapObjekte();
         }
 
-        Task<List<IMapObjekat>> IFilijaleBankomati.DajSveMapObjekte()
+        public Task<List<Filijala>> DajSveFilijale()
         {
-            throw new NotImplementedException();
+
+            if (nivoPristupa != 1)
+                throw new AuthenticationException();
+
+            return filijaleBankomati.DajSveFilijale();
         }
 
-        Task<IMapObjekat> IFilijaleBankomati.DajMapObjekat(int? id)
+        public Task<List<Bankomat>> DajSveBankomate()
         {
-            throw new NotImplementedException();
+
+            if (nivoPristupa != 1)
+                throw new AuthenticationException();
+
+            return filijaleBankomati.DajSveBankomate();
         }
 
-        public bool DaLiPostojiMapObjekat(int? id)
+        public Task UkloniFilijalu(int? id)
         {
-            throw new NotImplementedException();
+
+            if (nivoPristupa != 1)
+                throw new AuthenticationException();
+
+            return filijaleBankomati.UkloniFilijalu(id);
         }
 
- 
+        public Task UkloniBankomat(int? id)
+        {
+            if (nivoPristupa != 1)
+                throw new AuthenticationException();
 
+            return filijaleBankomati.UkloniBankomat(id);
+        }
+
+        Task<List<Bankomat>> IFilijaleBankomati.DajSveBankomate()
+        {
+            if (nivoPristupa != 1)
+                throw new AuthenticationException();
+
+            return filijaleBankomati.DajSveBankomate();
+        }
+
+        public Task<Filijala> DajFilijalu(int? id)
+        {
+            if (nivoPristupa != 1)
+                throw new AuthenticationException();
+
+            return filijaleBankomati.DajFilijalu(id);
+        }
+
+        public Task<Bankomat> DajBankomat(int? id)
+        {
+            if (nivoPristupa != 1)
+                throw new AuthenticationException();
+
+            return filijaleBankomati.DajBankomat(id);
+        }
+
+        public bool DaLiPostojiFilijala(int? id)
+        {
+            if (nivoPristupa != 1)
+                throw new AuthenticationException();
+
+            return filijaleBankomati.DaLiPostojiFilijala(id);
+        }
+
+        public bool DaLiPostojiBankomat(int? id)
+        {
+            if (nivoPristupa != 1)
+                throw new AuthenticationException();
+
+            return filijaleBankomati.DaLiPostojiBankomat(id);
+        }
     }
 }

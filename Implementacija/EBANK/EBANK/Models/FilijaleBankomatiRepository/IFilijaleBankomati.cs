@@ -11,10 +11,15 @@ namespace EBANK.Models.FilijaleBankomatiRepository
         public Task UrediBankomat(Bankomat bankomat);
         public Task DodajFilijalu(Filijala filijala);
         public Task UrediFilijalu(Filijala filijala);
-        public Task UkloniMapObjekat(IMapObjekat mapObjekat);
+        public Task UkloniFilijalu(int? id);
+        public Task UkloniBankomat(int? id);
         public Task<List<IMapObjekat>> DajSveMapObjekte();
-        public Task<IMapObjekat> DajMapObjekat(int? id);
-        public bool DaLiPostojiMapObjekat(int? id);
+        public Task<List<Filijala>> DajSveFilijale();
+        public Task<List<Bankomat>> DajSveBankomate();
+        public Task<Filijala> DajFilijalu(int? id);
+        public Task<Bankomat> DajBankomat(int? id);
+        public bool DaLiPostojiFilijala(int? id);
+        public bool DaLiPostojiBankomat(int? id);
         
     }
 }
