@@ -17,7 +17,8 @@ namespace EBANK.Models.KreditRepository
         }
         public async Task PokreniKredit(ZahtjevZaKredit zahtjevZaKredit)
         {
-            _context.Add(zahtjevZaKredit);
+            Kredit kredit = new Kredit(); 
+            _context.Add(kredit);
             await _context.SaveChangesAsync();
         }
         public async Task<Kredit> DajKredit(int? id)

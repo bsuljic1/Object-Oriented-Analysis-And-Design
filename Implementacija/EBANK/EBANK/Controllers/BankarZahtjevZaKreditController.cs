@@ -7,147 +7,64 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
+using EBANK.Models.ZahtjevZaKreditRepository;
+using EBANK.Models.KreditRepository;
 
 namespace EBANK.Controllers
 {
     public class BankarZahtjevZaKreditController : Controller
     {
-        private readonly OOADContext _context;
+        private IZahtjeviZaKredit _zahtjevi;
+        private IKrediti _krediti;
 
         public BankarZahtjevZaKreditController(OOADContext context)
         {
-            _context = context;
+            _zahtjevi = new ZahtjeviZaKreditProxy(context);
+            _krediti = new KreditiProxy(context);
         }
 
         // GET: BankarZahtjevZaKredit
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ZahtjevZaKredit.ToListAsync());
+            return View(await _zahtjevi.DajSveZahtjeve());
         }
 
         // GET: BankarZahtjevZaKredit/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if(id == null)
             {
                 return NotFound();
             }
 
-            var zahtjevZaKredit = await _context.ZahtjevZaKredit
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (zahtjevZaKredit == null)
+            var zahtjev = await _zahtjevi.DajZahtjev(id);
+            if (zahtjev == null)
             {
                 return NotFound();
             }
 
-            return View(zahtjevZaKredit);
+            return View(zahtjev);
         }
 
-        // GET: BankarZahtjevZaKredit/Create
-        public IActionResult Create()
+        
+        // POST: BakarZahtjevZaKredit/Odobri/5
+        public async Task<IActionResult> Odobri(int id)
         {
-            return View();
+            ZahtjevZaKredit zahtjevZaKredit = await _zahtjevi.DajZahtjev(id);
+            await _zahtjevi.RijesiZahtjev(id, true);
+            await _krediti.PokreniKredit(zahtjevZaKredit);
+            return RedirectToAction(nameof(Index));
         }
 
-        // POST: BankarZahtjevZaKredit/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NamjenaKredita,MjesecniPrihodi,ProsjecniTroskoviDomacinstva,NazivRadnogMjesta,NazivPoslodavca,RadniStaz,BrojNekretnina,BracnoStanje,SupruznikIme,SupruznikPrezime,SupruznikZanimanje,ImaNeplacenihDugova,BrojNeplacenihDugova,StatusZahtjeva,Iznos,KamatnaStopa,RokOtplate")] ZahtjevZaKredit zahtjevZaKredit)
+        public async Task<IActionResult> Odbij(int id)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(zahtjevZaKredit);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(zahtjevZaKredit);
-        }
-
-        // GET: BankarZahtjevZaKredit/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var zahtjevZaKredit = await _context.ZahtjevZaKredit.FindAsync(id);
-            if (zahtjevZaKredit == null)
-            {
-                return NotFound();
-            }
-            return View(zahtjevZaKredit);
-        }
-
-        // POST: BankarZahtjevZaKredit/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NamjenaKredita,MjesecniPrihodi,ProsjecniTroskoviDomacinstva,NazivRadnogMjesta,NazivPoslodavca,RadniStaz,BrojNekretnina,BracnoStanje,SupruznikIme,SupruznikPrezime,SupruznikZanimanje,ImaNeplacenihDugova,BrojNeplacenihDugova,StatusZahtjeva,Iznos,KamatnaStopa,RokOtplate")] ZahtjevZaKredit zahtjevZaKredit)
-        {
-            if (id != zahtjevZaKredit.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(zahtjevZaKredit);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ZahtjevZaKreditExists(zahtjevZaKredit.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(zahtjevZaKredit);
-        }
-
-        // GET: BankarZahtjevZaKredit/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var zahtjevZaKredit = await _context.ZahtjevZaKredit
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (zahtjevZaKredit == null)
-            {
-                return NotFound();
-            }
-
-            return View(zahtjevZaKredit);
-        }
-
-        // POST: BankarZahtjevZaKredit/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var zahtjevZaKredit = await _context.ZahtjevZaKredit.FindAsync(id);
-            _context.ZahtjevZaKredit.Remove(zahtjevZaKredit);
-            await _context.SaveChangesAsync();
+            await _zahtjevi.RijesiZahtjev(id, false);
             return RedirectToAction(nameof(Index));
         }
 
         private bool ZahtjevZaKreditExists(int id)
         {
-            return _context.ZahtjevZaKredit.Any(e => e.Id == id);
+            return _zahtjevi.DaLiPostojiZahtjev(id);
         }
     }
 }
