@@ -17,7 +17,7 @@ namespace EBANK.Models
 
         [Required]
         [Display(Name = "Vrsta računa")]
-        public VrstaRacuna vrstaRacuna { get; set; }
+        public VrstaRacuna VrstaRacuna { get; set; }
 
         [Required]
         public Klijent Klijent { get; set; }

@@ -24,7 +24,7 @@ namespace EBANK.Models.BankarRepository
 
         public async Task<List<Bankar>> DajSveBankare()
         {
-            return await _context.Bankar.ToListAsync();
+            return await _context.Bankar.Include("MjestoZaposlenja").ToListAsync();
         }
 
         public bool DaLiPostojiBankar(int? id)

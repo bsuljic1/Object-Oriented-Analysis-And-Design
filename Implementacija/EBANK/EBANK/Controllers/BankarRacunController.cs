@@ -39,7 +39,7 @@ namespace EBANK.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,StanjeRacuna,vrstaRacuna,Klijent")] Racun racun)
+        public async Task<IActionResult> Create([Bind("Id,StanjeRacuna,VrstaRacuna,Klijent")] Racun racun)
         {
             if (ModelState.IsValid)
             {
