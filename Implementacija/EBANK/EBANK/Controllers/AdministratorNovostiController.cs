@@ -55,7 +55,7 @@ namespace EBANK.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,vrijemeDodavanja,Naslov,Sadrzaj,Prikazana")] Novost novost)
+        public async Task<IActionResult> Create([Bind("vrijemeDodavanja,Naslov,Sadrzaj,Prikazana")] Novost novost)
         {
             if (ModelState.IsValid)
             {
