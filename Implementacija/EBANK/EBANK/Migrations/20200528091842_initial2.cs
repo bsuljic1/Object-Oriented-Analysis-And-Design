@@ -153,7 +153,7 @@ namespace EBANK.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StanjeRacuna = table.Column<float>(nullable: false),
-                    vrstaRacuna = table.Column<int>(nullable: false),
+                    VrstaRacuna = table.Column<int>(nullable: false),
                     KlijentId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>

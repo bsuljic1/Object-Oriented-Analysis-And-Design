@@ -277,7 +277,7 @@ namespace EBANK.Migrations
                     b.Property<float>("StanjeRacuna")
                         .HasColumnType("real");
 
-                    b.Property<int>("vrstaRacuna")
+                    b.Property<int>("VrstaRacuna")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
