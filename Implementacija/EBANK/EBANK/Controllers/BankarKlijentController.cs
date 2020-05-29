@@ -1,28 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
+using EBANK.Models.KlijentRepository;
 
 namespace EBANK.Controllers
 {
     public class BankarKlijentController : Controller
     {
-        private readonly OOADContext _context;
+        private IKlijenti _klijenti;
 
         public BankarKlijentController(OOADContext context)
         {
-            _context = context;
+            _klijenti = new KlijentiProxy(context);
+            //_klijenti.Pristupi();
         }
 
         // GET: BankarKlijent
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Klijent.ToListAsync());
+            return View(await _klijenti.DajSveKlijente());
         }
 
         // GET: BankarKlijent/Details/5
@@ -33,8 +31,7 @@ namespace EBANK.Controllers
                 return NotFound();
             }
 
-            var klijent = await _context.Klijent
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var klijent = await _klijenti.DajKlijenta(id);
             if (klijent == null)
             {
                 return NotFound();
@@ -54,12 +51,11 @@ namespace EBANK.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("DatumRodjenja,JMBG,BrojTelefona,BrojLicneKarte,Zanimanje,Ime,Prezime,KorisnickoIme,Lozinka")] Klijent klijent)
+        public async Task<IActionResult> Create([Bind("DatumRodjenja,JMBG,BrojTelefona,BrojLicneKarte,Zanimanje,Ime,Prezime,KorisnickoIme,Lozinka,Adresa")] Klijent klijent)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(klijent);
-                await _context.SaveChangesAsync();
+                await _klijenti.DodajKlijenta(klijent);
                 return RedirectToAction(nameof(Index));
             }
             return View(klijent);
@@ -73,7 +69,7 @@ namespace EBANK.Controllers
                 return NotFound();
             }
 
-            var klijent = await _context.Klijent.FindAsync(id);
+            var klijent = await _klijenti.DajKlijenta(id);
             if (klijent == null)
             {
                 return NotFound();
@@ -86,7 +82,7 @@ namespace EBANK.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("DatumRodjenja,JMBG,BrojTelefona,BrojLicneKarte,Zanimanje,Ime,Prezime,KorisnickoIme,Lozinka")] Klijent klijent)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DatumRodjenja,JMBG,BrojTelefona,BrojLicneKarte,Zanimanje,Ime,Prezime,KorisnickoIme,Lozinka,Adresa")] Klijent klijent)
         {
             if (id != klijent.Id)
             {
@@ -97,8 +93,7 @@ namespace EBANK.Controllers
             {
                 try
                 {
-                    _context.Update(klijent);
-                    await _context.SaveChangesAsync();
+                    await _klijenti.UrediKlijenta(klijent);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -124,8 +119,7 @@ namespace EBANK.Controllers
                 return NotFound();
             }
 
-            var klijent = await _context.Klijent
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var klijent = await _klijenti.DajKlijenta(id);
             if (klijent == null)
             {
                 return NotFound();
@@ -139,15 +133,13 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var klijent = await _context.Klijent.FindAsync(id);
-            _context.Klijent.Remove(klijent);
-            await _context.SaveChangesAsync();
+            await _klijenti.UkloniKlijenta(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool KlijentExists(int id)
         {
-            return _context.Klijent.Any(e => e.Id == id);
+            return _klijenti.DaLiPostojiKlijent(id);
         }
     }
 }

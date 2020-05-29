@@ -1,4 +1,6 @@
-﻿using System;
+﻿using EBANK.Data;
+using EBANK.Models.KlijentRepository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;

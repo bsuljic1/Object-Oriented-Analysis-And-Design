@@ -33,6 +33,22 @@
                 <input asp-for="Lozinka" class="form-control" />
                 <span asp-validation-for="Lozinka" class="text-danger"></span>
             </div>
+            <label asp-for="MjestoZaposlenja" class="control-label"></label>
+            <div class="form-group">
+                <label asp-for="MjestoZaposlenja.Latitude" class="control-label"></label>
+                <input asp-for="MjestoZaposlenja.Latitude" class="form-control" />
+                <span asp-validation-for="MjestoZaposlenja.Latitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MjestoZaposlenja.Longitude" class="control-label"></label>
+                <input asp-for="MjestoZaposlenja.Longitude" class="form-control" />
+                <span asp-validation-for="MjestoZaposlenja.Longitude" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MjestoZaposlenja.Naziv" class="control-label"></label>
+                <input asp-for="MjestoZaposlenja.Naziv" class="form-control" />
+                <span asp-validation-for="MjestoZaposlenja.Naziv" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
