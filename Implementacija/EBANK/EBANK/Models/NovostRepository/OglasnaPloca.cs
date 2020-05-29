@@ -18,7 +18,7 @@ namespace EBANK.Models.NovostRepository
 
         public async Task<Novost> DajNovost(int? id)
         {
-            Novost novost= await _context.Novost.FindAsync();
+            Novost novost= await _context.Novost.FindAsync(id);
             return novost;
         }
 

@@ -65,13 +65,6 @@ namespace EBANK.Models.NovostRepository
 
             return await OglasnaPloca.DajNovost(id);
         }
-        public bool DaLiPostojiKlijent(int? id)
-        {
-            if (nivoPristupa == 0)
-                throw new AuthenticationException();
-
-            return OglasnaPloca.DaLiPostojiNovost(id);
-        }
 
         public bool DaLiPostojiNovost(int? id)
         {
