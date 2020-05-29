@@ -18,8 +18,8 @@ namespace EBANK.Models.KlijentRepository
 
         public async Task<Klijent> DajKlijenta(int? id)
         {
-            return await _context.Klijent
-                .FirstOrDefaultAsync(m => m.Id == id);
+            Klijent klijent = await _context.Klijent.Include("Adresa").Where(m => m.Id == id).FirstAsync();
+            return klijent;
         }
 
         public async Task<List<Klijent>> DajSveKlijente()
