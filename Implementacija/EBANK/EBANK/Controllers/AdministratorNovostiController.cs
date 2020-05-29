@@ -7,22 +7,24 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
+using EBANK.Models.NovostRepository;
 
 namespace EBANK.Controllers
 {
     public class AdministratorNovostiController : Controller
     {
-        private readonly OOADContext _context;
+        private IOglasnaPloca _novosti;
 
         public AdministratorNovostiController(OOADContext context)
         {
-            _context = context;
+            _novosti = new OglasnaPlocaProxy(context);
+            //_klijenti.Pristupi();
         }
 
         // GET: AdministratorNovosti
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Novost.ToListAsync());
+            return View(await _novosti.DajSveNovosti());
         }
 
         // GET: AdministratorNovosti/Details/5
@@ -33,8 +35,7 @@ namespace EBANK.Controllers
                 return NotFound();
             }
 
-            var novost = await _context.Novost
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var novost = await _novosti.DajNovost(id);
             if (novost == null)
             {
                 return NotFound();
@@ -58,33 +59,33 @@ namespace EBANK.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(novost);
-                await _context.SaveChangesAsync();
+                await _novosti.DodajNovost(novost);
                 return RedirectToAction(nameof(Index));
             }
             return View(novost);
         }
+    
 
-        // GET: AdministratorNovosti/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+    // GET: AdministratorNovosti/Edit/5
+    public async Task<IActionResult> Edit(int? id)
+    {
+        if (id == null)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var novost = await _context.Novost.FindAsync(id);
-            if (novost == null)
-            {
-                return NotFound();
-            }
-            return View(novost);
+            return NotFound();
         }
 
-        // POST: AdministratorNovosti/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        var novost = await _novosti.DajNovost(id);
+        if (novost == null)
+        {
+            return NotFound();
+        }
+        return View(novost);
+    }
+
+    // POST: AdministratorNovosti/Edit/5
+    // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+    // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+    [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,vrijemeDodavanja,Naslov,Sadrzaj,Prikazana")] Novost novost)
         {
@@ -97,8 +98,7 @@ namespace EBANK.Controllers
             {
                 try
                 {
-                    _context.Update(novost);
-                    await _context.SaveChangesAsync();
+                    await _novosti.UrediNovost(novost);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -124,8 +124,7 @@ namespace EBANK.Controllers
                 return NotFound();
             }
 
-            var novost = await _context.Novost
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var novost = await _novosti.DajNovost(id);
             if (novost == null)
             {
                 return NotFound();
@@ -139,15 +138,13 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var novost = await _context.Novost.FindAsync(id);
-            _context.Novost.Remove(novost);
-            await _context.SaveChangesAsync();
+            await _novosti.UkloniNovost(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool NovostExists(int id)
         {
-            return _context.Novost.Any(e => e.Id == id);
+            return _novosti.DaLiPostojiNovost(id);
         }
     }
 }
