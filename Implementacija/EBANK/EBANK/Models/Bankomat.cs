@@ -9,6 +9,12 @@ namespace EBANK.Models
 {
     public class Bankomat : IMapObjekat
     {
+        public Bankomat(string ime, Adresa adresa)
+        {
+            Ime = ime;
+            Adresa = adresa;
+        }
+
         [ScaffoldColumn(false)]
         public int Id { get; set; }
         [Required]
