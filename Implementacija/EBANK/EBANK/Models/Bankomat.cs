@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EBANK.Models.FilijaleBankomatiRepository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EBANK.Models
 {
-    public class Bankomat
+    public class Bankomat : IMapObjekat
     {
         [ScaffoldColumn(false)]
         public int Id { get; set; }
@@ -14,5 +15,10 @@ namespace EBANK.Models
         public string Ime { get; set; }
         [Required]
         public Adresa Adresa { get; set; }
+
+        public string DajVrstu()
+        {
+            return "Bankomat";
+        }
     }
 }

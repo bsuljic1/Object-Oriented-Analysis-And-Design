@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EBANK.Models.FilijaleBankomatiRepository;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EBANK.Models
 {
-    public class Filijala
+    public class Filijala : IMapObjekat
     {
         [ScaffoldColumn(false)]
         public int Id { get; set; }
@@ -17,5 +18,10 @@ namespace EBANK.Models
         [Required]
         [Display(Name = "Broj telefona")]
         public string BrojTelefona { get; set; }
+
+        public string DajVrstu()
+        {
+            return "Filijala";
+        }
     }
 }

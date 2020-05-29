@@ -7,5 +7,6 @@ namespace EBANK.Models.FilijaleBankomatiRepository
 {
     interface IMapObjekat
     {
+        public string DajVrstu();
     }
 }
