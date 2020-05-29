@@ -7,22 +7,23 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
+using EBANK.Models.BankarRepository;
+using System.Runtime.InteropServices;
 
 namespace EBANK.Controllers
 {
     public class AdministratorBankariController : Controller
     {
-        private readonly OOADContext _context;
-
+        private IBankari _bankari;
         public AdministratorBankariController(OOADContext context)
         {
-            _context = context;
+            _bankari = new BankariProxy(context);
         }
 
         // GET: AdministratorBankari
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Bankar.ToListAsync());
+            return View(await _bankari.DajSveBankare());
         }
 
         // GET: AdministratorBankari/Details/5
@@ -33,8 +34,7 @@ namespace EBANK.Controllers
                 return NotFound();
             }
 
-            var bankar = await _context.Bankar
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var bankar = await _bankari.DajBankara(id);
             if (bankar == null)
             {
                 return NotFound();
@@ -58,8 +58,7 @@ namespace EBANK.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(bankar);
-                await _context.SaveChangesAsync();
+                await _bankari.DodajBankara(bankar);
                 return RedirectToAction(nameof(Index));
             }
             return View(bankar);
@@ -73,7 +72,7 @@ namespace EBANK.Controllers
                 return NotFound();
             }
 
-            var bankar = await _context.Bankar.FindAsync(id);
+            var bankar = await _bankari.DajBankara(id);
             if (bankar == null)
             {
                 return NotFound();
@@ -97,8 +96,7 @@ namespace EBANK.Controllers
             {
                 try
                 {
-                    _context.Update(bankar);
-                    await _context.SaveChangesAsync();
+                    await _bankari.UrediBankara(bankar);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -124,8 +122,7 @@ namespace EBANK.Controllers
                 return NotFound();
             }
 
-            var bankar = await _context.Bankar
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var bankar = await _bankari.DajBankara(id);
             if (bankar == null)
             {
                 return NotFound();
@@ -139,15 +136,13 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var bankar = await _context.Bankar.FindAsync(id);
-            _context.Bankar.Remove(bankar);
-            await _context.SaveChangesAsync();
+            await _bankari.UkloniBankara(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool BankarExists(int id)
         {
-            return _context.Bankar.Any(e => e.Id == id);
+            return _bankari.DaLiPostojiBankar(id);
         }
     }
 }
