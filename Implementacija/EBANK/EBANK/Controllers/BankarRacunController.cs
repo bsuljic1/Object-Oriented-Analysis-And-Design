@@ -7,41 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
+using EBANK.Models.RacunRepository;
 
 namespace EBANK.Controllers
 {
     public class BankarRacunController : Controller
     {
-        private readonly OOADContext _context;
+        private IRacuni _racuni;
 
         public BankarRacunController(OOADContext context)
         {
-            _context = context;
+            _racuni = new RacuniProxy(context);
         }
 
         // GET: BankarRacun
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Racun.ToListAsync());
+            return View(await _racuni.DajSveRacune());
         }
 
-        // GET: BankarRacun/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var racun = await _context.Racun
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (racun == null)
-            {
-                return NotFound();
-            }
-
-            return View(racun);
-        }
+        
 
         // GET: BankarRacun/Create
         public IActionResult Create()
@@ -54,68 +39,17 @@ namespace EBANK.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("StanjeRacuna,vrstaRacuna")] Racun racun)
+        public async Task<IActionResult> Create([Bind("Id,StanjeRacuna,vrstaRacuna,Klijent")] Racun racun)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(racun);
-                await _context.SaveChangesAsync();
+                await _racuni.OtvoriRacun(racun);
                 return RedirectToAction(nameof(Index));
             }
             return View(racun);
         }
 
-        // GET: BankarRacun/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var racun = await _context.Racun.FindAsync(id);
-            if (racun == null)
-            {
-                return NotFound();
-            }
-            return View(racun);
-        }
-
-        // POST: BankarRacun/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("StanjeRacuna,vrstaRacuna")] Racun racun)
-        {
-            if (id != racun.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(racun);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!RacunExists(racun.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(racun);
-        }
-
+ 
         // GET: BankarRacun/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -124,8 +58,7 @@ namespace EBANK.Controllers
                 return NotFound();
             }
 
-            var racun = await _context.Racun
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var racun = await _racuni.DajRacun(id);
             if (racun == null)
             {
                 return NotFound();
@@ -139,15 +72,13 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var racun = await _context.Racun.FindAsync(id);
-            _context.Racun.Remove(racun);
-            await _context.SaveChangesAsync();
+            await _racuni.ZatvoriRacun(id);
             return RedirectToAction(nameof(Index));
         }
 
         private bool RacunExists(int id)
         {
-            return _context.Racun.Any(e => e.Id == id);
+            return _racuni.DaLiPostojiRacun(id);
         }
     }
 }
