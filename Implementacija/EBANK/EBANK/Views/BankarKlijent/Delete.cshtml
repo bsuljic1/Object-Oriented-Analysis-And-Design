@@ -64,8 +64,33 @@
             @Html.DisplayNameFor(model => model.KorisnickoIme)
         </dt>
         <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.KorisnickoIme)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Lozinka)
+        </dt>
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Lozinka)
         </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Adresa.Naziv)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Adresa.Naziv)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Adresa.Latitude)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Adresa.Latitude)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Adresa.Longitude)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Adresa.Longitude)
+        </dd>
+
     </dl>
     
     <form asp-action="Delete">
