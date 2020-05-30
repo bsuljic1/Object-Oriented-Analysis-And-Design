@@ -9,12 +9,15 @@ using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.BankarRepository;
 using System.Runtime.InteropServices;
+using EBANK.Models.AdministratorRepository;
 
 namespace EBANK.Controllers
 {
     public class AdministratorBankariController : Controller
     {
-        private IBankari _bankari;
+        private BankariProxy _bankari;
+        private IAdministratori _administratori;
+        private Korisnik korisnik;
         public AdministratorBankariController(OOADContext context)
         {
             _bankari = new BankariProxy(context);
