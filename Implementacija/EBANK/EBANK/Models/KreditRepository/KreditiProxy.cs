@@ -26,13 +26,6 @@ namespace EBANK.Models.KreditRepository
                 nivoPristupa = 2;
         }
 
-        public Task PokreniKredit(ZahtjevZaKredit zahtjevZaKredit)
-        {
-            if (nivoPristupa != 2)
-                throw new AuthenticationException();
-
-            return krediti.PokreniKredit(zahtjevZaKredit);
-        }
 
         public async Task<Kredit> DajKredit(int? id)
         {

@@ -1,4 +1,5 @@
 ﻿using EBANK.Data;
+using EBANK.Models.KreditRepository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,14 +11,16 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
     public class ZahtjeviZaKredit : IZahtjeviZaKredit
     {
         private OOADContext _context;
+        private IZahtjevObserver zahtjevObserver;
 
         public ZahtjeviZaKredit(OOADContext context)
         {
             _context = context;
+            zahtjevObserver = new Krediti(context);
         }
         public async Task<List<ZahtjevZaKredit>> DajSveZahtjeve()
         {
-            return await _context.ZahtjevZaKredit.ToListAsync();
+            return await _context.ZahtjevZaKredit.Where(zahtjev=>zahtjev.StatusZahtjeva == StatusZahtjevaZaKredit.Neobradjen).ToListAsync();
         }
 
         public async Task<ZahtjevZaKredit> DajZahtjev(int? id)
@@ -39,7 +42,17 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
         public async Task RijesiZahtjev(int? id, bool prihvacen)
         {
             ZahtjevZaKredit zahtjev = await _context.ZahtjevZaKredit.FindAsync(id);
-            if(prihvacen) zahtjev.StatusZahtjeva = StatusZahtjevaZaKredit.Odobren;
+            if (prihvacen)
+            {
+
+                Kredit _noviKredit = new Kredit();
+                _noviKredit.Racun = zahtjev.Racun;
+                _noviKredit.Iznos = zahtjev.Iznos;
+                _noviKredit.KamatnaStopa = zahtjev.KamatnaStopa;
+                _noviKredit.RokOtplate = zahtjev.RokOtplate;
+                await zahtjevObserver.NaOdobrenZahtjev(_noviKredit);
+                zahtjev.StatusZahtjeva = StatusZahtjevaZaKredit.Odobren;
+            }
             else zahtjev.StatusZahtjeva = StatusZahtjevaZaKredit.Odbijen;
             _context.ZahtjevZaKredit.Update(zahtjev);
             await _context.SaveChangesAsync();

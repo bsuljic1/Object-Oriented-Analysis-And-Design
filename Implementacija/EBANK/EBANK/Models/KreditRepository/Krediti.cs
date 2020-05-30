@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EBANK.Models.KreditRepository
 {
-    public class Krediti : IKrediti
+    public class Krediti : IKrediti, IZahtjevObserver
     {
         private OOADContext _context;
 
@@ -15,12 +15,7 @@ namespace EBANK.Models.KreditRepository
         {
             _context = context;
         }
-        public async Task PokreniKredit(ZahtjevZaKredit zahtjevZaKredit)
-        {
-            Kredit kredit = new Kredit(); 
-            _context.Add(kredit);
-            await _context.SaveChangesAsync();
-        }
+       
         public async Task<Kredit> DajKredit(int? id)
         {
             Kredit kredit = await _context.Kredit.FindAsync(id);
@@ -35,6 +30,12 @@ namespace EBANK.Models.KreditRepository
         public bool DaLiPostojiKredit(int? id)
         {
             return _context.Kredit.Any(e => e.Id == id);
+        }
+
+        public async Task NaOdobrenZahtjev(Kredit kredit)
+        {
+            _context.Add(kredit);
+            await _context.SaveChangesAsync();
         }
     }
 }

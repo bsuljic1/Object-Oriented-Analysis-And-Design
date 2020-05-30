@@ -15,12 +15,10 @@ namespace EBANK.Controllers
     public class BankarZahtjevZaKreditController : Controller
     {
         private IZahtjeviZaKredit _zahtjevi;
-        private IKrediti _krediti;
 
         public BankarZahtjevZaKreditController(OOADContext context)
         {
             _zahtjevi = new ZahtjeviZaKreditProxy(context);
-            _krediti = new KreditiProxy(context);
         }
 
         // GET: BankarZahtjevZaKredit
@@ -52,7 +50,6 @@ namespace EBANK.Controllers
         {
             ZahtjevZaKredit zahtjevZaKredit = await _zahtjevi.DajZahtjev(id);
             await _zahtjevi.RijesiZahtjev(id, true);
-            await _krediti.PokreniKredit(zahtjevZaKredit);
             return RedirectToAction(nameof(Index));
         }
 

@@ -7,7 +7,6 @@ namespace EBANK.Models.KreditRepository
 {
     interface IKrediti
     {
-        public Task PokreniKredit(ZahtjevZaKredit zahtjevZaKredit);
         public  Task<Kredit> DajKredit(int? id);
         public bool DaLiPostojiKredit(int? id);
         public  Task<List<Kredit>> DajSveKredite();

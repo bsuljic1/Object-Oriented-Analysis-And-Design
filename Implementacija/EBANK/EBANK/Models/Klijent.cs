@@ -29,5 +29,8 @@ namespace EBANK.Models
         public Adresa Adresa { get; set; }
         [Required]
         public string Zanimanje { get; set; }
+        public String Grad { get; set; }
+
+        public String Drzava { get; set; }
     }
 }
