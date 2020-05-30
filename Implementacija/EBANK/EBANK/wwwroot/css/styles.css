@@ -4390,9 +4390,9 @@ input[type=button].btn-block {
 }
 
 .card-footer {
-  padding: 0.75rem 1.25rem;
-  background-color: #002060;
-  border-top: 1px solid rgba(0, 0, 0, 0.125);
+    padding: 0.75rem 1.25rem;
+    background-color: #ED7D31;
+    border-top: 1px solid rgba(0, 0, 0, 0.125);
 }
 .card-footer:last-child {
   border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
@@ -6107,7 +6107,7 @@ button.bg-info:focus {
 }
 
 .bg-warning {
-    background-color: 002060 !important;
+    background-color: #002060 !important;
 }
 
 a.bg-warning:hover, a.bg-warning:focus,
