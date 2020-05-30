@@ -29,7 +29,12 @@ namespace EBANK.Controllers
             var role = Request.Cookies["role"];
 
             if (userId != null && role != null && userId.Length > 0 && role.Length > 0)
-                return RedirectToAction("Index", "Home", new { area = "" });
+                if (role == "Administrator")
+                    return RedirectToAction("Index", "AdministratorHome", new { area = "" });
+                else if (role == "Bankar")
+                    return RedirectToAction("Index", "BankarHome", new { area = "" });
+                else
+                    return RedirectToAction("Index", "KlijentHome", new { area = "" });
 
             return View();
         }
@@ -44,7 +49,7 @@ namespace EBANK.Controllers
             {
                 Response.Cookies.Append("userId", administrator.Id.ToString());
                 Response.Cookies.Append("role", "Administrator");
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction("Index", "AdministratorHome", new { area = "" });
             }
 
             var bankar = await _bankari.DajBankara(korisnik.KorisnickoIme);
@@ -53,7 +58,7 @@ namespace EBANK.Controllers
             {
                 Response.Cookies.Append("userId", bankar.Id.ToString());
                 Response.Cookies.Append("role", "Bankar");
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction("Index", "BankarHome", new { area = "" });
             }
 
             var klijent = await _klijenti.DajKlijenta(korisnik.KorisnickoIme);
@@ -62,7 +67,7 @@ namespace EBANK.Controllers
             {
                 Response.Cookies.Append("userId", klijent.Id.ToString());
                 Response.Cookies.Append("role", "Klijent");
-                return RedirectToAction("Index", "Home", new { area = "" });
+                return RedirectToAction("Index", "KlijentHome", new { area = "" });
             }
 
             return RedirectToAction("Index");
