@@ -9,11 +9,7 @@ namespace EBANK.Models
 {
     public class Bankomat : IMapObjekat
     {
-        public Bankomat(string ime, Adresa adresa)
-        {
-            Ime = ime;
-            Adresa = adresa;
-        }
+      
 
         [ScaffoldColumn(false)]
         public int Id { get; set; }
@@ -21,6 +17,16 @@ namespace EBANK.Models
         public string Ime { get; set; }
         [Required]
         public Adresa Adresa { get; set; }
+
+        public Bankomat()
+        {
+        }
+
+        public Bankomat(string ime, Adresa adresa)
+        {
+            Ime = ime;
+            Adresa = adresa;
+        }
 
         public string DajVrstu()
         {

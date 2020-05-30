@@ -9,12 +9,7 @@ namespace EBANK.Models
 {
     public class Filijala : IMapObjekat
     {
-        public Filijala(string ime, string brojTelefona, Adresa adresa)
-        {
-            Ime = ime;
-            BrojTelefona = brojTelefona;
-            Adresa = adresa;
-        }
+       
 
         [ScaffoldColumn(false)]
         public int Id { get; set; }
@@ -25,6 +20,17 @@ namespace EBANK.Models
         [Required]
         [Display(Name = "Broj telefona")]
         public string BrojTelefona { get; set; }
+
+        public Filijala()
+        {
+        }
+
+        public Filijala(string ime, string brojTelefona, Adresa adresa)
+        {
+            Ime = ime;
+            BrojTelefona = brojTelefona;
+            Adresa = adresa;
+        }
 
         public string DajVrstu()
         {
