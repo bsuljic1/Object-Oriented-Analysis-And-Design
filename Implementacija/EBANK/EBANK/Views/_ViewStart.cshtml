@@ -1,3 +1,12 @@
 ﻿@{
-    Layout = "_Layout";
+    var controllerName = this.ViewContext.RouteData.Values["controller"].ToString();
+
+    if(controllerName == "Login")
+        Layout = "_Empty";
+    else if (controllerName.StartsWith("Administrator"))
+        Layout = "_AdministratorLayout";
+    else if (controllerName.StartsWith("Bankar"))
+        Layout = "_BankarLayout";
+    else
+        Layout = "_KlijentLayout";
 }

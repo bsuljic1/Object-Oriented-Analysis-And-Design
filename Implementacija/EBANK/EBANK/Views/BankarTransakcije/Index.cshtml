@@ -13,10 +13,16 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Vrijeme)
+                @Html.DisplayNameFor(model => model.SaRacuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NaRacun)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Iznos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Vrijeme)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.VrstaTransakcije)
@@ -31,18 +37,16 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Vrijeme)
+                @Html.DisplayNameFor(model => model.SaRacuna)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Iznos)
+                @Html.DisplayNameFor(model => model.NaRacun)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.VrstaTransakcije)
+                @Html.DisplayNameFor(model => model.Iznos)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.NacinTransakcije)
-            </td>
-            <td>
+                @Html.DisplayNameFor(model => model.Vrijeme)
             </td>
         </tr>
 }

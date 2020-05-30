@@ -8,21 +8,35 @@ using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.FilijaleBankomatiRepository;
+using EBANK.Models.AdministratorRepository;
 
 namespace EBANK.Controllers
 {
     public class BankomatController : Controller
     {
-        private IFilijaleBankomati _filijaleBankomati;
+        private FilijaleBankomatiProxy _filijaleBankomati;
+        private IAdministratori _administratori;
+        private Korisnik korisnik;
 
         public BankomatController(OOADContext context)
         {
             _filijaleBankomati = new FilijaleBankomatiProxy(context);
+            _administratori = new AdministratoriProxy(context);
         }
 
         // GET: Bankomat
         public async Task<IActionResult> Index()
         {
+            var userId = Request.Cookies["userId"];
+            var role = Request.Cookies["role"];
+
+            if (userId != null && role == "Administrator")
+                korisnik = await _administratori.DajAdministratora(userId);
+            else
+                return RedirectToAction("Index", "Login", new { area = "" });
+
+            _filijaleBankomati.Pristupi(korisnik);
+
             return View(await _filijaleBankomati.DajSveBankomate());
         }
 
