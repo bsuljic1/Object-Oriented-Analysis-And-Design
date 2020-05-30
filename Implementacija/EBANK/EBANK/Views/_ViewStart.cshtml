@@ -3,6 +3,10 @@
 
     if(controllerName == "Login")
         Layout = "_Empty";
+    else if (controllerName.StartsWith("Administrator"))
+        Layout = "_AdministratorLayout";
+    else if (controllerName.StartsWith("Bankar"))
+        Layout = "_BankarLayout";
     else
-        Layout = "_Layout";
+        Layout = "_KlijentLayout";
 }
