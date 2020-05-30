@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EBANK.Models
 {
-    public abstract class Korisnik
+    public class Korisnik
     {
         [ScaffoldColumn(false)]
         public int Id { get; set; }

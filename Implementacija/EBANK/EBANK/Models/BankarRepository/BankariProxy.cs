@@ -70,6 +70,11 @@ namespace EBANK.Models.BankarRepository
 
             return bankari.DaLiPostojiBankar(id);
         }
+
+        public Task<Bankar> DajBankara(string korisnickoIme)
+        {
+            return bankari.DajBankara(korisnickoIme);
+        }
     }
 }
 

@@ -22,6 +22,11 @@ namespace EBANK.Models.BankarRepository
             return bankar;
         }
 
+        public async Task<Bankar> DajBankara(string korisnickoIme)
+        {
+            return await _context.Bankar.Where(m => m.KorisnickoIme == korisnickoIme).FirstOrDefaultAsync();
+        }
+
         public async Task<List<Bankar>> DajSveBankare()
         {
             return await _context.Bankar.Include("MjestoZaposlenja").ToListAsync();
