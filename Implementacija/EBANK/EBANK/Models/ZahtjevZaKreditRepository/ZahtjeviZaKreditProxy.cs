@@ -27,7 +27,7 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
 
         public Task<List<ZahtjevZaKredit>> DajSveZahtjeve()
         {
-            if (nivoPristupa == 0)
+            if (nivoPristupa != 2)
                 throw new AuthenticationException();
 
             return zahtjevi.DajSveZahtjeve();
@@ -35,7 +35,7 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
 
         public async Task<ZahtjevZaKredit> DajZahtjev(int? id)
         {
-            if (nivoPristupa == 0)
+            if (nivoPristupa != 2)
                 throw new AuthenticationException();
 
             return await zahtjevi.DajZahtjev(id);
@@ -43,7 +43,7 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
 
         public bool DaLiPostojiZahtjev(int? id)
         {
-            if (nivoPristupa == 0)
+            if (nivoPristupa != 2)
                 throw new AuthenticationException();
 
             return zahtjevi.DaLiPostojiZahtjev(id);
@@ -51,12 +51,15 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
 
         public Task PodnesiZahtjevZaKredit(ZahtjevZaKredit zahtjevZaKredit)
         {
-            throw new NotImplementedException();
+           // if (nivoPristupa != 3)
+             //   throw new AuthenticationException();
+
+            return zahtjevi.PodnesiZahtjevZaKredit(zahtjevZaKredit);
         }
 
         public Task RijesiZahtjev(int? id, bool prihvacen)
         {
-            if (nivoPristupa == 0)
+            if (nivoPristupa != 2)
                 throw new AuthenticationException();
 
             return zahtjevi.RijesiZahtjev(id, prihvacen);

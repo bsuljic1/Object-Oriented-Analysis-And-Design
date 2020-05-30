@@ -34,9 +34,10 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
             return _context.ZahtjevZaKredit.Any(e => e.Id == id);
         }
 
-        public Task PodnesiZahtjevZaKredit(ZahtjevZaKredit zahtjevZaKredit)
+        public async Task PodnesiZahtjevZaKredit(ZahtjevZaKredit zahtjevZaKredit)
         {
-            throw new NotImplementedException();
+            _context.Add(zahtjevZaKredit);
+            await _context.SaveChangesAsync();
         }
 
         public async Task RijesiZahtjev(int? id, bool prihvacen)

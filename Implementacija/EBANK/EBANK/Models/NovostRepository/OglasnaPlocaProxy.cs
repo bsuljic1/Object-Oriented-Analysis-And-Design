@@ -28,7 +28,7 @@ namespace EBANK.Models.NovostRepository
 
         public Task DodajNovost(Novost novost)
         {
-            if (nivoPristupa != 2)
+            if (nivoPristupa != 1)
                 throw new AuthenticationException();
 
             return OglasnaPloca.DodajNovost(novost);
@@ -36,7 +36,7 @@ namespace EBANK.Models.NovostRepository
 
         public Task UkloniNovost(int? id)
         {
-            if (nivoPristupa != 2)
+            if (nivoPristupa != 1)
                 throw new AuthenticationException();
 
             return OglasnaPloca.UkloniNovost(id);
@@ -44,7 +44,7 @@ namespace EBANK.Models.NovostRepository
 
         public Task UrediNovost(Novost novost)
         {
-            if (nivoPristupa != 2)
+            if (nivoPristupa != 1)
                 throw new AuthenticationException();
 
             return OglasnaPloca.UrediNovost(novost);
@@ -68,7 +68,10 @@ namespace EBANK.Models.NovostRepository
 
         public bool DaLiPostojiNovost(int? id)
         {
-            throw new NotImplementedException();
+            if (nivoPristupa == 0)
+                throw new AuthenticationException();
+
+            return OglasnaPloca.DaLiPostojiNovost(id);
         }
     }
 }

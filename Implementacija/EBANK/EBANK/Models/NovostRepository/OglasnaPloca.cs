@@ -50,6 +50,5 @@ namespace EBANK.Models.NovostRepository
             _context.Update(novost);
             await _context.SaveChangesAsync();
         }
-
     }
 }

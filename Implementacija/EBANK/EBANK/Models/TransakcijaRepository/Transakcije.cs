@@ -32,7 +32,7 @@ namespace EBANK.Models.TransakcijaRepository
             throw new NotImplementedException();
         }
 
-        public Task Uplati(Racun saRacuna, Racun naRacun, float iznos)
+        public Task Uplati(Transakcija transakcija)
         {
             throw new NotImplementedException();
         }

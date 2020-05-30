@@ -7,34 +7,36 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
+using EBANK.Models.TransakcijaRepository;
 
 namespace EBANK.Controllers
 {
     public class KlijentTransakcijaController : Controller
     {
-        private readonly OOADContext _context;
+         private ITransakcije _transakcije;
 
         public KlijentTransakcijaController(OOADContext context)
         {
-            _context = context;
+            _transakcije = new TransakcijeProxy(context);
+            //_klijenti.Pristupi();
         }
 
         // GET: KlijentTransakcija
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Transakcija.ToListAsync());
+            return View(await _transakcije.DajSveTransakcije());
         }
 
         // GET: KlijentTransakcija/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+           
             if (id == null)
             {
                 return NotFound();
             }
 
-            var transakcija = await _context.Transakcija
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var transakcija = await _transakcije.DajTransakciju(id);
             if (transakcija == null)
             {
                 return NotFound();
@@ -58,96 +60,18 @@ namespace EBANK.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(transakcija);
-                await _context.SaveChangesAsync();
+                await _transakcije.Uplati(transakcija);
                 return RedirectToAction(nameof(Index));
             }
             return View(transakcija);
         }
 
-        // GET: KlijentTransakcija/Edit/5
-        public async Task<IActionResult> Edit(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var transakcija = await _context.Transakcija.FindAsync(id);
-            if (transakcija == null)
-            {
-                return NotFound();
-            }
-            return View(transakcija);
-        }
-
-        // POST: KlijentTransakcija/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Vrijeme,Iznos,VrstaTransakcije,NacinTransakcije")] Transakcija transakcija)
-        {
-            if (id != transakcija.Id)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(transakcija);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!TransakcijaExists(transakcija.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(transakcija);
-        }
-
-        // GET: KlijentTransakcija/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var transakcija = await _context.Transakcija
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (transakcija == null)
-            {
-                return NotFound();
-            }
-
-            return View(transakcija);
-        }
-
-        // POST: KlijentTransakcija/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var transakcija = await _context.Transakcija.FindAsync(id);
-            _context.Transakcija.Remove(transakcija);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+        
+       
 
         private bool TransakcijaExists(int id)
         {
-            return _context.Transakcija.Any(e => e.Id == id);
+            return _transakcije.DaLiPostojiTransakcija(id);
         }
     }
 }

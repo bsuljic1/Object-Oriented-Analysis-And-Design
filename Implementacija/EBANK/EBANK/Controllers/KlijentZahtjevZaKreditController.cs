@@ -7,16 +7,17 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
+using EBANK.Models.ZahtjevZaKreditRepository;
 
 namespace EBANK.Controllers
 {
     public class KlijentZahtjevZaKreditController : Controller
     {
-        private readonly OOADContext _context;
+        private IZahtjeviZaKredit _zahtjevi;
 
         public KlijentZahtjevZaKreditController(OOADContext context)
         {
-            _context = context;
+            _zahtjevi = new ZahtjeviZaKreditProxy(context);
         }
 
 
@@ -35,17 +36,12 @@ namespace EBANK.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(zahtjevZaKredit);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                await _zahtjevi.PodnesiZahtjevZaKredit(zahtjevZaKredit);
+                return View("~/Views/KlijentHome/Index.cshtml");
             }
             return View(zahtjevZaKredit);
         }
 
         
-        private bool ZahtjevZaKreditExists(int id)
-        {
-            return _context.ZahtjevZaKredit.Any(e => e.Id == id);
-        }
     }
 }

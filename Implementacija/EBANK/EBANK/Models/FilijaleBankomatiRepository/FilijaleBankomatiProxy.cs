@@ -18,6 +18,7 @@ namespace EBANK.Models.FilijaleBankomatiRepository
             filijaleBankomati = new FilijaleBankomati(context);
         }
 
+
         public void Pristupi(Korisnik korisnik)
         {
             if (korisnik is Administrator)

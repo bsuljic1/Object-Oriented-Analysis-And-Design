@@ -36,10 +36,10 @@ namespace EBANK.Models.TransakcijaRepository
             return transakcije.DajTransakciju(id);
         }
 
-        public Task Uplati(Racun saRacuna, Racun naRacun, float iznos)
+        public Task Uplati(Transakcija transakcija)
         {
             if (nivoPristupa != 2) throw new AuthenticationException();
-            return transakcije.Uplati(saRacuna, naRacun, iznos);
+            return transakcije.Uplati(transakcija);
         }
 
         public bool DaLiPostojiTransakcija(int? id)
