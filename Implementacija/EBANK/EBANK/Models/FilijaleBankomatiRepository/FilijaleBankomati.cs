@@ -9,7 +9,7 @@ namespace EBANK.Models.FilijaleBankomatiRepository
 {
     public class FilijaleBankomati : IFilijaleBankomati 
     {
-        private OOADContext _context;
+        private readonly OOADContext _context;
 
         public FilijaleBankomati(OOADContext context)
         {

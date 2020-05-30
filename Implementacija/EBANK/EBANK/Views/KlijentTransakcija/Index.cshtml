@@ -1,28 +1,22 @@
 ﻿@model IEnumerable<EBANK.Models.Transakcija>
 
 @{
-    ViewData["Title"] = "Transakcije";
+    ViewData["Title"] = "Index";
 }
 
-<h1>Transakcije</h1>
+<h1>Index</h1>
 
 <p>
-    
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.SaRacuna)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NaRacun)
+                @Html.DisplayNameFor(model => model.Vrijeme)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Iznos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Vrijeme)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.VrstaTransakcije)
@@ -37,16 +31,21 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayNameFor(model => model.SaRacuna)
+                @Html.DisplayFor(modelItem => item.Vrijeme)
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.NaRacun)
+                @Html.DisplayFor(modelItem => item.Iznos)
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.Iznos)
+                @Html.DisplayFor(modelItem => item.VrstaTransakcije)
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.Vrijeme)
+                @Html.DisplayFor(modelItem => item.NacinTransakcije)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
             </td>
         </tr>
 }
