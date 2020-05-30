@@ -11,11 +11,11 @@ using EBANK.Models.FilijaleBankomatiRepository;
 
 namespace EBANK.Controllers
 {
-    public class FilijalaController : Controller
+    public class AdministratorFilijaleController : Controller
     {
         IFilijaleBankomati _filijaleBankomati;
 
-        public FilijalaController(OOADContext context)
+        public AdministratorFilijaleController(OOADContext context)
         {
             _filijaleBankomati = new FilijaleBankomatiProxy(context);
         }
