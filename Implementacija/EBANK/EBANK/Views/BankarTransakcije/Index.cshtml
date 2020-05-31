@@ -48,6 +48,9 @@
             <td>
                 @Html.DisplayNameFor(model => model.Vrijeme)
             </td>
+            <td>
+                <a asp-action="Details" asp-route-id="@item.Id">Detalji</a>
+            </td>
         </tr>
 }
     </tbody>
