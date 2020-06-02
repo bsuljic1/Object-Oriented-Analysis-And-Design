@@ -23,7 +23,7 @@ namespace EBANK.Controllers
             _klijenti = new KlijentiProxy(context);
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string area = "")
         {
             var userId = Request.Cookies["userId"];
             var role = Request.Cookies["role"];
@@ -36,6 +36,8 @@ namespace EBANK.Controllers
                 else
                     return RedirectToAction("Index", "KlijentHome", new { area = "" });
 
+            ViewData["incorrectLogin"] = area.Equals("incorrectLogin");
+
             return View();
         }
 
@@ -47,6 +49,9 @@ namespace EBANK.Controllers
 
             if (administrator != null)
             {
+                if(administrator.Lozinka != korisnik.Lozinka)
+                    return RedirectToAction("Index", new { area = "incorrectLogin" });
+
                 Response.Cookies.Append("userId", administrator.Id.ToString());
                 Response.Cookies.Append("role", "Administrator");
                 return RedirectToAction("Index", "AdministratorHome", new { area = "" });
@@ -56,6 +61,9 @@ namespace EBANK.Controllers
 
             if (bankar != null)
             {
+                if (bankar.Lozinka != korisnik.Lozinka)
+                    return RedirectToAction("Index", new { area = "incorrectLogin" });
+
                 Response.Cookies.Append("userId", bankar.Id.ToString());
                 Response.Cookies.Append("role", "Bankar");
                 return RedirectToAction("Index", "BankarHome", new { area = "" });
@@ -65,11 +73,21 @@ namespace EBANK.Controllers
 
             if (klijent != null)
             {
+                if (klijent.Lozinka != korisnik.Lozinka)
+                    return RedirectToAction("Index", new { area = "incorrectLogin" });
+
                 Response.Cookies.Append("userId", klijent.Id.ToString());
                 Response.Cookies.Append("role", "Klijent");
                 return RedirectToAction("Index", "KlijentHome", new { area = "" });
             }
 
+            return RedirectToAction("Index", new { area = "incorrectLogin" });
+        }
+
+        public IActionResult Logout()
+        {
+            Response.Cookies.Delete("userId");
+            Response.Cookies.Delete("role");
             return RedirectToAction("Index");
         }
     }
