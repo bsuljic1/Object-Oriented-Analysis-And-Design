@@ -10,7 +10,7 @@ namespace EBANK.Models
     {
         public int Id { get; set; }
         [Display(Name = "Vrijeme dodavanja")]
-        public DateTime VrijemeDodavanja { get; set; }
+        public DateTime VrijemeDodavanja { get; set; } = DateTime.Now;
 
         [Required]
         public string Naslov { get; set; }

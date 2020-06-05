@@ -8,22 +8,30 @@ using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.TransakcijaRepository;
+using EBANK.Utils;
 
 namespace EBANK.Controllers
 {
     public class KlijentTransakcijaController : Controller
     {
-         private ITransakcije _transakcije;
+         private TransakcijeProxy _transakcije;
+        private OOADContext Context;
+        private Korisnik korisnik;
 
         public KlijentTransakcijaController(OOADContext context)
         {
             _transakcije = new TransakcijeProxy(context);
-            //_klijenti.Pristupi();
+            Context = context;
+            
         }
 
         // GET: KlijentTransakcija
         public async Task<IActionResult> Index()
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _transakcije.Pristupi(korisnik);
             return View(await _transakcije.DajSveTransakcije());
         }
 

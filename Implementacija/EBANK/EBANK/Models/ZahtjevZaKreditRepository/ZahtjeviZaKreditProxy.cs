@@ -52,8 +52,8 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
 
         public Task PodnesiZahtjevZaKredit(ZahtjevZaKredit zahtjevZaKredit)
         {
-           // if (nivoPristupa != 3)
-             //   throw new AuthenticationException();
+            if (nivoPristupa != 1)
+                throw new AuthenticationException();
 
             return zahtjevi.PodnesiZahtjevZaKredit(zahtjevZaKredit);
         }
