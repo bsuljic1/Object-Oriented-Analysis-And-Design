@@ -41,6 +41,11 @@ namespace EBANK.Controllers
         // GET: AdministratorNovosti/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _novosti.Pristupi(korisnik);
+
             if (id == null)
             {
                 return NotFound();
@@ -56,8 +61,13 @@ namespace EBANK.Controllers
         }
 
         // GET: AdministratorNovosti/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _novosti.Pristupi(korisnik);
+
             return View();
         }
 
@@ -68,6 +78,11 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("vrijemeDodavanja,Naslov,Sadrzaj,Prikazana")] Novost novost)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _novosti.Pristupi(korisnik);
+
             if (ModelState.IsValid)
             {
                 await _novosti.DodajNovost(novost);
@@ -75,31 +90,42 @@ namespace EBANK.Controllers
             }
             return View(novost);
         }
-    
 
-    // GET: AdministratorNovosti/Edit/5
-    public async Task<IActionResult> Edit(int? id)
-    {
-        if (id == null)
+
+        // GET: AdministratorNovosti/Edit/5
+        public async Task<IActionResult> Edit(int? id)
         {
-            return NotFound();
+
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _novosti.Pristupi(korisnik);
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var novost = await _novosti.DajNovost(id);
+            if (novost == null)
+            {
+                return NotFound();
+            }
+            return View(novost);
         }
 
-        var novost = await _novosti.DajNovost(id);
-        if (novost == null)
-        {
-            return NotFound();
-        }
-        return View(novost);
-    }
-
-    // POST: AdministratorNovosti/Edit/5
-    // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-    // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-    [HttpPost]
+        // POST: AdministratorNovosti/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,vrijemeDodavanja,Naslov,Sadrzaj,Prikazana")] Novost novost)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _novosti.Pristupi(korisnik);
+
             if (id != novost.Id)
             {
                 return NotFound();
@@ -130,6 +156,11 @@ namespace EBANK.Controllers
         // GET: AdministratorNovosti/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _novosti.Pristupi(korisnik);
+
             if (id == null)
             {
                 return NotFound();
@@ -149,6 +180,11 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _novosti.Pristupi(korisnik);
+
             await _novosti.UkloniNovost(id);
             return RedirectToAction(nameof(Index));
         }

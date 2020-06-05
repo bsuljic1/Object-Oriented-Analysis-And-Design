@@ -9,7 +9,7 @@ namespace EBANK.Models.KlijentRepository
 {
     public class KlijentiProxy : IKlijenti
     {
-        //0 - nista, 1 - samo pregledanje, 2 - pregledanje i uredjivanje
+        //0 - nista, 1 - samo pregledanje, 2 - pregledanje i uredjivanje, 3 = pregledanje jednog klijenta
         int nivoPristupa;
         IKlijenti klijenti;
 
@@ -24,6 +24,8 @@ namespace EBANK.Models.KlijentRepository
                 nivoPristupa = 1;
             else if (korisnik is Bankar)
                 nivoPristupa = 2;
+            else if (korisnik is Klijent)
+                nivoPristupa = 3;
             else nivoPristupa = 0;
         }
 

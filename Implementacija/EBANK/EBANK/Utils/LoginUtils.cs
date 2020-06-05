@@ -17,9 +17,9 @@ namespace EBANK.Utils
         
         public static async Task<Korisnik> Authenticate(HttpRequest Request, OOADContext Context, Controller Controller)
         {
-            IAdministratori _administratori = new AdministratoriProxy(Context);
-            IBankari _bankari = new BankariProxy(Context);
-            IKlijenti _klijenti = new KlijentiProxy(Context);
+            IAdministratori _administratori = new Administratori(Context);
+            IBankari _bankari = new Bankari(Context);
+            IKlijenti _klijenti = new Klijenti(Context);
 
             if (Request.Cookies["userId"] == null || Request.Cookies["userId"].Equals("")) return null;
             
@@ -27,13 +27,9 @@ namespace EBANK.Utils
             var userId = int.Parse(Request.Cookies["userId"]);
             var role = Request.Cookies["role"];
 
-            if (userId != null) {
-
-                if (role == "Administrator") return await _administratori.DajAdministratora(userId);
-                else if (role == "Bankar") return await _bankari.DajBankara(userId);
-                else if (role == "Klijent") return await _klijenti.DajKlijenta(userId);
-                else return null;
-            }
+            if (role == "Administrator") return await _administratori.DajAdministratora(userId);
+            else if (role == "Bankar") return await _bankari.DajBankara(userId);
+            else if (role == "Klijent") return await _klijenti.DajKlijenta(userId);
             else return null;
         }
     }

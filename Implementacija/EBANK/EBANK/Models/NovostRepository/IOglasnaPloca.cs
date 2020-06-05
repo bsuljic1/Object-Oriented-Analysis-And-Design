@@ -11,6 +11,7 @@ namespace EBANK.Models.NovostRepository
         public Task UrediNovost(Novost novost);
         public Task UkloniNovost(int? id);
         public Task<List<Novost>> DajSveNovosti();
+        public Task<List<Novost>> DajSvePrikazaneNovosti();
         public Task<Novost> DajNovost(int? id);
         public bool DaLiPostojiNovost(int? id);
     }

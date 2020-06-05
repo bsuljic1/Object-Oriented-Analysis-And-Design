@@ -74,5 +74,13 @@ namespace EBANK.Models.NovostRepository
 
             return OglasnaPloca.DaLiPostojiNovost(id);
         }
+
+        public Task<List<Novost>> DajSvePrikazaneNovosti()
+        {
+            if (nivoPristupa == 0)
+                throw new AuthenticationException();
+
+            return OglasnaPloca.DajSvePrikazaneNovosti();
+        }
     }
 }

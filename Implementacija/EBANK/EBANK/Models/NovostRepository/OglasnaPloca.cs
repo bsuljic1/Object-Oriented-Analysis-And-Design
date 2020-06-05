@@ -27,6 +27,11 @@ namespace EBANK.Models.NovostRepository
             return await _context.Novost.ToListAsync();
         }
 
+        public async Task<List<Novost>> DajSvePrikazaneNovosti()
+        {
+            return await _context.Novost.Where(n => n.Prikazana).ToListAsync();
+        }
+
         public bool DaLiPostojiNovost(int? id)
         {
             return _context.Novost.Any(e => e.Id == id);
