@@ -13,14 +13,27 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Racun.Klijent.Ime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Racun.Klijent.Prezime)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Iznos)
             </th>
+
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
         <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Racun.Klijent.Ime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Racun.Klijent.Prezime)
+            </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Iznos)
             </td>

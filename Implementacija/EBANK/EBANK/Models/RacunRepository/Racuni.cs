@@ -24,7 +24,7 @@ namespace EBANK.Models.RacunRepository
 
         public async Task<List<Racun>> DajSveRacune()
         {
-            return await _context.Racun.ToListAsync();
+            return await _context.Racun.Include("Klijent").ToListAsync();
         }
 
         public bool DaLiPostojiRacun(int? id)
