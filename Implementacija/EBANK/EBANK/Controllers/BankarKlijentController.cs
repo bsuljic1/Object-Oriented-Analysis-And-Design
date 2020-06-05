@@ -5,12 +5,14 @@ using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.KlijentRepository;
 using EBANK.Models.BankarRepository;
+using EBANK.Models.TransakcijaRepository;
 
 namespace EBANK.Controllers
 {
     public class BankarKlijentController : Controller
     {
         private KlijentiProxy _klijenti;
+        private TransakcijeProxy _transakcije;
         private IBankari _bankari;
         private Korisnik korisnik;
 
@@ -18,6 +20,7 @@ namespace EBANK.Controllers
         {
             _klijenti = new KlijentiProxy(context);
             _bankari = new BankariProxy(context);
+            _transakcije = new TransakcijeProxy(context);
         }
 
         // GET: BankarKlijent
@@ -48,6 +51,8 @@ namespace EBANK.Controllers
             {
                 return NotFound();
             }
+
+            var transakcije = await _transakcije.DajTransakcije(id);
 
             return View(klijent);
         }

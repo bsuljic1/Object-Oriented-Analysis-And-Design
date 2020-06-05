@@ -21,6 +21,13 @@ namespace EBANK.Models.TransakcijaRepository
             return await _context.Transakcija.Include("NaRacun").Include("SaRacuna").ToListAsync();
         }
 
+        public async Task<List<Transakcija>> DajTransakcije(int? id)
+        {
+            return await _context.Transakcija.Include("NaRacun").Include("SaRacuna")
+                .Include(c => c.SaRacuna.Klijent).Include(c => c.NaRacun.Klijent)
+                .Where(c => c.SaRacuna.Klijent.Id == id || c.NaRacun.Klijent.Id == id).ToListAsync();
+        }
+
         public async Task<Transakcija> DajTransakciju(int? id)
         {
             Transakcija transakcija = await _context.Transakcija.Include("NaRacun").Include("SaRacuna").Where(m => m.Id == id).FirstAsync();
