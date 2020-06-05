@@ -39,7 +39,12 @@ namespace EBANK.Controllers
         // GET: BankarZahtjevZaKredit/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if(id == null)
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _zahtjevi.Pristupi(korisnik);
+
+            if (id == null)
             {
                 return NotFound();
             }
@@ -57,6 +62,11 @@ namespace EBANK.Controllers
         // POST: BakarZahtjevZaKredit/Odobri/5
         public async Task<IActionResult> Odobri(int id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _zahtjevi.Pristupi(korisnik);
+
             ZahtjevZaKredit zahtjevZaKredit = await _zahtjevi.DajZahtjev(id);
             await _zahtjevi.RijesiZahtjev(id, true);
             return RedirectToAction(nameof(Index));
@@ -64,6 +74,11 @@ namespace EBANK.Controllers
 
         public async Task<IActionResult> Odbij(int id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _zahtjevi.Pristupi(korisnik);
+
             await _zahtjevi.RijesiZahtjev(id, false);
             return RedirectToAction(nameof(Index));
         }
