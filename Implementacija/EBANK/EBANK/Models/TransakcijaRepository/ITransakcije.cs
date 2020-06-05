@@ -10,6 +10,7 @@ namespace EBANK.Models.TransakcijaRepository
         public Task Uplati(Transakcija transakcija);
         public Task<List<Transakcija>> DajSveTransakcije();
         public Task<Transakcija> DajTransakciju(int? id);
+        public Task<List<Transakcija>> DajTransakcije(int? id);
         bool DaLiPostojiTransakcija(int? id);
     }
 }
