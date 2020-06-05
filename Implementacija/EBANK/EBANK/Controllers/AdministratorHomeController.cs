@@ -8,30 +8,28 @@ using Microsoft.Extensions.Logging;
 using EBANK.Models;
 using EBANK.Models.AdministratorRepository;
 using EBANK.Data;
+using EBANK.Utils;
 
 namespace EBANK.Controllers
 {
     public class AdministratorHomeController : Controller
     {
         private IAdministratori _administratori;
-        private Administrator administrator;
+        private Korisnik korisnik;
+        private OOADContext Context;
 
         public AdministratorHomeController(OOADContext context)
         {
             _administratori = new AdministratoriProxy(context);
+            Context = context;
         }
 
         public async Task<IActionResult> Index()
         {
-            var userId = Request.Cookies["userId"];
-            var role = Request.Cookies["role"];
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
-            if (userId != null && role == "Administrator")
-                administrator = await _administratori.DajAdministratora(userId);
-            else
-                return RedirectToAction("Index", "Login", new { area = "" });
-
-            return View(administrator);
+            return View(korisnik);
         }
     }
 }

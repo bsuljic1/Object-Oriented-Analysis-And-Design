@@ -9,6 +9,7 @@ using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.FilijaleBankomatiRepository;
 using EBANK.Models.AdministratorRepository;
+using EBANK.Utils;
 
 namespace EBANK.Controllers
 {
@@ -17,23 +18,20 @@ namespace EBANK.Controllers
         private FilijaleBankomatiProxy _filijaleBankomati;
         private IAdministratori _administratori;
         private Korisnik korisnik;
+        private OOADContext Context;
 
         public AdministratorBankomatiController(OOADContext context)
         {
             _filijaleBankomati = new FilijaleBankomatiProxy(context);
             _administratori = new AdministratoriProxy(context);
+            Context = context;
         }
 
         // GET: Bankomat
         public async Task<IActionResult> Index()
         {
-            var userId = Request.Cookies["userId"];
-            var role = Request.Cookies["role"];
-
-            if (userId != null && role == "Administrator")
-                korisnik = await _administratori.DajAdministratora(userId);
-            else
-                return RedirectToAction("Index", "Login", new { area = "" });
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _filijaleBankomati.Pristupi(korisnik);
 

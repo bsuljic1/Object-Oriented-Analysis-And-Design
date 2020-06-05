@@ -9,31 +9,27 @@ using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.KreditRepository;
 using EBANK.Models.AdministratorRepository;
+using EBANK.Utils;
 
 namespace EBANK.Controllers
 {
     public class AdministratorKreditiController : Controller
     {
-        private IAdministratori _administratori;
+        private OOADContext Context;
         private Korisnik korisnik;
         private KreditiProxy _krediti;
 
         public AdministratorKreditiController(OOADContext context)
         {
-            _administratori = new AdministratoriProxy(context);
+            Context = context;
             _krediti = new KreditiProxy(context);
         }
 
         // GET: Kredit
         public async Task<IActionResult> Index()
         {
-            var userId = Request.Cookies["userId"];
-            var role = Request.Cookies["role"];
-
-            if (userId != null && role == "Administrator")
-                korisnik = await _administratori.DajAdministratora(userId);
-            else
-                return RedirectToAction("Index", "Login", new { area = "" });
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _krediti.Pristupi(korisnik);
 

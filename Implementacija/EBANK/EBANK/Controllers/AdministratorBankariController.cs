@@ -10,6 +10,7 @@ using EBANK.Models;
 using EBANK.Models.BankarRepository;
 using System.Runtime.InteropServices;
 using EBANK.Models.AdministratorRepository;
+using EBANK.Utils;
 
 namespace EBANK.Controllers
 {
@@ -18,22 +19,20 @@ namespace EBANK.Controllers
         private BankariProxy _bankari;
         private IAdministratori _administratori;
         private Korisnik korisnik;
+        private OOADContext Context;
+
         public AdministratorBankariController(OOADContext context)
         {
             _bankari = new BankariProxy(context);
             _administratori = new AdministratoriProxy(context);
+            Context = context;
         }
 
         // GET: AdministratorBankari
         public async Task<IActionResult> Index()
         {
-            var userId = Request.Cookies["userId"];
-            var role = Request.Cookies["role"];
-
-            if (userId != null && role == "Administrator")
-                korisnik = await _administratori.DajAdministratora(userId);
-            else
-                return RedirectToAction("Index", "Login", new { area = "" });
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _bankari.Pristupi(korisnik);
             return View(await _bankari.DajSveBankare());

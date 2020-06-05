@@ -9,31 +9,27 @@ using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.RacunRepository;
 using EBANK.Models.AdministratorRepository;
+using EBANK.Utils;
 
 namespace EBANK.Controllers
 {
     public class AdministratorRacuniController : Controller
     {
         private readonly RacuniProxy _racuni;
-        private IAdministratori _administratori;
+        private OOADContext Context;
         private Korisnik korisnik;
 
         public AdministratorRacuniController(OOADContext context)
         {
-            _administratori = new AdministratoriProxy(context);
+            Context = context;
             _racuni = new RacuniProxy(context);
         }
 
         // GET: AdministratorRacuni
         public async Task<IActionResult> Index()
         {
-            var userId = Request.Cookies["userId"];
-            var role = Request.Cookies["role"];
-
-            if (userId != null && role == "Administrator")
-                korisnik = await _administratori.DajAdministratora(userId);
-            else
-                return RedirectToAction("Index", "Login", new { area = "" });
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _racuni.Pristupi(korisnik);
             return View(await _racuni.DajSveRacune());

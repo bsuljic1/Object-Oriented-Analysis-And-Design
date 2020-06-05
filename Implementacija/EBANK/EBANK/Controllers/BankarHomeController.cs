@@ -9,30 +9,28 @@ using EBANK.Models;
 using EBANK.Models.AdministratorRepository;
 using EBANK.Data;
 using EBANK.Models.BankarRepository;
+using EBANK.Utils;
 
 namespace EBANK.Controllers
 {
     public class BankarHomeController : Controller
     {
         private IBankari _bankari;
-        private Bankar bankar;
+        private Korisnik korisnik;
+        private OOADContext Context;
 
         public BankarHomeController(OOADContext context)
         {
+            Context = context;
             _bankari = new BankariProxy(context);
         }
 
         public async Task<IActionResult> Index()
         {
-            var userId = Request.Cookies["userId"];
-            var role = Request.Cookies["role"];
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
-            if (userId != null && role == "Bankar")
-                bankar = await _bankari.DajBankara(userId);
-            else
-                return RedirectToAction("Index", "Login", new { area = "" });
-
-            return View(bankar);
+            return View(korisnik);
         }
     }
 }

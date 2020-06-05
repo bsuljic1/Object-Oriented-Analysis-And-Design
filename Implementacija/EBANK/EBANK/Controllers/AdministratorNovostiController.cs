@@ -9,35 +9,29 @@ using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.NovostRepository;
 using EBANK.Models.AdministratorRepository;
+using EBANK.Utils;
 
 namespace EBANK.Controllers
 {
     public class AdministratorNovostiController : Controller
     {
 
-        private IAdministratori _administratori;
+        private OOADContext Context;
         private Korisnik korisnik;
         private OglasnaPlocaProxy _novosti;
 
         public AdministratorNovostiController(OOADContext context)
         {
-            _administratori = new AdministratoriProxy(context);
+            Context = context;
             _novosti = new OglasnaPlocaProxy(context);
-            //_klijenti.Pristupi();
+            //_klijenti.Pristupi();korisnik = await LoginUtils.Authenticate(Request, Context, this);
         }
 
         // GET: AdministratorNovosti
         public async Task<IActionResult> Index()
         {
-            var userId = int.Parse(Request.Cookies["userId"]);
-            var role = Request.Cookies["role"];
-
-            if (userId != null && role == "Administrator")
-                korisnik = await _administratori.DajAdministratora(userId);
-            else
-                return RedirectToAction("Index", "Login", new { area = "" });
-
-            if(korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _novosti.Pristupi(korisnik);
 

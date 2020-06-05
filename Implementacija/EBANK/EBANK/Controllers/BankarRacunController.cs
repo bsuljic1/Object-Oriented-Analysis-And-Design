@@ -9,23 +9,31 @@ using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.RacunRepository;
 using EBANK.Models.KlijentRepository;
+using EBANK.Utils;
 
 namespace EBANK.Controllers
 {
     public class BankarRacunController : Controller
     {
-        private IRacuni _racuni;
-        private IKlijenti _klijenti;
+        private RacuniProxy _racuni;
+        private KlijentiProxy _klijenti;
+        private OOADContext Context;
+        private Korisnik korisnik;
 
         public BankarRacunController(OOADContext context)
         {
             _racuni = new RacuniProxy(context);
             _klijenti = new KlijentiProxy(context);
+            Context = context;
         }
 
         // GET: BankarRacun
         public async Task<IActionResult> Index()
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _racuni.Pristupi(korisnik);
             return View(await _racuni.DajSveRacune());
         }
 
