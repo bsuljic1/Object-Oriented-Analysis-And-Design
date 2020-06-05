@@ -37,6 +37,8 @@ namespace EBANK.Controllers
             _klijenti.Pristupi(korisnik);
             _oglasnaPloca.Pristupi(korisnik);
 
+            ViewData["ime"] = korisnik.Ime;
+
             return View(await _oglasnaPloca.DajSvePrikazaneNovosti());
         }
     }
