@@ -8,20 +8,36 @@ using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.KlijentRepository;
+using EBANK.Models.AdministratorRepository;
 
 namespace EBANK.Controllers
 {
     public class AdministratorKlijentiController : Controller
     {
-        IKlijenti _klijenti;
+        private IAdministratori _administratori;
+        private Korisnik korisnik;
+        KlijentiProxy _klijenti;
+
         public AdministratorKlijentiController(OOADContext context)
         {
+         
+            _administratori = new AdministratoriProxy(context);
             _klijenti = new KlijentiProxy(context);
         }
 
         // GET: AdministratorKlijenti
         public async Task<IActionResult> Index()
         {
+            var userId = Request.Cookies["userId"];
+            var role = Request.Cookies["role"];
+
+            if (userId != null && role == "Administrator")
+                korisnik = await _administratori.DajAdministratora(userId);
+            else
+                return RedirectToAction("Index", "Login", new { area = "" });
+
+            _klijenti.Pristupi(korisnik);
+
             return View(await _klijenti.DajSveKlijente());
         }
 

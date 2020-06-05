@@ -10,7 +10,7 @@ namespace EBANK.Models.FilijaleBankomatiRepository
     public class FilijaleBankomatiProxy : IFilijaleBankomati
     {
        //0 znaci da ne moze nista raditi sa filijalama i bankomatima, a 1 da moze sve
-        int nivoPristupa = 1;
+        int nivoPristupa = 0;
         IFilijaleBankomati filijaleBankomati;
 
         public FilijaleBankomatiProxy(OOADContext context)

@@ -8,15 +8,20 @@ using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.NovostRepository;
+using EBANK.Models.AdministratorRepository;
 
 namespace EBANK.Controllers
 {
     public class AdministratorNovostiController : Controller
     {
-        private IOglasnaPloca _novosti;
+
+        private IAdministratori _administratori;
+        private Korisnik korisnik;
+        private OglasnaPlocaProxy _novosti;
 
         public AdministratorNovostiController(OOADContext context)
         {
+            _administratori = new AdministratoriProxy(context);
             _novosti = new OglasnaPlocaProxy(context);
             //_klijenti.Pristupi();
         }
@@ -24,6 +29,16 @@ namespace EBANK.Controllers
         // GET: AdministratorNovosti
         public async Task<IActionResult> Index()
         {
+            var userId = Request.Cookies["userId"];
+            var role = Request.Cookies["role"];
+
+            if (userId != null && role == "Administrator")
+                korisnik = await _administratori.DajAdministratora(userId);
+            else
+                return RedirectToAction("Index", "Login", new { area = "" });
+
+            _novosti.Pristupi(korisnik);
+
             return View(await _novosti.DajSveNovosti());
         }
 
