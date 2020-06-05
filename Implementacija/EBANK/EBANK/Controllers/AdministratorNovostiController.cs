@@ -29,13 +29,15 @@ namespace EBANK.Controllers
         // GET: AdministratorNovosti
         public async Task<IActionResult> Index()
         {
-            var userId = Request.Cookies["userId"];
+            var userId = int.Parse(Request.Cookies["userId"]);
             var role = Request.Cookies["role"];
 
             if (userId != null && role == "Administrator")
                 korisnik = await _administratori.DajAdministratora(userId);
             else
                 return RedirectToAction("Index", "Login", new { area = "" });
+
+            if(korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _novosti.Pristupi(korisnik);
 

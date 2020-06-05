@@ -9,7 +9,7 @@ namespace EBANK.Models.TransakcijaRepository
 {
     public class TransakcijeProxy : ITransakcije
     {
-        //0 ne moze nista, 1 moze samo pregledati, a 2 moze uplacivati
+        //0 ne moze nista, 1 i 2 mogu samo pregledati, a 3 moze uplacivati
         private int nivoPristupa;
         private readonly ITransakcije transakcije;
 
@@ -20,9 +20,11 @@ namespace EBANK.Models.TransakcijaRepository
 
         public void Pristupi(Korisnik korisnik)
         {
-            if (korisnik is Klijent) nivoPristupa = 2;
-            else if (korisnik is Bankar) nivoPristupa = 1;
+            if (korisnik is Klijent) nivoPristupa = 3;
+            else if (korisnik is Bankar) nivoPristupa = 2;
+            else if (korisnik is Administrator) nivoPristupa = 1;
             else nivoPristupa = 0;
+
         }
         public Task<List<Transakcija>> DajSveTransakcije()
         {

@@ -26,6 +26,7 @@ namespace EBANK.Models.KreditRepository
                 nivoPristupa = 2;
             else if (korisnik is Klijent)
                 nivoPristupa = 3;
+            else nivoPristupa = 0;
         }
 
 

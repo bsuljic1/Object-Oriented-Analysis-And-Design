@@ -9,7 +9,7 @@ namespace EBANK.Models.NovostRepository
 {
     public class OglasnaPlocaProxy : IOglasnaPloca
     {
-        //0 - nista, 1 - samo pregledanje, 2 - pregledanje i uredjivanje
+        //0 - nista, 1 - pregledanje i uredjivanje, 2 - samo pregledanje
         int nivoPristupa;
         IOglasnaPloca OglasnaPloca;
 
@@ -22,8 +22,9 @@ namespace EBANK.Models.NovostRepository
         {
             if (korisnik is Administrator)
                 nivoPristupa = 1;
-            else if (korisnik is Bankar)
+            else if (korisnik is Klijent)
                 nivoPristupa = 2;
+            else nivoPristupa = 0;
         }
 
         public Task DodajNovost(Novost novost)

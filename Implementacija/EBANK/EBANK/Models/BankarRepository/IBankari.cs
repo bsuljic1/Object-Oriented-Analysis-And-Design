@@ -14,5 +14,6 @@ namespace EBANK.Models.BankarRepository
         public Task<Bankar> DajBankara(int? id);
         public bool DaLiPostojiBankar(int? id);
         public Task<Bankar> DajBankara(string korisnickoIme);
+
     }
 }

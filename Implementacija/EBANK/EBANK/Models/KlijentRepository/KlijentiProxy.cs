@@ -24,6 +24,7 @@ namespace EBANK.Models.KlijentRepository
                 nivoPristupa = 1;
             else if (korisnik is Bankar)
                 nivoPristupa = 2;
+            else nivoPristupa = 0;
         }
 
         public Task DodajKlijenta(Klijent klijent)

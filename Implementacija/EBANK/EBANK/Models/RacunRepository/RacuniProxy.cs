@@ -9,7 +9,7 @@ namespace EBANK.Models.RacunRepository
 {
     public class RacuniProxy : IRacuni
     {
-        //0 - nista, 1 - samo pregledanje, 2 - pregledanje i uredjivanje
+        //0 - nista, 1 - samo pregledanje svih racuna, 2 - pregledanje i uredjivanje, 3 - pregledanje odredjenih racuna
         int nivoPristupa = 2;
         IRacuni racuni;
 
@@ -26,6 +26,9 @@ namespace EBANK.Models.RacunRepository
                 nivoPristupa = 1;
             else if (korisnik is Bankar)
                 nivoPristupa = 2;
+            else if (korisnik is Klijent)
+                nivoPristupa = 3;
+            else nivoPristupa = 0;
         }
 
         public Task OtvoriRacun(Racun racun)
