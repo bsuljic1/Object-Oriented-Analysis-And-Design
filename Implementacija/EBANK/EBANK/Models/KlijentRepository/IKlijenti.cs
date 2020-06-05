@@ -12,6 +12,7 @@ namespace EBANK.Models.KlijentRepository
         public Task UkloniKlijenta(int? id);
         public Task<List<Klijent>> DajSveKlijente();
         public Task<Klijent> DajKlijenta(int? id);
+        public Task<Klijent> DajKlijentaLK(string brojLicneKarte);
         public bool DaLiPostojiKlijent(int? id);
         public Task<Klijent> DajKlijenta(string korisnickoIme);
     }

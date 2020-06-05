@@ -8,16 +8,19 @@ using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.RacunRepository;
+using EBANK.Models.KlijentRepository;
 
 namespace EBANK.Controllers
 {
     public class BankarRacunController : Controller
     {
         private IRacuni _racuni;
+        private IKlijenti _klijenti;
 
         public BankarRacunController(OOADContext context)
         {
             _racuni = new RacuniProxy(context);
+            _klijenti = new KlijentiProxy(context);
         }
 
         // GET: BankarRacun
@@ -41,8 +44,10 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,StanjeRacuna,VrstaRacuna,Klijent")] Racun racun)
         {
-            if (ModelState.IsValid)
+            Klijent klijent = await _klijenti.DajKlijentaLK(racun.Klijent.BrojLicneKarte);
+            if (klijent != null)
             {
+                racun.Klijent = klijent;
                 await _racuni.OtvoriRacun(racun);
                 return RedirectToAction(nameof(Index));
             }

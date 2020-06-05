@@ -77,5 +77,10 @@ namespace EBANK.Models.KlijentRepository
         {
             return klijenti.DajKlijenta(korisnickoIme);
         }
+
+        public Task<Klijent> DajKlijentaLK(string brojLicneKarte)
+        {
+            return klijenti.DajKlijentaLK(brojLicneKarte);
+        }
     }
 }
