@@ -27,6 +27,11 @@ namespace EBANK.Models.KlijentRepository
             return await _context.Klijent.Where(m => m.KorisnickoIme == korisnickoIme).FirstOrDefaultAsync();
         }
 
+        public async Task<Klijent> DajKlijentaLK(string brojLicneKarte)
+        {
+            return await _context.Klijent.Where(m => m.BrojLicneKarte == brojLicneKarte).FirstOrDefaultAsync();
+        }
+
         public async Task<List<Klijent>> DajSveKlijente()
         {
             return await _context.Klijent.ToListAsync();
