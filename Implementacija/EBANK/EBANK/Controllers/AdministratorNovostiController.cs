@@ -24,7 +24,6 @@ namespace EBANK.Controllers
         {
             Context = context;
             _novosti = new OglasnaPlocaProxy(context);
-            //_klijenti.Pristupi();korisnik = await LoginUtils.Authenticate(Request, Context, this);
         }
 
         // GET: AdministratorNovosti
