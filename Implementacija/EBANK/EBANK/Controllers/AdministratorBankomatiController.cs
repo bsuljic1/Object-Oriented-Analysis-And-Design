@@ -12,13 +12,13 @@ using EBANK.Models.AdministratorRepository;
 
 namespace EBANK.Controllers
 {
-    public class BankomatController : Controller
+    public class AdministratorBankomatiController : Controller
     {
         private FilijaleBankomatiProxy _filijaleBankomati;
         private IAdministratori _administratori;
         private Korisnik korisnik;
 
-        public BankomatController(OOADContext context)
+        public AdministratorBankomatiController(OOADContext context)
         {
             _filijaleBankomati = new FilijaleBankomatiProxy(context);
             _administratori = new AdministratoriProxy(context);
