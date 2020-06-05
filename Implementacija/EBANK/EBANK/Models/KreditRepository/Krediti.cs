@@ -24,7 +24,7 @@ namespace EBANK.Models.KreditRepository
 
         public async Task<List<Kredit>> DajSveKredite()
         {
-            return await _context.Kredit.Include("Racun").Include("Racun.Klijent").ToListAsync();
+            return await _context.Kredit.Include("Racun").Include(c => c.Racun.Klijent).ToListAsync();
         }
 
         public bool DaLiPostojiKredit(int? id)

@@ -40,8 +40,13 @@ namespace EBANK.Controllers
         
 
         // GET: BankarRacun/Create
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync()
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _racuni.Pristupi(korisnik);
+
             return View();
         }
 
@@ -52,6 +57,11 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,StanjeRacuna,VrstaRacuna,Klijent")] Racun racun)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _racuni.Pristupi(korisnik);
+
             Klijent klijent = await _klijenti.DajKlijentaLK(racun.Klijent.BrojLicneKarte);
             if (klijent != null)
             {
@@ -66,6 +76,11 @@ namespace EBANK.Controllers
         // GET: BankarRacun/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _racuni.Pristupi(korisnik);
+
             if (id == null)
             {
                 return NotFound();
@@ -85,6 +100,11 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _racuni.Pristupi(korisnik);
+
             await _racuni.ZatvoriRacun(id);
             return RedirectToAction(nameof(Index));
         }

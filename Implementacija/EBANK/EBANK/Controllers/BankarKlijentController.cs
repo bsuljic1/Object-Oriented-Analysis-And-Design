@@ -37,6 +37,11 @@ namespace EBANK.Controllers
         // GET: BankarKlijent/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _klijenti.Pristupi(korisnik);
+
             if (id == null)
             {
                 return NotFound();
@@ -54,8 +59,13 @@ namespace EBANK.Controllers
         }
 
         // GET: BankarKlijent/Create
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync()
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _klijenti.Pristupi(korisnik);
+
             return View();
         }
 
@@ -66,6 +76,11 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("DatumRodjenja,JMBG,BrojTelefona,BrojLicneKarte,Zanimanje,Ime,Prezime,KorisnickoIme,Lozinka,Adresa")] Klijent klijent)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _klijenti.Pristupi(korisnik);
+
             if (ModelState.IsValid)
             {
                 await _klijenti.DodajKlijenta(klijent);
@@ -77,6 +92,11 @@ namespace EBANK.Controllers
         // GET: BankarKlijent/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _klijenti.Pristupi(korisnik);
+
             if (id == null)
             {
                 return NotFound();
@@ -97,6 +117,11 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,DatumRodjenja,JMBG,BrojTelefona,BrojLicneKarte,Zanimanje,Ime,Prezime,KorisnickoIme,Lozinka,Adresa")] Klijent klijent)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _klijenti.Pristupi(korisnik);
+
             if (id != klijent.Id)
             {
                 return NotFound();
@@ -127,6 +152,11 @@ namespace EBANK.Controllers
         // GET: BankarKlijent/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _klijenti.Pristupi(korisnik);
+
             if (id == null)
             {
                 return NotFound();
@@ -146,6 +176,11 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _klijenti.Pristupi(korisnik);
+
             await _klijenti.UkloniKlijenta(id);
             return RedirectToAction(nameof(Index));
         }

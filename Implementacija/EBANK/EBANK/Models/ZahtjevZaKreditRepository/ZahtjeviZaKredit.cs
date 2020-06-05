@@ -20,7 +20,7 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
         }
         public async Task<List<ZahtjevZaKredit>> DajSveZahtjeve()
         {
-            return await _context.ZahtjevZaKredit.Where(zahtjev=>zahtjev.StatusZahtjeva == StatusZahtjevaZaKredit.Neobradjen).Include("Racun").Include("Racun.Klijent").ToListAsync();
+            return await _context.ZahtjevZaKredit.Where(zahtjev=>zahtjev.StatusZahtjeva == StatusZahtjevaZaKredit.Neobradjen).Include("Racun").Include(c => c.Racun.Klijent).ToListAsync();
         }
 
         public async Task<ZahtjevZaKredit> DajZahtjev(int? id)

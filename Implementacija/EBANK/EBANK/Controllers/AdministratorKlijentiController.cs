@@ -39,6 +39,10 @@ namespace EBANK.Controllers
         // GET: AdministratorKlijenti/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _klijenti.Pristupi(korisnik);
             if (id == null)
             {
                 return NotFound();

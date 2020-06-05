@@ -38,6 +38,11 @@ namespace EBANK.Controllers
         // GET: BankarTransakcije/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _transakcije.Pristupi(korisnik);
+
             if (id == null)
             {
                 return NotFound();
