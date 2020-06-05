@@ -21,11 +21,21 @@ namespace EBANK.Controllers
         public AdministratorBankariController(OOADContext context)
         {
             _bankari = new BankariProxy(context);
+            _administratori = new AdministratoriProxy(context);
         }
 
         // GET: AdministratorBankari
         public async Task<IActionResult> Index()
         {
+            var userId = Request.Cookies["userId"];
+            var role = Request.Cookies["role"];
+
+            if (userId != null && role == "Administrator")
+                korisnik = await _administratori.DajAdministratora(userId);
+            else
+                return RedirectToAction("Index", "Login", new { area = "" });
+
+            _bankari.Pristupi(korisnik);
             return View(await _bankari.DajSveBankare());
         }
 

@@ -10,7 +10,7 @@ namespace EBANK.Models.NovostRepository
     public class OglasnaPlocaProxy : IOglasnaPloca
     {
         //0 - nista, 1 - samo pregledanje, 2 - pregledanje i uredjivanje
-        int nivoPristupa = 2;
+        int nivoPristupa;
         IOglasnaPloca OglasnaPloca;
 
         public OglasnaPlocaProxy(OOADContext context)

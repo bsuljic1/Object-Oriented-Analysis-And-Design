@@ -9,21 +9,34 @@ using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.ZahtjevZaKreditRepository;
 using EBANK.Models.KreditRepository;
+using EBANK.Models.BankarRepository;
 
 namespace EBANK.Controllers
 {
     public class BankarZahtjevZaKreditController : Controller
     {
-        private IZahtjeviZaKredit _zahtjevi;
+        private ZahtjeviZaKreditProxy _zahtjevi;
+        private IBankari _bankari;
+        private Korisnik korisnik;
 
         public BankarZahtjevZaKreditController(OOADContext context)
         {
             _zahtjevi = new ZahtjeviZaKreditProxy(context);
+            _bankari = new BankariProxy(context);
         }
 
         // GET: BankarZahtjevZaKredit
         public async Task<IActionResult> Index()
         {
+            var userId = Request.Cookies["userId"];
+            var role = Request.Cookies["role"];
+
+            if (userId != null && role == "Bankar")
+                korisnik = await _bankari.DajBankara(userId);
+            else
+                return RedirectToAction("Index", "Login", new { area = "" });
+
+            _zahtjevi.Pristupi(korisnik);
             return View(await _zahtjevi.DajSveZahtjeve());
         }
 

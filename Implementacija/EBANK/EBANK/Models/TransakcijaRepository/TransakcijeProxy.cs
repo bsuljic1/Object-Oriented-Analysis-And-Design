@@ -10,7 +10,7 @@ namespace EBANK.Models.TransakcijaRepository
     public class TransakcijeProxy : ITransakcije
     {
         //0 ne moze nista, 1 moze samo pregledati, a 2 moze uplacivati
-        private int nivoPristupa = 2;
+        private int nivoPristupa;
         private readonly ITransakcije transakcije;
 
         public TransakcijeProxy(OOADContext context)

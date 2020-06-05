@@ -4,22 +4,34 @@ using Microsoft.EntityFrameworkCore;
 using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.KlijentRepository;
+using EBANK.Models.BankarRepository;
 
 namespace EBANK.Controllers
 {
     public class BankarKlijentController : Controller
     {
-        private IKlijenti _klijenti;
+        private KlijentiProxy _klijenti;
+        private IBankari _bankari;
+        private Korisnik korisnik;
 
         public BankarKlijentController(OOADContext context)
         {
             _klijenti = new KlijentiProxy(context);
-            //_klijenti.Pristupi();
+            _bankari = new BankariProxy(context);
         }
 
         // GET: BankarKlijent
         public async Task<IActionResult> Index()
         {
+            var userId = Request.Cookies["userId"];
+            var role = Request.Cookies["role"];
+
+            if (userId != null && role == "Bankar")
+                korisnik = await _bankari.DajBankara(userId);
+            else
+                return RedirectToAction("Index", "Login", new { area = "" });
+
+            _klijenti.Pristupi(korisnik);
             return View(await _klijenti.DajSveKlijente());
         }
 

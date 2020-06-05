@@ -9,7 +9,7 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
 {
     public class ZahtjeviZaKreditProxy : IZahtjeviZaKredit
     {
-        int nivoPristupa = 2;
+        int nivoPristupa;
         IZahtjeviZaKredit zahtjevi;
 
         public ZahtjeviZaKreditProxy(OOADContext context)
