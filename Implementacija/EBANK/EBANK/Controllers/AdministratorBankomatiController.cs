@@ -84,7 +84,7 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _filijaleBankomati.Pristupi(korisnik);
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
             if (ModelState.IsValid)
             {
                 await _filijaleBankomati.DodajBankomat(bankomat);
@@ -100,7 +100,7 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _filijaleBankomati.Pristupi(korisnik);
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
             if (id == null)
             {
                 return NotFound();
@@ -125,7 +125,7 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _filijaleBankomati.Pristupi(korisnik);
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             if (id != bankomat.Id)
             {
@@ -161,7 +161,7 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _filijaleBankomati.Pristupi(korisnik);
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
             if (id == null)
             {
                 return NotFound();
@@ -185,7 +185,7 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _filijaleBankomati.Pristupi(korisnik);
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
             await _filijaleBankomati.UkloniBankomat(id);
             return RedirectToAction(nameof(Index));
         }

@@ -34,7 +34,7 @@ namespace EBANK.Controllers
 
             _novosti.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             return View(await _novosti.DajSveNovosti());
         }
@@ -47,7 +47,7 @@ namespace EBANK.Controllers
 
             _novosti.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             if (id == null)
             {
@@ -71,7 +71,7 @@ namespace EBANK.Controllers
 
             _novosti.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             return View();
         }
@@ -88,7 +88,7 @@ namespace EBANK.Controllers
 
             _novosti.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             if (ModelState.IsValid)
             {
@@ -108,7 +108,7 @@ namespace EBANK.Controllers
 
             _novosti.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             if (id == null)
             {
@@ -135,7 +135,7 @@ namespace EBANK.Controllers
 
             _novosti.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             if (id != novost.Id)
             {
@@ -172,7 +172,7 @@ namespace EBANK.Controllers
 
             _novosti.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             if (id == null)
             {
@@ -198,7 +198,7 @@ namespace EBANK.Controllers
 
             _novosti.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             await _novosti.UkloniNovost(id);
             return RedirectToAction(nameof(Index));

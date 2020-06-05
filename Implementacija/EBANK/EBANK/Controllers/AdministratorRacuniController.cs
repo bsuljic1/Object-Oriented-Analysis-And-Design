@@ -33,7 +33,7 @@ namespace EBANK.Controllers
 
             _racuni.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
             return View(await _racuni.DajSveRacune());
         }
 

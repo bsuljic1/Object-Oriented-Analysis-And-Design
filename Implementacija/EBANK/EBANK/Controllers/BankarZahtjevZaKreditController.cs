@@ -34,7 +34,7 @@ namespace EBANK.Controllers
 
             _zahtjevi.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             return View(await _zahtjevi.DajSveZahtjeve());
         }
@@ -47,7 +47,7 @@ namespace EBANK.Controllers
 
             _zahtjevi.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             if (id == null)
             {
@@ -72,7 +72,7 @@ namespace EBANK.Controllers
 
             _zahtjevi.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             ZahtjevZaKredit zahtjevZaKredit = await _zahtjevi.DajZahtjev(id);
             await _zahtjevi.RijesiZahtjev(id, true);
@@ -86,7 +86,7 @@ namespace EBANK.Controllers
 
             _zahtjevi.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             await _zahtjevi.RijesiZahtjev(id, false);
             return RedirectToAction(nameof(Index));

@@ -33,7 +33,7 @@ namespace EBANK.Controllers
 
             _klijenti.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             return View(await _klijenti.DajSveKlijente());
         }
@@ -46,7 +46,7 @@ namespace EBANK.Controllers
 
             _klijenti.Pristupi(korisnik);
 
-            @ViewData["Ime"] = korisnik.Ime;
+            ViewData["Ime"] = korisnik.Ime;
 
             if (id == null)
             {
