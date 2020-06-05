@@ -34,6 +34,9 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _racuni.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
+
             return View(await _racuni.DajSveRacune());
         }
 
@@ -46,6 +49,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _racuni.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
 
             return View();
         }
@@ -61,6 +66,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _racuni.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
 
             Klijent klijent = await _klijenti.DajKlijentaLK(racun.Klijent.BrojLicneKarte);
             if (klijent != null)
@@ -80,6 +87,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _racuni.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
 
             if (id == null)
             {
@@ -104,6 +113,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _racuni.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
 
             await _racuni.ZatvoriRacun(id);
             return RedirectToAction(nameof(Index));

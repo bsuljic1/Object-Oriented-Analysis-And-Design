@@ -35,6 +35,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _bankari.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
             return View(await _bankari.DajSveBankare());
         }
 
@@ -45,6 +47,7 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _bankari.Pristupi(korisnik);
+            @ViewData["Ime"] = korisnik.Ime;
 
             if (id == null)
             {
@@ -67,7 +70,7 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _bankari.Pristupi(korisnik);
-
+            @ViewData["Ime"] = korisnik.Ime;
             return View();
         }
 
@@ -82,6 +85,7 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _bankari.Pristupi(korisnik);
+            @ViewData["Ime"] = korisnik.Ime;
 
             if (ModelState.IsValid)
             {
@@ -98,6 +102,7 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _bankari.Pristupi(korisnik);
+            @ViewData["Ime"] = korisnik.Ime;
 
             if (id == null)
             {
@@ -123,6 +128,7 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _bankari.Pristupi(korisnik);
+            @ViewData["Ime"] = korisnik.Ime;
 
             if (id != bankar.Id)
             {
@@ -158,6 +164,7 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _bankari.Pristupi(korisnik);
+            @ViewData["Ime"] = korisnik.Ime;
 
             if (id == null)
             {
@@ -182,6 +189,7 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _bankari.Pristupi(korisnik);
+            @ViewData["Ime"] = korisnik.Ime;
 
             await _bankari.UkloniBankara(id);
             return RedirectToAction(nameof(Index));

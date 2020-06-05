@@ -35,6 +35,8 @@ namespace EBANK.Controllers
 
             _novosti.Pristupi(korisnik);
 
+            @ViewData["Ime"] = korisnik.Ime;
+
             return View(await _novosti.DajSveNovosti());
         }
 
@@ -45,6 +47,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _novosti.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
 
             if (id == null)
             {
@@ -68,6 +72,8 @@ namespace EBANK.Controllers
 
             _novosti.Pristupi(korisnik);
 
+            @ViewData["Ime"] = korisnik.Ime;
+
             return View();
         }
 
@@ -82,6 +88,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _novosti.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
 
             if (ModelState.IsValid)
             {
@@ -100,6 +108,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _novosti.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
 
             if (id == null)
             {
@@ -125,6 +135,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _novosti.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
 
             if (id != novost.Id)
             {
@@ -161,6 +173,8 @@ namespace EBANK.Controllers
 
             _novosti.Pristupi(korisnik);
 
+            @ViewData["Ime"] = korisnik.Ime;
+
             if (id == null)
             {
                 return NotFound();
@@ -184,6 +198,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _novosti.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
 
             await _novosti.UkloniNovost(id);
             return RedirectToAction(nameof(Index));

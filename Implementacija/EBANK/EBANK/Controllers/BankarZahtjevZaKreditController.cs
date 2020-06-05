@@ -33,6 +33,9 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _zahtjevi.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
+
             return View(await _zahtjevi.DajSveZahtjeve());
         }
 
@@ -43,6 +46,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _zahtjevi.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
 
             if (id == null)
             {
@@ -67,6 +72,8 @@ namespace EBANK.Controllers
 
             _zahtjevi.Pristupi(korisnik);
 
+            @ViewData["Ime"] = korisnik.Ime;
+
             ZahtjevZaKredit zahtjevZaKredit = await _zahtjevi.DajZahtjev(id);
             await _zahtjevi.RijesiZahtjev(id, true);
             return RedirectToAction(nameof(Index));
@@ -78,6 +85,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _zahtjevi.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
 
             await _zahtjevi.RijesiZahtjev(id, false);
             return RedirectToAction(nameof(Index));

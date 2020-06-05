@@ -33,6 +33,8 @@ namespace EBANK.Controllers
 
             _klijenti.Pristupi(korisnik);
 
+            @ViewData["Ime"] = korisnik.Ime;
+
             return View(await _klijenti.DajSveKlijente());
         }
 
@@ -43,6 +45,9 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _klijenti.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
+
             if (id == null)
             {
                 return NotFound();

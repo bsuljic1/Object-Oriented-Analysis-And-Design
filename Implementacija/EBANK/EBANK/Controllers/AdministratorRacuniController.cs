@@ -32,6 +32,8 @@ namespace EBANK.Controllers
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
             _racuni.Pristupi(korisnik);
+
+            @ViewData["Ime"] = korisnik.Ime;
             return View(await _racuni.DajSveRacune());
         }
 

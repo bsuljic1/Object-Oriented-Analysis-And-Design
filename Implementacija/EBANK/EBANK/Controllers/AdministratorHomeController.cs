@@ -28,7 +28,8 @@ namespace EBANK.Controllers
         {
             korisnik = await LoginUtils.Authenticate(Request, Context, this);
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
-
+         
+            @ViewData["Ime"] = korisnik.Ime;
             return View(korisnik);
         }
     }
