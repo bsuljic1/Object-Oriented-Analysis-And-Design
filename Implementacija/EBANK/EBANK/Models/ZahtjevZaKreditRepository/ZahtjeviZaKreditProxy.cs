@@ -9,7 +9,7 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
 {
     public class ZahtjeviZaKreditProxy : IZahtjeviZaKredit
     {
-        int nivoPristupa;
+        int nivoPristupa; //1 moze podnositi zahtjeve, a 2 pregledati i prihvatati
         IZahtjeviZaKredit zahtjevi;
 
         public ZahtjeviZaKreditProxy(OOADContext context)
@@ -19,10 +19,11 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
 
         public void Pristupi(Korisnik korisnik)
         {
-            if (korisnik is Administrator)
+            if (korisnik is Klijent)
                 nivoPristupa = 1;
             else if (korisnik is Bankar)
                 nivoPristupa = 2;
+            else nivoPristupa = 0;
         }
 
         public Task<List<ZahtjevZaKredit>> DajSveZahtjeve()

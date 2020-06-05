@@ -22,5 +22,10 @@ namespace EBANK.Models.AdministratorRepository
         {
             return await _context.Administrator.Where(m => m.KorisnickoIme == korisnickoIme).FirstOrDefaultAsync();
         }
+
+        public async Task<Administrator> DajAdministratora(int? id)
+        {
+            return await _context.Administrator.Where(m => m.Id == id).FirstOrDefaultAsync();
+        }
     }
 }

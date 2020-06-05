@@ -9,7 +9,7 @@ namespace EBANK.Models.FilijaleBankomatiRepository
 {
     public class FilijaleBankomatiProxy : IFilijaleBankomati
     {
-       //0 znaci da ne moze nista raditi sa filijalama i bankomatima, a 1 da moze sve
+       //0 znaci da ne moze nista raditi sa filijalama i bankomatima, a 1 da moze sve, 2 moze pregledati
         int nivoPristupa;
         IFilijaleBankomati filijaleBankomati;
 
@@ -23,6 +23,9 @@ namespace EBANK.Models.FilijaleBankomatiRepository
         {
             if (korisnik is Administrator)
                 nivoPristupa = 1;
+            else if (korisnik is Klijent)
+                nivoPristupa = 2;
+            else nivoPristupa = 0;
         }
 
         public Task DodajBankomat(Bankomat bankomat)
@@ -57,7 +60,7 @@ namespace EBANK.Models.FilijaleBankomatiRepository
 
         async Task<List<IMapObjekat>> IFilijaleBankomati.DajSveMapObjekte()
         {
-           if(nivoPristupa != 1) 
+           if(nivoPristupa != 1 && nivoPristupa != 2) 
                 throw new AuthenticationException();
 
             return await filijaleBankomati.DajSveMapObjekte();
@@ -66,7 +69,7 @@ namespace EBANK.Models.FilijaleBankomatiRepository
         public Task<List<Filijala>> DajSveFilijale()
         {
 
-            if (nivoPristupa != 1)
+            if (nivoPristupa != 1 && nivoPristupa != 2)
                 throw new AuthenticationException();
 
             return filijaleBankomati.DajSveFilijale();
@@ -75,7 +78,7 @@ namespace EBANK.Models.FilijaleBankomatiRepository
         public Task<List<Bankomat>> DajSveBankomate()
         {
 
-            if (nivoPristupa != 1)
+            if (nivoPristupa != 1 && nivoPristupa != 2)
                 throw new AuthenticationException();
 
             return filijaleBankomati.DajSveBankomate();
@@ -98,13 +101,6 @@ namespace EBANK.Models.FilijaleBankomatiRepository
             return filijaleBankomati.UkloniBankomat(id);
         }
 
-        Task<List<Bankomat>> IFilijaleBankomati.DajSveBankomate()
-        {
-            if (nivoPristupa != 1)
-                throw new AuthenticationException();
-
-            return filijaleBankomati.DajSveBankomate();
-        }
 
         public Task<Filijala> DajFilijalu(int? id)
         {

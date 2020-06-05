@@ -20,5 +20,9 @@ namespace EBANK.Models.AdministratorRepository
         {
             return administratori.DajAdministratora(korisnickoIme);
         }
+        public Task<Administrator> DajAdministratora(int? id)
+        {
+            return administratori.DajAdministratora(id);
+        }
     }
 }
