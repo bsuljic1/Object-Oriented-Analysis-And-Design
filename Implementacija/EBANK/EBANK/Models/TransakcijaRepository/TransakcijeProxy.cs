@@ -51,7 +51,7 @@ namespace EBANK.Models.TransakcijaRepository
 
         public Task<List<Transakcija>> DajTransakcije(int? id)
         {
-            if (nivoPristupa != 0) throw new AuthenticationException();
+            if (nivoPristupa == 0) throw new AuthenticationException();
             return transakcije.DajTransakcije(id);
         }
     }

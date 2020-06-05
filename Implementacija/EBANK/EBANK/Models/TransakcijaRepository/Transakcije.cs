@@ -39,9 +39,12 @@ namespace EBANK.Models.TransakcijaRepository
             throw new NotImplementedException();
         }
 
-        public Task Uplati(Transakcija transakcija)
+        public async Task Uplati(Transakcija transakcija)
         {
-            throw new NotImplementedException();
+            transakcija.SaRacuna.StanjeRacuna = transakcija.SaRacuna.StanjeRacuna - transakcija.Iznos;
+            transakcija.NaRacun.StanjeRacuna = transakcija.NaRacun.StanjeRacuna + transakcija.Iznos;
+            _context.Add(transakcija);
+            await _context.SaveChangesAsync();
         }
     }
 }
