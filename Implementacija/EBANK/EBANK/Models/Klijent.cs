@@ -32,5 +32,8 @@ namespace EBANK.Models
         public String Grad { get; set; }
 
         public String Drzava { get; set; }
+
+        [Required]
+        public DateTime VrijemeDodavanja { get; set; } = DateTime.Now;
     }
 }
