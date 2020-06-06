@@ -53,6 +53,13 @@ namespace EBANK.Models.KreditRepository
 
             return krediti.DaLiPostojiKredit(id);
         }
+        public  Task<List<Kredit>> DajSveKrediteKlijenta(int? id)
+        {
+            if (nivoPristupa == 0 || nivoPristupa == 1)
+                throw new AuthenticationException();
+
+            return krediti.DajSveKrediteKlijenta(id);
+        }
 
     }
 }

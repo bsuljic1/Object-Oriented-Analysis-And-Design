@@ -90,5 +90,9 @@ namespace EBANK.Controllers
             Response.Cookies.Delete("role");
             return RedirectToAction("Index");
         }
+        public IActionResult Profil()
+        {
+            return RedirectToAction("Index", "KlijentProfil", new { area = "" });
+        }
     }
 }

@@ -37,5 +37,9 @@ namespace EBANK.Models.KreditRepository
             _context.Add(kredit);
             await _context.SaveChangesAsync();
         }
+        public async Task<List<Kredit>> DajSveKrediteKlijenta(int? id)
+        {
+            return await _context.Kredit.Include("Racun").Where(m => m.Racun.Klijent.Id == id).ToListAsync();
+        }
     }
 }

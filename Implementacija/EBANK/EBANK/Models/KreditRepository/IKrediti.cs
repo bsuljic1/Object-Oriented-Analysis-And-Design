@@ -10,5 +10,6 @@ namespace EBANK.Models.KreditRepository
         public  Task<Kredit> DajKredit(int? id);
         public bool DaLiPostojiKredit(int? id);
         public  Task<List<Kredit>> DajSveKredite();
+        public Task<List<Kredit>> DajSveKrediteKlijenta(int? id);
     }
 }
