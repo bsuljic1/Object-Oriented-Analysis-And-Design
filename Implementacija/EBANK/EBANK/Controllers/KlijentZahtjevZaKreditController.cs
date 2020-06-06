@@ -50,7 +50,7 @@ namespace EBANK.Controllers
             if (ModelState.IsValid)
             {
                 await _zahtjevi.PodnesiZahtjevZaKredit(zahtjevZaKredit);
-                return View("~/Views/KlijentHome/Index.cshtml");
+                return RedirectToAction("Index", "KlijentHome", new { area = "" });
             }
             return View(zahtjevZaKredit);
         }
