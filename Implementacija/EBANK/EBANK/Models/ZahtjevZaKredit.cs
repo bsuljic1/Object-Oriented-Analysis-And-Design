@@ -64,5 +64,16 @@ namespace EBANK.Models
         [Display(Name = "Status zahtjeva")]
         public StatusZahtjevaZaKredit StatusZahtjeva { get; set; } = StatusZahtjevaZaKredit.Neobradjen;
 
+
+        public char DajKreditnuSposobnost()
+        {
+            if (MjesecniPrihodi - ProsjecniTroskoviDomacinstva > 1000 && BrojNekretnina >= 1 && BrojNeplacenihDugova == 0 && BracnoStanje == BracnoStanje.UBraku && SupruznikZanimanje != "Nezaposlen" && RadniStaz > 10) return 'A';
+            else if ((MjesecniPrihodi - ProsjecniTroskoviDomacinstva > 700) && (MjesecniPrihodi - ProsjecniTroskoviDomacinstva < 1000) && BrojNekretnina >= 1 && BrojNeplacenihDugova == 0 && BracnoStanje == BracnoStanje.UBraku && SupruznikZanimanje != "Nezaposlen" && RadniStaz > 5) return 'B';
+            else if ((MjesecniPrihodi - ProsjecniTroskoviDomacinstva > 500) && (MjesecniPrihodi - ProsjecniTroskoviDomacinstva < 700) && BrojNekretnina >= 1 && BrojNeplacenihDugova == 0 && RadniStaz > 5) return 'C';
+            else if ((MjesecniPrihodi - ProsjecniTroskoviDomacinstva > 300) && (MjesecniPrihodi - ProsjecniTroskoviDomacinstva < 500) && BrojNekretnina >= 1 && BrojNeplacenihDugova == 0 && BracnoStanje == BracnoStanje.UBraku && RadniStaz > 5) return 'D';
+            else if ((MjesecniPrihodi - ProsjecniTroskoviDomacinstva > 100) && (MjesecniPrihodi - ProsjecniTroskoviDomacinstva < 300) && BrojNekretnina == 1 && BrojNeplacenihDugova > 0) return 'E';
+            else if ((MjesecniPrihodi - ProsjecniTroskoviDomacinstva <= 100) && BrojNekretnina == 0 && BrojNeplacenihDugova > 0) return 'F';
+            else return 'F';
+        }
     }
 }

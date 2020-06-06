@@ -60,6 +60,8 @@ namespace EBANK.Controllers
                 return NotFound();
             }
 
+            ViewData["kreditnaSposobnost"] = zahtjev.DajKreditnuSposobnost();
+
             return View(zahtjev);
         }
 
