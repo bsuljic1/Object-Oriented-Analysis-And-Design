@@ -18,7 +18,7 @@ namespace EBANK.Models.RacunRepository
 
         public async Task<Racun> DajRacun(int? id)
         {
-            Racun racun = await _context.Racun.Where(m => m.Id == id).FirstAsync();
+            Racun racun = await _context.Racun.Include("Klijent").Where(m => m.Id == id).FirstAsync();
             return racun;
         }
 
@@ -49,6 +49,12 @@ namespace EBANK.Models.RacunRepository
         public async Task<List<Racun>> DajSveRacuneKlijenta(int? id)
         {
             return await _context.Racun.Include("Klijent").Where(m => m.Klijent.Id == id).ToListAsync();
+        }
+
+        public async Task UrediRacun(Racun racun)
+        {
+            _context.Update(racun);
+            await _context.SaveChangesAsync();
         }
     }
 }

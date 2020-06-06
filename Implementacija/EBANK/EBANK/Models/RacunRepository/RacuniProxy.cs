@@ -75,6 +75,14 @@ namespace EBANK.Models.RacunRepository
         {
             return await racuni.DajSveRacuneKlijenta(id);
         }
+
+        public Task UrediRacun(Racun racun)
+        {
+            if (nivoPristupa != 2)
+                throw new AuthenticationException();
+
+            return racuni.UrediRacun(racun);
+        }
     }
 }
 
