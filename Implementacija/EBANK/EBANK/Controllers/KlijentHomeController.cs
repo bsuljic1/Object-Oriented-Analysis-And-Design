@@ -12,6 +12,7 @@ using EBANK.Models.KlijentRepository;
 using EBANK.Models.NovostRepository;
 using EBANK.Utils;
 using Microsoft.AspNetCore.Http;
+using EBANK.Models.FilijaleBankomatiRepository;
 
 namespace EBANK.Controllers
 {
@@ -19,6 +20,7 @@ namespace EBANK.Controllers
     {
         private KlijentiProxy _klijenti;
         private OglasnaPlocaProxy _oglasnaPloca;
+        private FilijaleBankomatiProxy _filijaleBankomatiProxy;
         private Korisnik korisnik;
         private OOADContext Context;
 
@@ -26,6 +28,7 @@ namespace EBANK.Controllers
         {
             _klijenti = new KlijentiProxy(context);
             _oglasnaPloca = new OglasnaPlocaProxy(context);
+            _filijaleBankomatiProxy = new FilijaleBankomatiProxy(context);
             Context = context;
         }
 
@@ -36,8 +39,12 @@ namespace EBANK.Controllers
 
             _klijenti.Pristupi(korisnik);
             _oglasnaPloca.Pristupi(korisnik);
+            _filijaleBankomatiProxy.Pristupi(korisnik);
 
             ViewData["ime"] = korisnik.Ime;
+
+            ViewData["bankomati"] = await _filijaleBankomatiProxy.DajSveBankomate();
+            ViewData["filijale"] = await _filijaleBankomatiProxy.DajSveFilijale();
 
             return View(await _oglasnaPloca.DajSvePrikazaneNovosti());
         }
