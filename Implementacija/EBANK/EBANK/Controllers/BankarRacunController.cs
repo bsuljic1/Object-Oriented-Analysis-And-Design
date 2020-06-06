@@ -117,11 +117,10 @@ namespace EBANK.Controllers
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
+           
                 try
                 {
-                    await _racuni.UrediRacun(racun);
+                    await _racuni.UrediStanjeRacuna(racun);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -135,8 +134,6 @@ namespace EBANK.Controllers
                     }
                 }
                 return RedirectToAction(nameof(Index));
-            }
-            return View(racun);
         }
 
 
