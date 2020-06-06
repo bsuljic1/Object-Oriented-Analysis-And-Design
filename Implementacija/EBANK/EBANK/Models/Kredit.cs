@@ -20,5 +20,15 @@ namespace EBANK.Models
         public DateTime PocetakOtplate { get; set; }
         [Display(Name = "Status kredita")]
         public StatusKredita StatusKredita { get; set; }
+
+        public void UplatiMjesecnuRatu()
+        {
+            Racun.StanjeRacuna = Racun.StanjeRacuna - MjesecnaRata;
+        }
+
+        public void ZavrsiKredit()
+        {
+            if (IsplaceniIznos == Iznos) StatusKredita = StatusKredita.Zavrsen;
+        }
 }
 }

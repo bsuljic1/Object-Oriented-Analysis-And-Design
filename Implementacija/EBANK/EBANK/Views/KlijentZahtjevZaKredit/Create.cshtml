@@ -19,11 +19,18 @@
                 <label asp-for="Racun.Id" class="control-label"></label>
                 <select asp-for="Racun.Id" class="form-control">
                     @foreach (var Item in racuni)
-                    { 
-                    <option value="@Item.Id"> Račun broj @Item.Id</option>
+                    {
+                        <option value="@Item.Id"> Račun broj @Item.Id</option>
                     }
                 </select>
                 <span asp-validation-for="Racun.Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RokOtplate" class="control-label"></label>
+                <select asp-for="RokOtplate" class="form-control" asp-items="Html.GetEnumSelectList<RokOtplate>()">
+                    <option> Odaberite </option>
+                </select>
+                <span asp-validation-for="RokOtplate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="NamjenaKredita" class="control-label"></label>

@@ -35,7 +35,7 @@ namespace EBANK.Controllers
 
             ViewData["Ime"] = korisnik.Ime;
             var krediti = await _krediti.DajSveKredite();
-
+          
             return View(krediti);
         }
 

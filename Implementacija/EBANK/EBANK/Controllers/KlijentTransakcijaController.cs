@@ -9,6 +9,7 @@ using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.TransakcijaRepository;
 using EBANK.Utils;
+using EBANK.Models.RacunRepository;
 
 namespace EBANK.Controllers
 {
@@ -17,10 +18,12 @@ namespace EBANK.Controllers
          private TransakcijeProxy _transakcije;
         private OOADContext Context;
         private Korisnik korisnik;
+        private RacuniProxy _racuni;
 
         public KlijentTransakcijaController(OOADContext context)
         {
             _transakcije = new TransakcijeProxy(context);
+            _racuni = new RacuniProxy(context);
             Context = context;
             
         }
@@ -54,8 +57,15 @@ namespace EBANK.Controllers
         }
 
         // GET: KlijentTransakcija/Create
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+           _transakcije.Pristupi(korisnik);
+            _racuni.Pristupi(korisnik);
+
+            ViewData["racuni"] = await _racuni.DajSveRacuneKlijenta(korisnik.Id);
             return View();
         }
 
@@ -66,11 +76,19 @@ namespace EBANK.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Vrijeme,Iznos,VrstaTransakcije,NacinTransakcije")] Transakcija transakcija)
         {
+
+            korisnik = await LoginUtils.Authenticate(Request, Context, this);
+            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
+
+            _transakcije.Pristupi(korisnik);
+            _racuni.Pristupi(korisnik);
+
             if (ModelState.IsValid)
             {
                 await _transakcije.Uplati(transakcija);
                 return RedirectToAction(nameof(Index));
             }
+
             return View(transakcija);
         }
 
