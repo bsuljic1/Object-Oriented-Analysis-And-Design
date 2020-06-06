@@ -22,8 +22,5 @@ namespace EBANK.Models
 
         [Display(Name = "Rok otplate")]
         public DateTime RokOtplate { get; set; }
-
-        [Display(Name = "Mjesečna rata")]
-        public float MjesecnaRata { get; set; }
     }
 }

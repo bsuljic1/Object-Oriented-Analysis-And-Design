@@ -21,10 +21,10 @@ namespace EBANK.Models
         [Display(Name = "Status kredita")]
         public StatusKredita StatusKredita { get; set; }
 
-        public void UplatiMjesecnuRatu()
-        {
-            Racun.StanjeRacuna = Racun.StanjeRacuna - MjesecnaRata;
-        }
+        //public void UplatiMjesecnuRatu()
+        //{
+         //   Racun.StanjeRacuna = Racun.StanjeRacuna - MjesecnaRata;
+        //}
 
         public void ZavrsiKredit()
         {
