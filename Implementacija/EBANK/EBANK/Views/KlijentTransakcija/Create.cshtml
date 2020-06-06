@@ -12,7 +12,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form id="form" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="SaRacuna" class="control-label"></label>
@@ -48,11 +48,22 @@
                 </select>
                 <span asp-validation-for="NacinTransakcije" class="text-danger"></span>
             </div>
+            @if ((bool)ViewData["nemaSredstava"])
+            {
+                <p class="alert-danger">Nema sredstava</p>
+            }
             <div class="form-group">
-                <input type="submit" value="Uplati" class="btn btn-primary" />
+                <button onclick="uplati()" type="button" class="btn btn-primary">Uplati</button>
             </div>
         </form>
     </div>
 </div>
 
+<script>
+    function uplati() {
+        var r = confirm("Da li ste sigurni?");
+        if (r == true)
+            document.getElementById("form").submit();
+    }
+</script>
 

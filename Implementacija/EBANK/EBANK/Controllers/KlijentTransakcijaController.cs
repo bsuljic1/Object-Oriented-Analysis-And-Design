@@ -25,45 +25,18 @@ namespace EBANK.Controllers
             _transakcije = new TransakcijeProxy(context);
             _racuni = new RacuniProxy(context);
             Context = context;
-            
-        }
-
-        // GET: KlijentTransakcija
-        public async Task<IActionResult> Index()
-        {
-            korisnik = await LoginUtils.Authenticate(Request, Context, this);
-            if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
-
-            _transakcije.Pristupi(korisnik);
-            return View(await _transakcije.DajSveTransakcije());
-        }
-
-        // GET: KlijentTransakcija/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-           
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            var transakcija = await _transakcije.DajTransakciju(id);
-            if (transakcija == null)
-            {
-                return NotFound();
-            }
-
-            return View(transakcija);
         }
 
         // GET: KlijentTransakcija/Create
-        public async Task<IActionResult> Create()
+        public async Task<IActionResult> Create(string area = "")
         {
             korisnik = await LoginUtils.Authenticate(Request, Context, this);
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
            _transakcije.Pristupi(korisnik);
             _racuni.Pristupi(korisnik);
+
+            ViewData["nemaSredstava"] = area.Equals("nemaSredstava");
 
             ViewData["racuni"] = await _racuni.DajSveRacuneKlijenta(korisnik.Id);
             return View();
@@ -84,14 +57,17 @@ namespace EBANK.Controllers
             _racuni.Pristupi(korisnik);
 
             transakcija.SaRacuna = await _racuni.DajRacun(transakcija.SaRacuna.Id);
-            transakcija.NaRacun = await _racuni.DajRacun(transakcija.NaRacun.Id);
+            if (transakcija.NacinTransakcije == NacinTransakcije.Interna)
+                transakcija.NaRacun = await _racuni.DajRacun(transakcija.NaRacun.Id);
+            else
+                transakcija.NaRacun = null;
+
+            if(transakcija.SaRacuna.StanjeRacuna < transakcija.Iznos)
+                return RedirectToAction(nameof(Create), new { area = "nemaSredstava" });
 
             await _transakcije.Uplati(transakcija);
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "KlijentHome", new { area = "" });
         }
-
-        
-       
 
         private bool TransakcijaExists(int id)
         {

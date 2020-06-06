@@ -16,11 +16,11 @@ namespace EBANK.Models
 
         [Required]
         [Display(Name = "Sa računa")]
-        public Racun SaRacuna { get; set; }
+        public Racun? SaRacuna { get; set; }
 
         [Required]
         [Display(Name = "Na račun")]
-        public Racun NaRacun { get; set; }
+        public Racun? NaRacun { get; set; }
 
         [Required]
         public float Iznos { get; set; }
