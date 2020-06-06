@@ -2,15 +2,13 @@
 
 @{
     ViewData["Title"] = "Index";
-     var transakcije = (List<Transakcija>)ViewData["transakcije"];
+    var transakcije = (List<Transakcija>)ViewData["transakcije"];
     var racuni = (List<Racun>)ViewData["racuni"];
     var krediti = (List<Kredit>)ViewData["krediti"];
 }
 
-    <h1>@Model.Ime @Model.Prezime</h1>
-
+<h1>@Model.Ime @Model.Prezime</h1>
 <p>
-    
 </p>
 <div>
     <hr />
@@ -94,9 +92,40 @@
             @Html.DisplayFor(model => model.Adresa.Naziv)
         </dd>
     </dl>
-
 </div>
-
+<h4>Racuni</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => new Racun().Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => new Racun().VrstaRacuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => new Racun().StanjeRacuna)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in racuni)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.VrstaRacuna)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StanjeRacuna)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 <h4>Transakcije</h4>
 <table class="table">
     <thead>
@@ -142,7 +171,6 @@
         }
     </tbody>
 </table>
-
 <h4>Krediti</h4>
 <table class="table">
     <thead>
@@ -164,13 +192,13 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Iznos)
+                    @Html.DisplayFor(modelItem => item.Iznos.ToString())
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.IsplaceniIznos)
+                    @Html.DisplayFor(modelItem => item.IsplaceniIznos.ToString())
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.RokOtplate)
+                    @Html.DisplayFor(modelItem => item.RokOtplate.ToString())
                 </td>
             </tr>
         }
