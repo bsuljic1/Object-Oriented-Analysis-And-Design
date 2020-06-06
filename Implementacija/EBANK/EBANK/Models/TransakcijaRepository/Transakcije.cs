@@ -41,6 +41,7 @@ namespace EBANK.Models.TransakcijaRepository
 
         public async Task Uplati(Transakcija transakcija)
         {
+            if (transakcija.SaRacuna.StanjeRacuna < transakcija.Iznos) return;
             transakcija.SaRacuna.StanjeRacuna = transakcija.SaRacuna.StanjeRacuna - transakcija.Iznos;
             if (transakcija.NaRacun != null)
             {
