@@ -22,7 +22,7 @@ namespace EBANK.Controllers
         public BankarTransakcijeController(OOADContext context)
         {
             _transakcije = new TransakcijeProxy(context);
-            context = Context;
+            Context = context;
         }
 
         // GET: BankarTransakcije

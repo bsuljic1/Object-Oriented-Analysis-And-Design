@@ -9,6 +9,7 @@ namespace EBANK.Models
     public class Racun
     {
         [ScaffoldColumn(false)]
+        [Display(Name = "Broj računa")]
         public int Id{ get; set; }
 
         [Required]
