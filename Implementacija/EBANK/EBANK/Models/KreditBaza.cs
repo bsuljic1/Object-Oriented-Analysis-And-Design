@@ -21,6 +21,6 @@ namespace EBANK.Models
         public float KamatnaStopa { get; set; }
 
         [Display(Name = "Rok otplate")]
-        public DateTime RokOtplate { get; set; }
+        public RokOtplate RokOtplate { get; set; }
     }
 }
