@@ -36,7 +36,5 @@ namespace EBANK.Data
             modelBuilder.Entity<Transakcija>().ToTable("Transakcija");
             modelBuilder.Entity<ZahtjevZaKredit>().ToTable("ZahtjevZaKredit");
         }
-        //Ova funkcija se koriste da bi se ukinulo automatsko dodavanje množine u nazive
-        public DbSet<EBANK.Models.Konverzija> Konverzija { get; set; }
     }
 }
