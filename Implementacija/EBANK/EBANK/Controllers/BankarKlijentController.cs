@@ -7,6 +7,7 @@ using EBANK.Models.KlijentRepository;
 using EBANK.Models.BankarRepository;
 using EBANK.Utils;
 using EBANK.Models.TransakcijaRepository;
+using EBANK.Models.RacunRepository;
 
 namespace EBANK.Controllers
 {
@@ -16,12 +17,13 @@ namespace EBANK.Controllers
         private OOADContext Context;
         private TransakcijeProxy _transakcije;
         private Korisnik korisnik;
-
+        private RacuniProxy _racuni;
         public BankarKlijentController(OOADContext context)
         {
             _klijenti = new KlijentiProxy(context);
             Context = context;
             _transakcije = new TransakcijeProxy(context);
+            _racuni = new RacuniProxy(context);
         }
 
         // GET: BankarKlijent
@@ -60,7 +62,7 @@ namespace EBANK.Controllers
             }
 
             ViewData["transakcije"] = await _transakcije.DajTransakcije(id);
-            
+            ViewData["racuni"] = await _racuni.DajRacune(id);
 
             return View(klijent);
         }

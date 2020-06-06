@@ -58,6 +58,11 @@ namespace EBANK.Models.RacunRepository
             _context.Update(racun1);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<List<Racun>> DajRacune(int? id)
+        {
+            return await _context.Racun.Include("Klijent").Where(c => c.Klijent.Id == id).ToListAsync();
+        }
     }
 }
 

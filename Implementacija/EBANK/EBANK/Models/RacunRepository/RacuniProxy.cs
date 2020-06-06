@@ -83,6 +83,12 @@ namespace EBANK.Models.RacunRepository
 
             return racuni.UrediStanjeRacuna(racun);
         }
+
+        public Task<List<Racun>> DajRacune(int? id)
+        {
+            if (nivoPristupa == 0) throw new AuthenticationException();
+            return racuni.DajRacune(id);
+        }
     }
 }
 

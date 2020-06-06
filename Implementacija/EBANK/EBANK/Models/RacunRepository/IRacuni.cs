@@ -14,5 +14,6 @@ namespace EBANK.Models.RacunRepository
         public bool DaLiPostojiRacun(int? id);
         public Task<List<Racun>> DajSveRacuneKlijenta(int? id);
         public Task UrediStanjeRacuna(Racun racun);
+        public Task<List<Racun>> DajRacune(int? id);
     }
 }
