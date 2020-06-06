@@ -8,13 +8,14 @@ namespace EBANK.Models
 {
     public class Konverzija
     {
-        public int Id { get; set; }
         [DisplayName("Iznos")]
         public float Iznos { get; set; }
+        [DisplayName("Konvertovani iznos")]
+        public float KonvertovaniIznos { get; set; }
         [DisplayName("Iz valute")]
         public Valuta IzValute { get; set; }
         [DisplayName("U valutu")]
         public Valuta UValutu { get; set; }
-        
+
     }
 }

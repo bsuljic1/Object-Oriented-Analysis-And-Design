@@ -11,6 +11,6 @@ namespace EBANK.Models
         EUR,
         RSD, 
         USD,
-        HRK,
+        HRK
     }
 }

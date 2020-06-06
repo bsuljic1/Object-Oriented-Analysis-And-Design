@@ -1,47 +1,41 @@
-﻿@model IEnumerable<EBANK.Models.Konverzija>
+﻿@model EBANK.Models.Konverzija
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Create";
 }
 
-<h1>Index</h1>
+<h1>Create</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Iznos)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.IzValute)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UValutu)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Iznos)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IzValute)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UValutu)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<h4>Konverzija</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IzValute" class="control-label"></label>
+                <select asp-for="IzValute" class="form-control" asp-items="Html.GetEnumSelectList<Valuta>()"></select>
+                <span asp-validation-for="IzValute" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Iznos" class="control-label"></label>
+                <input asp-for="Iznos" class="form-control" />
+                <span asp-validation-for="Iznos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UValutu" class="control-label"></label>
+                <select asp-for="UValutu" class="form-control" asp-items="Html.GetEnumSelectList<Valuta>()"></select>
+                <span asp-validation-for="UValutu" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="KonvertovaniIznos" class="control-label"></label>
+                @Html.DisplayFor(model => model.KonvertovaniIznos)
+                <span asp-validation-for="KonvertovaniIznos" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Konvertuj" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
