@@ -40,7 +40,7 @@ namespace EBANK.Models.TransakcijaRepository
 
         public Task Uplati(Transakcija transakcija)
         {
-            if (nivoPristupa != 2) throw new AuthenticationException();
+            if (nivoPristupa != 3) throw new AuthenticationException();
             return transakcije.Uplati(transakcija);
         }
 

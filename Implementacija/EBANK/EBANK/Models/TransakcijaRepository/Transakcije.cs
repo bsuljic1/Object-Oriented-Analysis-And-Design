@@ -36,13 +36,16 @@ namespace EBANK.Models.TransakcijaRepository
 
         public bool DaLiPostojiTransakcija(int? id)
         {
-            throw new NotImplementedException();
+            return _context.Transakcija.Any(e => e.Id == id);
         }
 
         public async Task Uplati(Transakcija transakcija)
         {
             transakcija.SaRacuna.StanjeRacuna = transakcija.SaRacuna.StanjeRacuna - transakcija.Iznos;
-            transakcija.NaRacun.StanjeRacuna = transakcija.NaRacun.StanjeRacuna + transakcija.Iznos;
+            if (transakcija.NaRacun != null)
+            {
+                transakcija.NaRacun.StanjeRacuna = transakcija.NaRacun.StanjeRacuna + transakcija.Iznos;
+            }
             _context.Add(transakcija);
             await _context.SaveChangesAsync();
         }

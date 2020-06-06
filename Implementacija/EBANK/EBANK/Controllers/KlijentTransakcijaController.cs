@@ -74,7 +74,7 @@ namespace EBANK.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Vrijeme,Iznos,VrstaTransakcije,NacinTransakcije")] Transakcija transakcija)
+        public async Task<IActionResult> Create([Bind("Id,SaRacuna,NaRacun,Vrijeme,Iznos,VrstaTransakcije,NacinTransakcije")] Transakcija transakcija)
         {
 
             korisnik = await LoginUtils.Authenticate(Request, Context, this);
@@ -83,13 +83,11 @@ namespace EBANK.Controllers
             _transakcije.Pristupi(korisnik);
             _racuni.Pristupi(korisnik);
 
-            if (ModelState.IsValid)
-            {
-                await _transakcije.Uplati(transakcija);
-                return RedirectToAction(nameof(Index));
-            }
+            transakcija.SaRacuna = await _racuni.DajRacun(transakcija.SaRacuna.Id);
+            transakcija.NaRacun = await _racuni.DajRacun(transakcija.NaRacun.Id);
 
-            return View(transakcija);
+            await _transakcije.Uplati(transakcija);
+            return RedirectToAction(nameof(Index));
         }
 
         

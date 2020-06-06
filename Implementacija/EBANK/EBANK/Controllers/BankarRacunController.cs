@@ -43,7 +43,7 @@ namespace EBANK.Controllers
         
 
         // GET: BankarRacun/Create
-        public async Task<IActionResult> CreateAsync()
+        public async Task<IActionResult> Create()
         {
             korisnik = await LoginUtils.Authenticate(Request, Context, this);
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });

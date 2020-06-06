@@ -37,22 +37,22 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayNameFor(model => model.SaRacuna)
+                @Html.DisplayFor(modelItem => item.SaRacuna.Id)
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.NaRacun)
+                @Html.DisplayFor(modelItem => item.NaRacun.Id)
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.Iznos)
+                @Html.DisplayFor(modelItem => item.Iznos)
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.Vrijeme)
+                @Html.DisplayFor(modelItem => item.Vrijeme)
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.VrstaTransakcije)
+                @Html.DisplayFor(modelItem => item.VrstaTransakcije)
             </td>
             <td>
-                @Html.DisplayNameFor(model => model.NacinTransakcije)
+                @Html.DisplayFor(modelItem => item.NacinTransakcije)
             </td>
             <td>
                 <a asp-action="Details" asp-route-id="@item.Id">Detalji</a>

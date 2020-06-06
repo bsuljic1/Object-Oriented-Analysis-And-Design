@@ -12,7 +12,7 @@ namespace EBANK.Models
         public int Id { get; set; }
 
         [Required]
-        public DateTime Vrijeme { get; set; }
+        public DateTime Vrijeme { get; set; } = DateTime.Now;
 
         [Required]
         [Display(Name = "Sa računa")]
