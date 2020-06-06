@@ -9,6 +9,7 @@ using EBANK.Data;
 using EBANK.Models;
 using EBANK.Models.ZahtjevZaKreditRepository;
 using EBANK.Utils;
+using EBANK.Models.RacunRepository;
 
 namespace EBANK.Controllers
 {
@@ -17,10 +18,11 @@ namespace EBANK.Controllers
         private OOADContext Context;
         private Korisnik korisnik;
         private ZahtjeviZaKreditProxy _zahtjevi;
-
+        private RacuniProxy _racuni;
         public KlijentZahtjevZaKreditController(OOADContext context)
         {
             _zahtjevi = new ZahtjeviZaKreditProxy(context);
+            _racuni = new RacuniProxy(context);
             Context = context;
         }
 
@@ -30,8 +32,9 @@ namespace EBANK.Controllers
             korisnik = await LoginUtils.Authenticate(Request, Context, this);
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
-            _zahtjevi.Pristupi(korisnik); 
-
+            _zahtjevi.Pristupi(korisnik);
+            _racuni.Pristupi(korisnik);
+            ViewData["racuni"] = await _racuni.DajSveRacuneKlijenta(korisnik.Id);
             return View();
         }
 
@@ -40,19 +43,19 @@ namespace EBANK.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NamjenaKredita,MjesecniPrihodi,ProsjecniTroskoviDomacinstva,NazivRadnogMjesta,NazivPoslodavca,RadniStaz,BrojNekretnina,BracnoStanje,SupruznikIme,SupruznikPrezime,SupruznikZanimanje,ImaNeplacenihDugova,BrojNeplacenihDugova,StatusZahtjeva,Iznos,KamatnaStopa,RokOtplate")] ZahtjevZaKredit zahtjevZaKredit)
+        public async Task<IActionResult> Create([Bind("NamjenaKredita,MjesecniPrihodi,ProsjecniTroskoviDomacinstva,NazivRadnogMjesta,NazivPoslodavca,RadniStaz,BrojNekretnina,BracnoStanje,SupruznikIme,SupruznikPrezime,SupruznikZanimanje,ImaNeplacenihDugova,BrojNeplacenihDugova,StatusZahtjeva,Iznos,KamatnaStopa,RokOtplate,Racun")] ZahtjevZaKredit zahtjevZaKredit)
         {
             korisnik = await LoginUtils.Authenticate(Request, Context, this);
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
 
-            _zahtjevi.Pristupi(korisnik); 
+            _zahtjevi.Pristupi(korisnik);
+            _racuni.Pristupi(korisnik);
 
-            if (ModelState.IsValid)
-            {
+            zahtjevZaKredit.Racun = await _racuni.DajRacun(zahtjevZaKredit.Racun.Id); 
+           
                 await _zahtjevi.PodnesiZahtjevZaKredit(zahtjevZaKredit);
                 return RedirectToAction("Index", "KlijentHome", new { area = "" });
-            }
-            return View(zahtjevZaKredit);
+            
         }
 
         

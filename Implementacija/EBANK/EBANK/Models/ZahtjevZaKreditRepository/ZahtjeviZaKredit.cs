@@ -20,12 +20,12 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
         }
         public async Task<List<ZahtjevZaKredit>> DajSveZahtjeve()
         {
-            return await _context.ZahtjevZaKredit.Where(zahtjev=>zahtjev.StatusZahtjeva == StatusZahtjevaZaKredit.Neobradjen).Include("Racun").Include(c => c.Racun.Klijent).ToListAsync();
+            return await _context.ZahtjevZaKredit.Include("Racun").Include(c => c.Racun.Klijent).Where(zahtjev=>zahtjev.StatusZahtjeva == StatusZahtjevaZaKredit.Neobradjen).ToListAsync();
         }
 
         public async Task<ZahtjevZaKredit> DajZahtjev(int? id)
         {
-            ZahtjevZaKredit zahtjev = await _context.ZahtjevZaKredit.FindAsync(id);
+            ZahtjevZaKredit zahtjev = await _context.ZahtjevZaKredit.Include("Racun").Include(c => c.Racun.Klijent).Where(zahtjev => zahtjev.Id == id).FirstAsync(); ;
             return zahtjev;
         }
 
@@ -42,7 +42,7 @@ namespace EBANK.Models.ZahtjevZaKreditRepository
 
         public async Task RijesiZahtjev(int? id, bool prihvacen)
         {
-            ZahtjevZaKredit zahtjev = await _context.ZahtjevZaKredit.FindAsync(id);
+            ZahtjevZaKredit zahtjev = await _context.ZahtjevZaKredit.Include("Racun").Where(zahtjev => zahtjev.Id == id).FirstAsync();
             if (prihvacen)
             {
 
