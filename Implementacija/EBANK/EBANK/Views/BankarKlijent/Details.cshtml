@@ -2,6 +2,7 @@
 
 @{
     ViewData["Title"] = "Details";
+    var transakcije = (List<Transakcija>) ViewData["transakcije"];
 }
 
 <h1>Detalji o klijentu</h1>
@@ -88,7 +89,57 @@
             @Html.DisplayFor(model => model.Adresa.Naziv)
         </dd>
     </dl>
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-sm-8" padding: 20px;">
+            <h4 class="display-6" style="margin-bottom: 10px;text-align: left;">Transakcije klijenta:</h4>
+           
+        </div>
+    </div>
 </div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => new Transakcija().SaRacuna)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => new Transakcija().NaRacun)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => new Transakcija().Iznos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => new Transakcija().Vrijeme)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => new Transakcija().VrstaTransakcije)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in transakcije)
+        {
+        <tr>
+            <td>
+                Racun broj @Html.DisplayFor(modelItem => item.SaRacuna.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NaRacun.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Iznos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vrijeme)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VrstaTransakcije)
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
 <div>
     <a asp-action="Edit" asp-route-id="@Model.Id">Uredi</a> |
     <a asp-action="Index">Povratak na listu</a>
