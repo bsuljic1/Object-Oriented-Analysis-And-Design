@@ -234,8 +234,8 @@ namespace EBANK.Migrations
                     b.Property<int?>("RacunId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("RokOtplate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("RokOtplate")
+                        .HasColumnType("int");
 
                     b.Property<int>("StatusKredita")
                         .HasColumnType("int");
@@ -379,8 +379,8 @@ namespace EBANK.Migrations
                     b.Property<int>("RadniStaz")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("RokOtplate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("RokOtplate")
+                        .HasColumnType("int");
 
                     b.Property<int>("StatusZahtjeva")
                         .HasColumnType("int");

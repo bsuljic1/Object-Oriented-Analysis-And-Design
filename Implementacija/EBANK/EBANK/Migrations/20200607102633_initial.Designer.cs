@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EBANK.Migrations
 {
     [DbContext(typeof(OOADContext))]
-    [Migration("20200528091842_initial2")]
-    partial class initial2
+    [Migration("20200607102633_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -171,6 +171,12 @@ namespace EBANK.Migrations
                     b.Property<DateTime>("DatumRodjenja")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Drzava")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Grad")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Ime")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -190,6 +196,12 @@ namespace EBANK.Migrations
                     b.Property<string>("Prezime")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Spol")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("VrijemeDodavanja")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Zanimanje")
                         .IsRequired()
@@ -224,8 +236,8 @@ namespace EBANK.Migrations
                     b.Property<int?>("RacunId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("RokOtplate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("RokOtplate")
+                        .HasColumnType("int");
 
                     b.Property<int>("StatusKredita")
                         .HasColumnType("int");
@@ -369,8 +381,8 @@ namespace EBANK.Migrations
                     b.Property<int>("RadniStaz")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("RokOtplate")
-                        .HasColumnType("datetime2");
+                    b.Property<int>("RokOtplate")
+                        .HasColumnType("int");
 
                     b.Property<int>("StatusZahtjeva")
                         .HasColumnType("int");
