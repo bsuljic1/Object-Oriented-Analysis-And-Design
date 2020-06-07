@@ -33,13 +33,14 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayNameFor(model => model.Id)
+                    @Html.DisplayFor(modelItem => item.Id)
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.Klijent.Ime)
+                    @Html.DisplayFor(modelItem => item.Klijent.Ime)
                 </td>
                 <td>
-                    @Html.DisplayNameFor(model => model.Klijent.Prezime)
+                    @Html.DisplayFor(modelItem => item.Klijent.Prezime)
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.StanjeRacuna)
                 </td>
