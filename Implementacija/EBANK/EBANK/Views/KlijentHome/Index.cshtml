@@ -67,7 +67,7 @@
             var filijale = [
                 @for(int i = 0; i < filijale.Count; i++) {
                     var item = filijale[i];
-                    <text>["@item.Adresa.Naziv", @item.Adresa.Latitude, @item.Adresa.Longitude, @i]</text>
+                    <text>["@item.Adresa.Naziv", @item.Adresa.Latitude, @item.Adresa.Longitude, @i, "@item.BrojTelefona"]</text>
                     if(i != filijale.Count - 1) {
                         <text>,</text>
                     }
@@ -100,7 +100,7 @@
 
                 google.maps.event.addListener(marker, 'click', (function (marker, i) {
                     return function () {
-                        infowindow.setContent("Filijala: " + filijale[i][0]);
+                        infowindow.setContent("Filijala: " + filijale[i][0] + " (" + filijale[i][4] + ")");
                         infowindow.open(map, marker);
                     }
                 })(marker, i));
