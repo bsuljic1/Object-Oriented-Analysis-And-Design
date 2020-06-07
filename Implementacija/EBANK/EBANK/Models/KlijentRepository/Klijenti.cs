@@ -34,7 +34,7 @@ namespace EBANK.Models.KlijentRepository
 
         public async Task<List<Klijent>> DajSveKlijente()
         {
-            return await _context.Klijent.ToListAsync();
+            return await _context.Klijent.Where((m => m.KorisnickoIme != "a")).ToListAsync();
         }
 
         public bool DaLiPostojiKlijent(int? id)
