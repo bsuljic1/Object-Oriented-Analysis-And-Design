@@ -6066,8 +6066,9 @@ a.close.disabled {
 }
 
 .bg-primary {
-	    background-image: url(./../assets/img/background.jpg);
+    background-image: url(https://logincdn.msauth.net/16.000.28629.5/content/images/backgrounds/2_bc3d32a696895f78c19df6c717586a5d.svg);
     background-size: cover;
+    background-color: #00000000 !important;
 }
 
 a.bg-primary:hover, a.bg-primary:focus,
