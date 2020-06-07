@@ -60,7 +60,7 @@ namespace EBANK.Controllers
             if (transakcija.NacinTransakcije == NacinTransakcije.Interna)
                 transakcija.NaRacun = await _racuni.DajRacun(transakcija.NaRacun.Id);
             else
-                transakcija.NaRacun = null;
+                transakcija.NaRacun = await _racuni.DajRacun(4);
 
             if(transakcija.SaRacuna.StanjeRacuna < transakcija.Iznos)
                 return RedirectToAction(nameof(Create), new { area = "nemaSredstava" });
