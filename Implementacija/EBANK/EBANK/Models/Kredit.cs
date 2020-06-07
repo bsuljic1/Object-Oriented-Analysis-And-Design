@@ -21,9 +21,19 @@ namespace EBANK.Models
         [Display(Name = "Status kredita")]
         public StatusKredita StatusKredita { get; set; }
 
-        public void UplatiMjesecnuRatu()
+        public void UplatiMjesecnuRatu() 
         {
-           Racun.StanjeRacuna = Racun.StanjeRacuna - (Iznos / (((int) RokOtplate)*12));
+            int rokOtplate;
+            switch (RokOtplate)
+            {
+                case RokOtplate.Trajanje_1_godina: rokOtplate = 1; break;
+                case RokOtplate.Trajanje_5_godina: rokOtplate = 5; break;
+                case RokOtplate.Trajanje_10_godina: rokOtplate = 10; break;
+                case RokOtplate.Trajanje_15_godina: rokOtplate = 15; break;
+                case RokOtplate.Trajanje_20_godina: rokOtplate = 20; break;
+                default: rokOtplate = 1; break;
+            }
+            Racun.StanjeRacuna = Racun.StanjeRacuna - (Iznos / (rokOtplate * 12));
         }
 
         public void ZavrsiKredit()
