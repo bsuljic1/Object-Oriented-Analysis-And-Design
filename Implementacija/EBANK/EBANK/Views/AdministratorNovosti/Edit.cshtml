@@ -12,11 +12,7 @@
         <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-            <div class="form-group">
-                <label asp-for="VrijemeDodavanja" class="control-label"></label>
-                <input asp-for="VrijemeDodavanja" class="form-control" />
-                <span asp-validation-for="VrijemeDodavanja" class="text-danger"></span>
-            </div>
+            <input type="hidden" asp-for="VrijemeDodavanja"/>
             <div class="form-group">
                 <label asp-for="Naslov" class="control-label"></label>
                 <input asp-for="Naslov" class="form-control" />

@@ -38,7 +38,8 @@
             </div>
             <div class="form-group">
                 <label asp-for="Spol" class="control-label"></label>
-                <input asp-for="Spol" class="form-control" />
+                <select asp-for="Spol" class="form-control" asp-items="Html.GetEnumSelectList<Spol>()">
+                </select>
                 <span asp-validation-for="Spol" class="text-danger"></span>
             </div>
             <div class="form-group">
