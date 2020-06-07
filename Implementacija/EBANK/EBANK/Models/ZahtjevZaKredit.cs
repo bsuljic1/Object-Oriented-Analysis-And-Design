@@ -55,9 +55,9 @@ namespace EBANK.Models
         [Display(Name = "Imate li neplaćenih dugova?")]
         public bool ImaNeplacenihDugova { get; set; }
 
-        [Required]
+
         [Display(Name = "Broj neplaćenih dugova")]
-        public float BrojNeplacenihDugova { get; set; }
+        public float BrojNeplacenihDugova { get; set; } = 0;
 
 
         [Required]
