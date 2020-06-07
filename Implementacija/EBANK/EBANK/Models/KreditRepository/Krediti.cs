@@ -24,8 +24,19 @@ namespace EBANK.Models.KreditRepository
 
         public async Task<List<Kredit>> DajSveKredite()
         {
-            return await _context.Kredit.Include("Racun").Include(c => c.Racun.Klijent).ToListAsync();
+            var krediti = await _context.Kredit.Include("Racun").Include(c => c.Racun.Klijent).ToListAsync();
+            foreach(Kredit k in krediti)
+            {
+                if (k.StatusKredita == StatusKredita.Aktivan && k.PocetakOtplate.Add(TimeSpan.FromDays((int)k.RokOtplate*365)) < DateTime.Now)
+                {
+                    k.StatusKredita = StatusKredita.Zavrsen;
+                    _context.Update(k);
+                }
+            }
+            await _context.SaveChangesAsync();
+            return krediti;
         }
+
 
         public bool DaLiPostojiKredit(int? id)
         {

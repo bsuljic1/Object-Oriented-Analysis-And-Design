@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EBANK.Models
 {
-    public class KreditBaza
+    public abstract class KreditBaza
     {
         [ScaffoldColumn(false)]
         public int Id { get; set; }

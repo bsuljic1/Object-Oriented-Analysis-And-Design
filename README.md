@@ -40,7 +40,6 @@ U modernom svijetu u kojem je novac pojam bez kojeg se ne može egzistirati, ima
     - Dodavanje novih klijenata u sistem i brisanje starih
     - Uređivanje podataka klijenata
     - Otvaranje računa, pregledanje stanja, i zatvaranje istih
-    - Pregled prometa po računima, klijentima, i ostalih statističkih podataka
     - Pregled transakcija
     - Pregled, odobravanje i historiju kredita (uz algoritam za računanje kreditne sposobnosti)
 - Administrator
