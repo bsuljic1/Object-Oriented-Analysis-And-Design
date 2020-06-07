@@ -130,7 +130,7 @@ namespace EBANK.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,DatumRodjenja,JMBG,BrojTelefona,BrojLicneKarte,Zanimanje,Ime,Prezime,KorisnickoIme,Lozinka,Adresa, Grad, Drzava")] Klijent klijent)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,DatumRodjenja,JMBG,BrojTelefona,BrojLicneKarte,Zanimanje,Ime,Prezime,Spol,KorisnickoIme,Lozinka,Adresa, Grad, Drzava")] Klijent klijent)
         {
             korisnik = await LoginUtils.Authenticate(Request, Context, this);
             if (korisnik == null) return RedirectToAction("Logout", "Login", new { area = "" });
