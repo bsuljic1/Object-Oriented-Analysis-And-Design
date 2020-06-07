@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EBANK.Migrations
 {
-    public partial class initial2 : Migration
+    public partial class initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -129,11 +129,15 @@ namespace EBANK.Migrations
                     KorisnickoIme = table.Column<string>(nullable: false),
                     Lozinka = table.Column<string>(nullable: false),
                     DatumRodjenja = table.Column<DateTime>(nullable: false),
+                    Spol = table.Column<int>(nullable: false),
                     JMBG = table.Column<string>(nullable: false),
                     BrojTelefona = table.Column<string>(nullable: false),
                     BrojLicneKarte = table.Column<string>(nullable: false),
                     AdresaId = table.Column<int>(nullable: false),
-                    Zanimanje = table.Column<string>(nullable: false)
+                    Zanimanje = table.Column<string>(nullable: false),
+                    Grad = table.Column<string>(nullable: true),
+                    Drzava = table.Column<string>(nullable: true),
+                    VrijemeDodavanja = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -176,7 +180,7 @@ namespace EBANK.Migrations
                     RacunId = table.Column<int>(nullable: true),
                     Iznos = table.Column<float>(nullable: false),
                     KamatnaStopa = table.Column<float>(nullable: false),
-                    RokOtplate = table.Column<DateTime>(nullable: false),
+                    RokOtplate = table.Column<int>(nullable: false),
                     IsplaceniIznos = table.Column<float>(nullable: false),
                     PocetakOtplate = table.Column<DateTime>(nullable: false),
                     StatusKredita = table.Column<int>(nullable: false)
@@ -231,7 +235,7 @@ namespace EBANK.Migrations
                     RacunId = table.Column<int>(nullable: true),
                     Iznos = table.Column<float>(nullable: false),
                     KamatnaStopa = table.Column<float>(nullable: false),
-                    RokOtplate = table.Column<DateTime>(nullable: false),
+                    RokOtplate = table.Column<int>(nullable: false),
                     NamjenaKredita = table.Column<string>(nullable: false),
                     MjesecniPrihodi = table.Column<float>(nullable: false),
                     ProsjecniTroskoviDomacinstva = table.Column<float>(nullable: false),
