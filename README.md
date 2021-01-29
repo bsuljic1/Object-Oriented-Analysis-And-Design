@@ -1,6 +1,4 @@
-# Grupa6-Bankari
-
-## Tema: Bankarski sistem
+# Tema: Bankarski sistem
 
 ![image](https://raw.githubusercontent.com/ooad-2019-2020/Grupa6-Bankari/master/logo%20ebank.png)
 
